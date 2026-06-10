@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genki I レッスンメニュー</title>
+<style>
+  :root{--orange:#e8590c;--bg:#fff7f0;--ink:#333;--soft:#fff3e6;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:"Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;}
+  body{background:var(--bg);color:var(--ink);min-height:100vh;padding:5vh 6vw;}
+  .kicker{font-size:.85rem;color:var(--orange);font-weight:700;letter-spacing:.25em;text-align:center;}
+  h1{color:var(--orange);text-align:center;font-size:2rem;margin:8px 0 6px;}
+  .sub{text-align:center;color:#999;margin-bottom:30px;font-size:.95rem;}
+  h2{color:var(--orange);font-size:1.05rem;margin:26px 0 12px;border-left:6px solid var(--orange);padding-left:10px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:900px;margin:0 auto;}
+  .wrap{max-width:900px;margin:0 auto;}
+  a.cardlink{display:block;background:#fff;border:3px solid var(--orange);border-radius:16px;
+    padding:20px;text-decoration:none;color:var(--ink);transition:.15s;box-shadow:0 3px 10px rgba(232,89,12,.12);}
+  a.cardlink:hover{transform:translateY(-3px);background:var(--soft);}
+  .no{font-size:.8rem;color:#fff;background:var(--orange);border-radius:99px;padding:2px 12px;font-weight:700;display:inline-block;margin-bottom:8px;}
+  .title{font-size:1.25rem;font-weight:700;}
+  .romaji{font-size:.85rem;color:#b08968;font-style:italic;}
+  .desc{font-size:.85rem;color:#888;margin-top:6px;line-height:1.5;}
+  .tool .no{background:#b08968;}
+</style>
+</head>
+<body>
+<div class="kicker">GENKI I — LESSON SLIDES</div>
+<h1>Lesson Menu</h1>
+<p class="sub">Choose a lesson to start</p>
+
+<div class="wrap">
+<h2>Lessons</h2>
+<div class="grid">
+  <a class="cardlink" href="L4_はじめてのデート.html">
+    <span class="no">だい4か / L4</span>
+    <div class="title">はじめての デート</div>
+    <div class="romaji">Hajimete no deeto — The First Date</div>
+    <div class="desc">あります/います・ばしょのことば・かこけい（第16〜19回）</div>
+  </a>
+  <a class="cardlink" href="L5_おきなわりょこう.html">
+    <span class="no">だい5か / L5</span>
+    <div class="title">おきなわ りょこう</div>
+    <div class="romaji">Okinawa ryokou — A Trip to Okinawa</div>
+    <div class="desc">けいようし・すき/きらい・〜ましょう（第21〜23回）</div>
+  </a>
+  <a class="cardlink" href="L6_ロバートさんのいちにち.html">
+    <span class="no">だい6か / L6</span>
+    <div class="title">ロバートさんの いちにち</div>
+    <div class="romaji">Robaato-san no ichinichi — A Day in Robert's Life</div>
+    <div class="desc">て-form・〜てください・〜てもいいです・〜から（第24〜27回）</div>
+  </a>
+  <a class="cardlink" href="L1-5_ふくしゅうかい.html">
+    <span class="no">ふくしゅう / REVIEW</span>
+    <div class="title">だい1〜5か ふくしゅうかい</div>
+    <div class="romaji">Fukushuukai — L1–5 Review</div>
+    <div class="desc">Drills, role plays & worksheet review</div>
+  </a>
+</div>
+
+<h2>Tools</h2>
+<div class="grid">
+  <a class="cardlink tool" href="単語カード.html">
+    <span class="no">TOOL</span>
+    <div class="title">Vocabulary Cards (L1–6)</div>
+    <div class="romaji">Tango kaado — Vocabulary Cards</div>
+    <div class="desc">331 words · quiz mode · kana chart · category filter</div>
+  </a>
+  <a class="cardlink tool" href="ひらがなカード.html">
+    <span class="no">TOOL</span>
+    <div class="title">Hiragana Practice</div>
+    <div class="romaji">Hiragana renshuu kaado</div>
+    <div class="desc">Letter drills by row + word mode by level</div>
+  </a>
+</div>
+</div>
+</body>
+</html>
