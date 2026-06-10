@@ -99,12 +99,21 @@
   <div class="selects">
     <select id="lesson">
       <option value="all">All lessons (L1–6)</option>
-      <option value="1">Lesson 1</option>
-      <option value="2">Lesson 2</option>
-      <option value="3">Lesson 3</option>
-      <option value="4">Lesson 4</option>
-      <option value="5">Lesson 5</option>
-      <option value="6">Lesson 6</option>
+      <optgroup label="Single lesson">
+        <option value="1">Lesson 1</option>
+        <option value="2">Lesson 2</option>
+        <option value="3">Lesson 3</option>
+        <option value="4">Lesson 4</option>
+        <option value="5">Lesson 5</option>
+        <option value="6">Lesson 6</option>
+      </optgroup>
+      <optgroup label="Cumulative">
+        <option value="u2">Up to Lesson 2 (L1–2)</option>
+        <option value="u3">Up to Lesson 3 (L1–3)</option>
+        <option value="u4">Up to Lesson 4 (L1–4)</option>
+        <option value="u5">Up to Lesson 5 (L1–5)</option>
+        <option value="u6">Up to Lesson 6 (L1–6)</option>
+      </optgroup>
     </select>
     <select id="cat"></select>
     <select id="dir">
@@ -546,9 +555,14 @@ const CAT_EN={"学校":"School","人":"People","時間":"Time","その他":"Othe
 "副詞":"Adverbs","活動":"Activities","人・物":"People & Things","位置":"Location words",
 "副詞など":"Adverbs etc.","名詞":"Nouns","い形容詞":"i-adjectives","な形容詞":"na-adjectives",
 "曜日":"Days of the week"};
+function inLesson(v,l){
+  if(l==="all")return true;
+  if(l[0]==="u")return v[3]<=Number(l.slice(1));
+  return v[3]==Number(l);
+}
 function refreshCats(){
   const l=$("lesson").value;
-  const pool=VOCAB.filter(v=>l==="all"||v[3]==Number(l));
+  const pool=VOCAB.filter(v=>inLesson(v,l));
   const cats=[...new Set(pool.map(v=>v[4]))];
   const cur=$("cat").value;
   $("cat").innerHTML='<option value="all">All categories</option>'+
@@ -557,7 +571,7 @@ function refreshCats(){
 }
 function buildDeck(){
   const l=$("lesson").value,c=$("cat").value;
-  deck=VOCAB.filter(v=>(l==="all"||v[3]==Number(l))&&(c==="all"||v[4]===c));
+  deck=VOCAB.filter(v=>inLesson(v,l)&&(c==="all"||v[4]===c));
   idx=0;
   render();
 }
