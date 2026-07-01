@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Genki I 単語カード（第1〜6課）</title>
+<title>Genki I 単語カード（第1〜7課）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -101,7 +101,7 @@
 <div class="panel">
   <div class="selects">
     <select id="lesson">
-      <option value="all">All lessons (L1–6)</option>
+      <option value="all">All lessons (L1–7)</option>
       <optgroup label="Single lesson">
         <option value="1">Lesson 1</option>
         <option value="2">Lesson 2</option>
@@ -109,6 +109,7 @@
         <option value="4">Lesson 4</option>
         <option value="5">Lesson 5</option>
         <option value="6">Lesson 6</option>
+        <option value="7">Lesson 7</option>
       </optgroup>
       <optgroup label="Cumulative">
         <option value="u2">Up to Lesson 2 (L1–2)</option>
@@ -116,6 +117,7 @@
         <option value="u4">Up to Lesson 4 (L1–4)</option>
         <option value="u5">Up to Lesson 5 (L1–5)</option>
         <option value="u6">Up to Lesson 6 (L1–6)</option>
+        <option value="u7">Up to Lesson 7 (L1–7)</option>
       </optgroup>
     </select>
     <select id="cat"></select>
@@ -517,7 +519,52 @@ const VOCAB=[
 ["すぐ","","right away",6,"副詞など"],
 ["ゆっくり","","slowly; leisurely; unhurriedly",6,"副詞など"],
 ["けっこうです","結構です","That would be fine; That wouldn't be necessary",6,"副詞など"],
-["ほんとうですか","本当ですか","Really?",6,"副詞など"]
+["ほんとうですか","本当ですか","Really?",6,"副詞など"],
+// ===== 第7課 =====
+["ちち","父","(my) father",7,"家族"],
+["はは","母","(my) mother",7,"家族"],
+["あに","兄","(my) older brother",7,"家族"],
+["あね","姉","(my) older sister",7,"家族"],
+["かぞく","家族","family",7,"家族"],
+["きょうだい","兄弟","siblings",7,"家族"],
+["りょうしん","両親","parents",7,"家族"],
+["め","目","eye",7,"名詞"],
+["くち","口","mouth",7,"名詞"],
+["かみ","髪","hair",7,"名詞"],
+["かお","顔","face",7,"名詞"],
+["せ","背","height; stature",7,"名詞"],
+["え","絵","picture; drawing",7,"名詞"],
+["めがね","眼鏡","glasses",7,"名詞"],
+["ティーシャツ","Tシャツ","T-shirt",7,"名詞"],
+["ことば","言葉","language; word",7,"名詞"],
+["あおい","青い","blue",7,"い形容詞"],
+["あかい","赤い","red",7,"い形容詞"],
+["くろい","黒い","black",7,"い形容詞"],
+["しろい","白い","white",7,"い形容詞"],
+["かわいい","","cute",7,"い形容詞"],
+["ながい","長い","long",7,"い形容詞"],
+["みじかい","短い","short (length)",7,"い形容詞"],
+["わかい","若い","young",7,"い形容詞"],
+["しんせつ","親切","kind",7,"な形容詞"],
+["きれい","","beautiful; clean",7,"な形容詞"],
+["せがたかい","背が高い","tall (stature)",7,"表現"],
+["せがひくい","背が低い","short (stature)",7,"表現"],
+["あたまがいい","頭がいい","bright; smart",7,"表現"],
+["かみがながい","髪が長い","to have long hair",7,"表現"],
+["うたう","歌う","to sing (〜を)",7,"う動詞"],
+["かぶる","","to put on (a hat) (〜を)",7,"う動詞"],
+["はく","","to put on (below the waist) (〜を)",7,"う動詞"],
+["しる","知る","to get to know → しっている (know)",7,"う動詞"],
+["すむ","住む","to live (〜に) → すんでいる",7,"う動詞"],
+["ふとる","太る","to gain weight → ふとっている",7,"う動詞"],
+["きる","着る","to put on (above the waist) (〜を)",7,"る動詞"],
+["やせる","","to lose weight; slim → やせている",7,"る動詞"],
+["にる","似る","to resemble (〜に) → にている",7,"る動詞"],
+["かける","","to put on (glasses) (めがねを〜)",7,"る動詞"],
+["けっこんする","結婚する","to get married (〜と) → けっこんしている",7,"不規則動詞"],
+["あまり","","not much (+ negative)",7,"副詞など"],
+["ぜんぜん","全然","not at all (+ negative)",7,"副詞など"],
+
 ];
 
 let deck=[],idx=0,mode="card",quizScore=0,quizIdx=0,quizOrder=[],missed=[];
