@@ -116,6 +116,11 @@
   .enq{font-size:2.6vh;color:#1565c0;background:#eef4fb;border-left:.6vh solid #1565c0;
        padding:1.1vh 1.6vw;text-align:left;border-radius:1vh;max-width:84vw;margin-bottom:1.4vh;}
   .taphint{font-size:2vh;color:#b08968;margin-top:1vh;}
+
+  /* ===== fix: tall problem slides scroll (no clipped rows) ===== */
+  .slide:not(.div):not(.board){justify-content:flex-start;overflow-y:auto;
+     padding-top:8.5vh;padding-bottom:13vh;}
+  .tegrid,.grid{align-content:start;}
 </style>
 </head>
 <body>
