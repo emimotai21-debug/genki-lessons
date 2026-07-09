@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>げんき I L1–6 ふくしゅうもんだい（30ぷん）</title>
+<title>げんき I L1–6 ふくしゅうもんだい（いろいろ）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -103,20 +103,20 @@
     .nav button{padding:1.4vh 5vw;}
   }
 
-  /* ===== ふくしゅう: ローマ字を日本語と同じくらい大きく ===== */
-  .rj{font-size:.92em !important;display:block !important;color:#1565c0 !important;
-      font-style:normal !important;font-weight:700 !important;padding-left:0 !important;
-      margin-top:.6vh;letter-spacing:.01em;}
+  .rj{font-size:.9em !important;display:block !important;color:#1565c0 !important;
+      font-style:normal !important;font-weight:700 !important;padding-left:0 !important;margin-top:.5vh;}
   body.noromaji .rj{display:none !important;}
-  .rv{display:block !important;text-align:left;font-size:3.1vh;}
-  .rv .a{text-align:left !important;margin-top:1.1vh;display:block;font-size:1em;}
+  .rv{display:block !important;text-align:left;font-size:2.9vh;}
+  .rv .a{text-align:left !important;margin-top:1vh;display:block;font-size:1em;}
   .rv:not(.shown) .a{color:#e9d9c8;background:#e9d9c8;border-radius:1vh;}
   .rv.shown .a{color:#c2410c;background:var(--soft);padding:1vh 1.5vw;border-radius:1vh;}
-  .enq{font-size:2.5vh;color:#1565c0;background:#eef4fb;border-left:.6vh solid #1565c0;
-       padding:1vh 1.6vw;text-align:left;border-radius:1vh;max-width:84vw;margin-bottom:1.2vh;}
+  .enq{font-size:2.4vh;color:#1565c0;background:#eef4fb;border-left:.6vh solid #1565c0;
+       padding:.9vh 1.5vw;text-align:left;border-radius:1vh;max-width:86vw;margin-bottom:1vh;}
   .ref{display:inline-block;background:#fff;border:.3vh solid #2f9e44;color:#2b8a3e;
-       border-radius:99px;padding:.5vh 1.8vw;font-size:2vh;font-weight:700;margin:0 0 1.4vh;}
-  .taphint{font-size:2vh;color:#b08968;margin-top:1vh;}
+       border-radius:99px;padding:.4vh 1.6vw;font-size:1.9vh;font-weight:700;margin:0 0 1.2vh;}
+  .tag{display:inline-block;background:#c2410c;color:#fff;border-radius:99px;padding:.3vh 1.4vw;font-size:1.9vh;font-weight:700;margin-bottom:1vh;}
+  .grid.qg{gap:1.1vh 2.5vw;}
+  .grid.qg .rv{font-size:2.5vh;}
 </style>
 </head>
 <body>
@@ -125,232 +125,318 @@
 <button class="rjbtn" id="rjbtn">Romaji</button>
 <div class="deck">
 <section class="slide board active">
-  <div class="kicker">GENKI I — REVIEW</div>
+  <div class="kicker">GENKI I — REVIEW (L1–6)</div>
   <h1>L1〜6 ふくしゅうもんだい</h1>
-  <p class="sub" style="font-style:italic;">Lessons 1–6 Review (about 30 min)</p>
-  <p class="big" style="color:#1565c0;font-size:2.5vh;margin-top:2.5vh;">ぜんぶ ローマ字つき ・ タップで こたえ ・ 📖 きょうかしょの ページつき</p>
+  <p class="sub" style="font-style:italic;">Lots of problems · many types</p>
+  <p class="big" style="color:#1565c0;font-size:2.4vh;margin-top:2.2vh;">じょし・かつよう・けいようし・英⇄日・せんたく・まちがいなおし・ぎもんし・かいわ・たんご</p>
 </section>
 
 <section class="slide">
-  <div class="kicker">HOW TO USE — だいたい 30ぷん</div>
+  <div class="kicker">HOW TO USE</div>
   <h2>つかいかた</h2>
-  <ul class="plain" style="font-size:2.7vh;">
-    <li>えいごの もんだいを よむ → にほんごで いう</li>
-    <li>「▶ タップで こたえ」を おす</li>
-    <li>📖 の ページで きょうかしょの 練習も できる</li>
-    <li>ローマ字は うえの ボタンで けせます</li>
-    <li>まちがえたら 単語カード／レッスンスライドへ</li>
+  <ul class="plain" style="font-size:2.6vh;">
+    <li>もんだいを よむ → こたえを かんがえる → タップ</li>
+    <li>ぜんぶ ローマ字つき（うえの Romaji ボタンで けせる）</li>
+    <li>📖 の ばんごうは きょうかしょの 練習（L4〜6）</li>
+    <li>まちがえたら レッスンスライド／単語カードへ</li>
   </ul>
 </section>
 
 <section class="slide div">
-  <div class="kicker">LESSON 1</div>
-  <h1>だい1か</h1>
-  <p class="sub" style="color:#ffe9dc;">XはYです ・ の ・ か ・ じかん</p>
-  <div class="ref" style="margin-top:2vh;color:#fff;border-color:#fff;background:transparent;">📖 きょうかしょ pp.40–61</div>
+  <div class="kicker">TYPE 1</div>
+  <h1>じょし</h1>
+  <p class="sub" style="color:#ffe9dc;">Fill in the particle は/を/で/に/へ/が/も/と/の</p>
 </section>
 
 <section class="slide">
-  <div class="kicker">L1 — もんだい</div>
-  <h2>にほんごで いいましょう ①</h2>
-  <div class="ref">📖 きょうかしょ pp.54–61 練習</div>
+  <div class="kicker">じょし ①</div>
+  <h2 style="font-size:3.4vh;">（　）に なにが はいる？</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">わたし（　）がくせいです。<span class="a">は　wa</span></div>
+  <div class="rv" style="max-width:86vw;">こーひー（　）のみます。<span class="a">を　o</span></div>
+  <div class="rv" style="max-width:86vw;">としょかん（　）べんきょうします。<span class="a">で　de</span></div>
+  <div class="rv" style="max-width:86vw;">とうきょう（　）いきます。<span class="a">へ／に　e/ni</span></div>
+  <div class="rv" style="max-width:86vw;">つくえ（　）うえに ほんが あります。<span class="a">の　no</span></div>
+  <div class="rv" style="max-width:86vw;">ねこ（　）います。<span class="a">が　ga</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">じょし ②</div>
+  <h2 style="font-size:3.4vh;">（　）に なにが はいる？</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">たなかさん（　）はなします。<span class="a">と　to</span></div>
+  <div class="rv" style="max-width:86vw;">わたし（　）がくせいです。（also）<span class="a">も　mo</span></div>
+  <div class="rv" style="max-width:86vw;">すし（　）すきです。<span class="a">が　ga</span></div>
+  <div class="rv" style="max-width:86vw;">しちじ（　）おきます。<span class="a">に　ni</span></div>
+  <div class="rv" style="max-width:86vw;">バス（　）いきます。<span class="a">で　de</span></div>
+  <div class="rv" style="max-width:86vw;">にほんご（　）せんこうです。<span class="a">が　ga</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 2</div>
+  <h1>どうし かつよう</h1>
+  <p class="sub" style="color:#ffe9dc;">ます / ません / ました / ませんでした / て / ない</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">どうし ①</div>
+  <h2 style="font-size:3.4vh;">ぜんぶの かたちに かえよう</h2>
+  <div class="ref">📖 L4 p.120 練習 IV</div>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">のむ<span class="a">のみます／のみません／のみました／のみませんでした</span></div>
+  <div class="rv" style="max-width:86vw;">たべる<span class="a">たべます／たべません／たべました</span></div>
+  <div class="rv" style="max-width:86vw;">いく<span class="a">いきます／いって／いかない</span></div>
+  <div class="rv" style="max-width:86vw;">する<span class="a">します／して／しない</span></div>
+  <div class="rv" style="max-width:86vw;">くる<span class="a">きます／きて／こない</span></div>
+  <div class="rv" style="max-width:86vw;">よむ<span class="a">よみます／よんで／よまない</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">どうし ②</div>
+  <h2 style="font-size:3.4vh;">て-form に かえよう</h2>
+  <div class="ref">📖 L6 p.156 練習 I</div>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">かく<span class="a">かいて</span></div>
+  <div class="rv" style="max-width:86vw;">まつ<span class="a">まって</span></div>
+  <div class="rv" style="max-width:86vw;">あそぶ<span class="a">あそんで</span></div>
+  <div class="rv" style="max-width:86vw;">はなす<span class="a">はなして</span></div>
+  <div class="rv" style="max-width:86vw;">およぐ<span class="a">およいで</span></div>
+  <div class="rv" style="max-width:86vw;">かえる (帰る)<span class="a">かえって</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 3</div>
+  <h1>けいようし</h1>
+  <p class="sub" style="color:#ffe9dc;">い-adj / な-adj ・ 現在＆過去</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">けいようし ①</div>
+  <h2 style="font-size:3.4vh;">＋ と − を いおう（げんざい）</h2>
+  <div class="ref">📖 L5 p.138 練習 I</div>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">たかい<span class="a">たかいです／たかくないです</span></div>
+  <div class="rv" style="max-width:86vw;">おいしい<span class="a">おいしいです／おいしくないです</span></div>
+  <div class="rv" style="max-width:86vw;">いい<span class="a">いいです／よくないです</span></div>
+  <div class="rv" style="max-width:86vw;">しずか（な）<span class="a">しずかです／しずかじゃないです</span></div>
+  <div class="rv" style="max-width:86vw;">きれい（な）<span class="a">きれいです／きれいじゃないです</span></div>
+  <div class="rv" style="max-width:86vw;">げんき（な）<span class="a">げんきです／げんきじゃないです</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">けいようし ②</div>
+  <h2 style="font-size:3.4vh;">かこけいに しよう</h2>
+  <div class="ref">📖 L5 p.140 練習 II</div>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">たのしい<span class="a">たのしかったです／たのしくなかったです</span></div>
+  <div class="rv" style="max-width:86vw;">さむい<span class="a">さむかったです</span></div>
+  <div class="rv" style="max-width:86vw;">いい<span class="a">よかったです</span></div>
+  <div class="rv" style="max-width:86vw;">ひま（な）<span class="a">ひまでした／ひまじゃなかったです</span></div>
+  <div class="rv" style="max-width:86vw;">すき（な）<span class="a">すきでした</span></div>
+  <div class="rv" style="max-width:86vw;">あつい<span class="a">あつかったです</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 4</div>
+  <h1>えいご → にほんご</h1>
+  <p class="sub" style="color:#ffe9dc;">Say it in Japanese</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">英→日 ①</div>
+  <h2 style="font-size:3.4vh;">にほんごで いいましょう</h2>
   <div class="enq">“I am a student.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">わたしは がくせいです。</span></div>
-  <div class="enq">“Is this a book?”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">これは ほんですか。</span></div>
-</section>
-
-<section class="slide">
-  <div class="kicker">L1 — もんだい</div>
-  <h2>にほんごで いいましょう ②</h2>
-  <div class="ref">📖 きょうかしょ p.60 じかん</div>
-  <div class="enq">“(This is) Mr. Tanaka’s phone.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">たなかさんの でんわです。</span></div>
-  <div class="enq">“It’s 7 o’clock now.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">いま しちじです。</span></div>
-</section>
-
-<section class="slide div">
-  <div class="kicker">LESSON 2</div>
-  <h1>だい2か</h1>
-  <p class="sub" style="color:#ffe9dc;">これ/それ/あれ ・ この/その/あの ・ いくら</p>
-  <div class="ref" style="margin-top:2vh;color:#fff;border-color:#fff;background:transparent;">📖 きょうかしょ pp.62–85</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">L2 — もんだい</div>
-  <h2>にほんごで いいましょう ③</h2>
-  <div class="ref">📖 きょうかしょ pp.75–79 練習</div>
-  <div class="enq">“this / that / that over there” (things)</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">これ ／ それ ／ あれ</span></div>
-  <div class="enq">“this book / that pen”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">この ほん ／ その ぺん</span></div>
-</section>
-
-<section class="slide">
-  <div class="kicker">L2 — もんだい</div>
-  <h2>にほんごで いいましょう ④</h2>
-  <div class="ref">📖 きょうかしょ pp.80–83 練習</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">わたしは がくせいです。</span></div>
   <div class="enq">“How much is it?”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">いくらですか。</span></div>
-  <div class="enq">“The station is over there.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">えきは あそこです。</span></div>
-</section>
-
-<section class="slide div">
-  <div class="kicker">LESSON 3</div>
-  <h1>だい3か</h1>
-  <p class="sub" style="color:#ffe9dc;">〜ます/ません ・ を/で/に/へ ・ 〜ませんか</p>
-  <div class="ref" style="margin-top:2vh;color:#fff;border-color:#fff;background:transparent;">📖 きょうかしょ pp.86–101</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">L3 — もんだい</div>
-  <h2>にほんごで いいましょう ⑤</h2>
-  <div class="ref">📖 きょうかしょ pp.94–96 練習 I・II</div>
-  <div class="enq">“I drink coffee.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">こーひーを のみます。</span></div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">いくらですか。</span></div>
   <div class="enq">“I don’t watch TV.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">てれびを みません。</span></div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">てれびを みません。</span></div>
 </section>
 
 <section class="slide">
-  <div class="kicker">L3 — もんだい</div>
-  <h2>にほんごで いいましょう ⑥</h2>
-  <div class="ref">📖 きょうかしょ pp.97–100 練習 III・IV</div>
-  <div class="enq">“I study at the library.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">としょかんで べんきょうします。</span></div>
-  <div class="enq">“Won’t you go to Tokyo? (invite)”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">とうきょうへ いきませんか。</span></div>
-</section>
-
-<section class="slide div">
-  <div class="kicker">LESSON 4</div>
-  <h1>だい4か</h1>
-  <p class="sub" style="color:#ffe9dc;">かこけい ・ あります/います ・ ばしょ</p>
-  <div class="ref" style="margin-top:2vh;color:#fff;border-color:#fff;background:transparent;">📖 きょうかしょ pp.102–124</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">L4 — もんだい</div>
-  <h2>にほんごで いいましょう ⑦</h2>
-  <div class="ref">📖 きょうかしょ p.115 練習 I-A/B ・ p.117 練習 II</div>
-  <div class="enq">“There is a cat. / There is a teacher.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">ねこが います。 ／ せんせいが います。</span></div>
+  <div class="kicker">英→日 ②</div>
+  <h2 style="font-size:3.4vh;">にほんごで いいましょう</h2>
+  <div class="ref">📖 L4 p.115 練習 I / p.117 練習 II</div>
+  <div class="enq">“I ate breakfast.”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">あさごはんを たべました。</span></div>
+  <div class="enq">“There is a cat.”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">ねこが います。</span></div>
   <div class="enq">“The book is on the desk.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">ほんは つくえの うえに あります。</span></div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">ほんは つくえの うえに あります。</span></div>
 </section>
 
 <section class="slide">
-  <div class="kicker">L4 — もんだい</div>
-  <h2>にほんごで いいましょう ⑧</h2>
-  <div class="ref">📖 きょうかしょ p.120 練習 IV-A ・ p.122 練習 V-A</div>
-  <div class="enq">“I ate breakfast.” (past)</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">あさごはんを たべました。</span></div>
-  <div class="enq">“I didn’t go.” (past neg.)</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">いきませんでした。</span></div>
-</section>
-
-<section class="slide div">
-  <div class="kicker">LESSON 5</div>
-  <h1>だい5か</h1>
-  <p class="sub" style="color:#ffe9dc;">けいようし ・ すき/きらい ・ 〜ましょう</p>
-  <div class="ref" style="margin-top:2vh;color:#fff;border-color:#fff;background:transparent;">📖 きょうかしょ pp.126–145</div>
-</section>
-
-<section class="slide">
-  <div class="kicker">L5 — もんだい</div>
-  <h2>にほんごで いいましょう ⑨</h2>
-  <div class="ref">📖 きょうかしょ p.138 練習 I ・ p.140 練習 II</div>
+  <div class="kicker">英→日 ③</div>
+  <h2 style="font-size:3.4vh;">にほんごで いいましょう</h2>
+  <div class="ref">📖 L5 p.142–143 練習 IV/V</div>
   <div class="enq">“This movie is interesting.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">この えいがは おもしろいです。</span></div>
-  <div class="enq">“It was fun.” (past い-adj)</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">たのしかったです。</span></div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">この えいがは おもしろいです。</span></div>
+  <div class="enq">“I like sushi, I don’t like natto.”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">すしが すきです。なっとうが きらいです。</span></div>
+  <div class="enq">“Let’s eat lunch.”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">ひるごはんを たべましょう。</span></div>
 </section>
 
 <section class="slide">
-  <div class="kicker">L5 — もんだい</div>
-  <h2>にほんごで いいましょう ⑩</h2>
-  <div class="ref">📖 きょうかしょ p.142 練習 IV ・ p.143 練習 V</div>
-  <div class="enq">“I like sushi. / I don’t like natto.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">すしが すきです。 ／ なっとうが きらいです。</span></div>
-  <div class="enq">“Let’s eat lunch. / It’s expensive, but tasty.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">ひるごはんを たべましょう。 ／ たかいですが、おいしいです。</span></div>
+  <div class="kicker">英→日 ④</div>
+  <h2 style="font-size:3.4vh;">にほんごで いいましょう</h2>
+  <div class="ref">📖 L6 p.156–158 練習 I–III</div>
+  <div class="enq">“Please wait.”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">まって ください。</span></div>
+  <div class="enq">“May I take a photo?”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">しゃしんを とっても いいですか。</span></div>
+  <div class="enq">“You must not smoke here.”</div>
+  <div class="rv" style="max-width:86vw;">▶ タップ<span class="a">ここで たばこを すっては いけません。</span></div>
 </section>
 
 <section class="slide div">
-  <div class="kicker">LESSON 6</div>
-  <h1>だい6か</h1>
-  <p class="sub" style="color:#ffe9dc;">て-form ・ てください ・ てもいいです / はいけません ・ から</p>
-  <div class="ref" style="margin-top:2vh;color:#fff;border-color:#fff;background:transparent;">📖 きょうかしょ pp.146–163</div>
+  <div class="kicker">TYPE 5</div>
+  <h1>にほんご → えいご</h1>
+  <p class="sub" style="color:#ffe9dc;">What does it mean?</p>
 </section>
 
 <section class="slide">
-  <div class="kicker">L6 — もんだい</div>
-  <h2>にほんごで いいましょう ⑪</h2>
-  <div class="ref">📖 きょうかしょ p.156 練習 I-A ・ pp.156–157 練習 II-A</div>
-  <div class="enq">“Please wait.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">まって ください。</span></div>
-  <div class="enq">“May I take a photo?”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">しゃしんを とっても いいですか。</span></div>
+  <div class="kicker">日→英 ①</div>
+  <h2 style="font-size:3.4vh;">えいごで いいましょう</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">まいにち にほんごを べんきょうします。<span class="a">I study Japanese every day.</span></div>
+  <div class="rv" style="max-width:86vw;">きのう えいがを みました。<span class="a">I watched a movie yesterday.</span></div>
+  <div class="rv" style="max-width:86vw;">この へやは しずかじゃないです。<span class="a">This room is not quiet.</span></div>
+  <div class="rv" style="max-width:86vw;">おかねが ありません。<span class="a">I don’t have money.</span></div>
+  <div class="rv" style="max-width:86vw;">としょかんで ほんを よみます。<span class="a">I read a book at the library.</span></div>
+  <div class="rv" style="max-width:86vw;">コーヒーと おちゃ、どちらが すきですか。<span class="a">Which do you like, coffee or tea?</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 6</div>
+  <h1>せんたく</h1>
+  <p class="sub" style="color:#ffe9dc;">Choose the correct one</p>
 </section>
 
 <section class="slide">
-  <div class="kicker">L6 — もんだい</div>
-  <h2>にほんごで いいましょう ⑫</h2>
-  <div class="ref">📖 きょうかしょ p.158 練習 III ・ p.160 練習 IV-C</div>
-  <div class="enq">“You must not smoke here.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">ここで たばこを すっては いけません。</span></div>
-  <div class="enq">“I go because it’s near.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">ちかいですから、いきます。</span></div>
+  <div class="kicker">せんたく ①</div>
+  <h2 style="font-size:3.4vh;">ただしいのは？（a / b / c）</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">これは わたし（a.は b.の c.を）ほんです。<span class="a">b. の</span></div>
+  <div class="rv" style="max-width:86vw;">しちじ（a.に b.で c.を）おきます。<span class="a">a. に</span></div>
+  <div class="rv" style="max-width:86vw;">きのうは（a.たのしいでした b.たのしかったです）<span class="a">b. たのしかったです</span></div>
+  <div class="rv" style="max-width:86vw;">びょういん（a.へ b.で c.が）いきます。<span class="a">a. へ</span></div>
+  <div class="rv" style="max-width:86vw;">これは（a.しずかな b.しずかい）へやです。<span class="a">a. しずかな</span></div>
+  <div class="rv" style="max-width:86vw;">ロバートさんが（a.います b.あります）<span class="a">a. います（ひと）</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 7</div>
+  <h1>まちがい なおし</h1>
+  <p class="sub" style="color:#ffe9dc;">Find and fix the mistake</p>
 </section>
 
 <section class="slide">
-  <div class="kicker">L6 — もんだい</div>
-  <h2>にほんごで いいましょう ⑬</h2>
-  <div class="ref">📖 きょうかしょ p.161 練習 VI ・ pp.162–163 練習 VII</div>
-  <div class="enq">“Shall I open the window?”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">まどを あけましょうか。</span></div>
-  <div class="enq">“I get up, eat, and go to school.”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">おきて、ごはんを たべて、がっこうへ いきます。</span></div>
+  <div class="kicker">まちがい ①</div>
+  <h2 style="font-size:3.4vh;">× を ○ に なおそう</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">× わたしは がくせいます。<span class="a">○ わたしは がくせいです。</span></div>
+  <div class="rv" style="max-width:86vw;">× たかいでした。<span class="a">○ たかかったです。</span></div>
+  <div class="rv" style="max-width:86vw;">× コーヒーを すきです。<span class="a">○ コーヒーが すきです。</span></div>
+  <div class="rv" style="max-width:86vw;">× ほんが つくえに います。<span class="a">○ ほんが つくえに あります。</span></div>
+  <div class="rv" style="max-width:86vw;">× きのう えいがを みます。<span class="a">○ きのう えいがを みました。</span></div>
+  <div class="rv" style="max-width:86vw;">× ここで たべっては いけません。<span class="a">○ たべては いけません。</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 8</div>
+  <h1>ぎもんし</h1>
+  <p class="sub" style="color:#ffe9dc;">Question words: なに/だれ/どこ/いつ/なんじ/いくら</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">ぎもんし ①</div>
+  <h2 style="font-size:3.4vh;">「　」に はいる ことばは？</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">「　」を たべますか。(What?)<span class="a">なに</span></div>
+  <div class="rv" style="max-width:86vw;">「　」と いきますか。(Who with?)<span class="a">だれ</span></div>
+  <div class="rv" style="max-width:86vw;">「　」で べんきょうしますか。(Where?)<span class="a">どこ</span></div>
+  <div class="rv" style="max-width:86vw;">「　」おきますか。(What time?)<span class="a">なんじに</span></div>
+  <div class="rv" style="max-width:86vw;">これは「　」ですか。(How much?)<span class="a">いくら</span></div>
+  <div class="rv" style="max-width:86vw;">「　」きましたか。(When?)<span class="a">いつ</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 9</div>
+  <h1>かいわ</h1>
+  <p class="sub" style="color:#ffe9dc;">Read the mini-dialogue, answer the question</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">かいわ ①</div>
+  <h2 style="font-size:3.4vh;">よんで こたえよう</h2>
+  <div class="enq">A：しゅうまつ なにを しましたか。　B：ともだちと えいがを みました。<br>Q: Bさんは なにを しましたか？</div>
+  <div class="rv" style="max-width:86vw;">▶ こたえ<span class="a">えいがを みました。</span></div>
+  <div class="enq">A：コーヒーは いくらですか。　B：さんびゃくえんです。<br>Q: コーヒーは いくらですか？</div>
+  <div class="rv" style="max-width:86vw;">▶ こたえ<span class="a">さんびゃくえんです。（300えん）</span></div>
+</section>
+
+<section class="slide">
+  <div class="kicker">かいわ ②</div>
+  <h2 style="font-size:3.4vh;">よんで こたえよう</h2>
+  <div class="enq">A：あした ひまですか。　B：いいえ、いそがしいです。<br>Q: Bさんは あした ひまですか？</div>
+  <div class="rv" style="max-width:86vw;">▶ こたえ<span class="a">いいえ、ひまじゃないです（いそがしいです）。</span></div>
+  <div class="enq">A：どこに すんでいますか。… B：とうきょうに すんでいます。<br>Q: Bさんは どこに すんでいますか？</div>
+  <div class="rv" style="max-width:86vw;">▶ こたえ<span class="a">とうきょうに すんでいます。</span></div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">TYPE 10</div>
+  <h1>たんご クイズ</h1>
+  <p class="sub" style="color:#ffe9dc;">Odd-one-out & meanings</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">たんご ①</div>
+  <h2 style="font-size:3.4vh;">なかまはずれ・いみ は？</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">なかまはずれ：いぬ・ねこ・とり・つくえ<span class="a">つくえ（どうぶつ じゃない）</span></div>
+  <div class="rv" style="max-width:86vw;">なかまはずれ：げつ・か・すい・あさ<span class="a">あさ（ようび じゃない）</span></div>
+  <div class="rv" style="max-width:86vw;">「たべもの」は？ みず・すし・こーひー・ぱん<span class="a">すし・ぱん</span></div>
+  <div class="rv" style="max-width:86vw;">「かぞく」は？ ちち・はは・ほん・あね<span class="a">ちち・はは・あね</span></div>
+  <div class="rv" style="max-width:86vw;">あか・あお・くろ・… えいごは？<span class="a">red / blue / black</span></div>
+  <div class="rv" style="max-width:86vw;">げつようび〜？ ただしい じゅんばん<span class="a">げつ・か・すい・もく・きん・ど・にち</span></div>
+  </div>
 </section>
 
 <section class="slide div">
   <div class="kicker">CHALLENGE</div>
-  <h1>じょし クイズ</h1>
-  <p class="sub" style="color:#ffe9dc;">Fill in the particle</p>
-</section>
-
-<section class="slide">
-  <div class="kicker">じょし — Particles</div>
-  <h2>（　）に なにが はいる？</h2>
-  <div class="rv" style="max-width:84vw;">わたし（　）がくせいです。<span class="a">→ は　(watashi wa gakusei desu)</span></div>
-  <div class="rv" style="max-width:84vw;">こーひー（　）のみます。<span class="a">→ を　(koohii o nomimasu)</span></div>
-  <div class="rv" style="max-width:84vw;">としょかん（　）べんきょうします。<span class="a">→ で　(toshokan de benkyou shimasu)</span></div>
-  <div class="rv" style="max-width:84vw;">とうきょう（　）いきます。<span class="a">→ へ／に　(Tookyoo e/ni ikimasu)</span></div>
-</section>
-
-<section class="slide div">
-  <div class="kicker">TIMED CHALLENGE</div>
   <h1>はやくち クイズ</h1>
-  <p class="sub" style="color:#ffe9dc;">30びょうで いくつ いえる？</p>
+  <p class="sub" style="color:#ffe9dc;">30びょうで いくつ？</p>
 </section>
 
 <section class="slide">
-  <div class="kicker">MIX — L1〜6</div>
-  <h2>こたえを いってから タップ</h2>
-  <div class="enq">“I don’t have money. (casual: use ありません)”</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">おかねが ありません。</span></div>
-  <div class="enq">“Please don’t eat here.” (L6)</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">ここで たべないで ください。</span></div>
-  <div class="enq">“Yesterday was fun.” (L5 past)</div>
-  <div class="rv" style="max-width:84vw;">▶ タップで こたえ<span class="a">きのうは たのしかったです。</span></div>
+  <div class="kicker">MIX</div>
+  <h2 style="font-size:3.4vh;">こたえてから タップ</h2>
+  <div class="grid g2 qg">
+  <div class="rv" style="max-width:86vw;">“I go because it’s near.” (L6)<span class="a">ちかいですから、いきます。</span></div>
+  <div class="rv" style="max-width:86vw;">“Shall I open the window?” (L6)<span class="a">まどを あけましょうか。</span></div>
+  <div class="rv" style="max-width:86vw;">“It was fun.” (L5)<span class="a">たのしかったです。</span></div>
+  <div class="rv" style="max-width:86vw;">“I don’t have time.”<span class="a">じかんが ありません。</span></div>
+  <div class="rv" style="max-width:86vw;">のむ → て-form<span class="a">のんで</span></div>
+  <div class="rv" style="max-width:86vw;">しずか（な）→ past +<span class="a">しずかでした</span></div>
+  </div>
 </section>
 
 <section class="slide div">
   <div class="kicker">おつかれさま！</div>
   <h1>よく できました！</h1>
-  <p class="sub" style="color:#ffe9dc;">まちがえた ところは 📖 の ページで きょうかしょの 練習を ・ 単語カードも やってみよう</p>
+  <p class="sub" style="color:#ffe9dc;">まちがえた タイプを もういちど ・ 📖 の 練習で きょうかしょも</p>
 </section>
 
 </div>
