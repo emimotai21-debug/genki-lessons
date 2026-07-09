@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>げんき I だい8か レッスンスライド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--orange:#e8590c;--bg:#fff7f0;--ink:#333;--soft:#fff3e6;
+        --board:#2f4a3c;--wood:#8b5e3c;--chalk:#fdf6e3;--yel:#ffe08a;--pink:#ffb3c1;--blue:#a8d8ea;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;}
+  html,body{height:100%;background:#241c14;}
+  .deck{position:relative;width:100vw;height:100vh;overflow:hidden;}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;
+         background:var(--bg);color:var(--ink);padding:5vh 6vw;text-align:center;}
+  .slide.active{display:flex;}
+  .kicker{font-size:2vh;color:var(--orange);font-weight:700;letter-spacing:.2em;margin-bottom:1.5vh;}
+  h1{font-size:6.5vh;color:var(--orange);line-height:1.35;}
+  h2{font-size:5vh;color:var(--orange);margin-bottom:3.5vh;line-height:1.35;}
+  .sub{font-size:2.4vh;color:#999;margin-top:2vh;}
+  .big{font-size:3.8vh;line-height:1.9;}
+  ul.plain{list-style:none;font-size:3vh;line-height:2;text-align:left;}
+  ul.plain li::before{content:"▸ ";color:var(--orange);}
+  .grid{display:grid;gap:1.8vh 2.5vw;width:100%;max-width:88vw;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:1fr 1fr 1fr;}
+  .card{background:#fff;border:.4vh solid var(--orange);border-radius:2.2vh;padding:3vh 3vw;max-width:82vw;}
+  /* ===== 文法解説スライド（明るいデザイン）===== */
+  .slide.board{--chalk:#333333;--yel:#e8590c;--blue:#1971c2;--pink:#c2255c;
+    background:var(--bg);color:var(--ink);}
+  .board h2{color:var(--orange);}
+  .board .warn{color:#c2255c;font-weight:700;font-size:2.8vh;margin-top:3vh;}
+  .board .chalkbox{border:.3vh dashed var(--orange);border-radius:1.5vh;padding:2.5vh 2vw;background:#fff;}
+  .board table{border-collapse:collapse;font-size:2.9vh;margin:0 auto;background:#fff;}
+  .board th,.board td{border:.25vh solid #c9b8a8;padding:1.6vh 2.2vw;}
+  .board th{color:var(--orange);font-weight:700;}
+  .board .ilab{color:#1971c2;font-weight:700;}
+  .board .nlab{color:#c2255c;font-weight:700;}
+  .board .ylab{color:var(--orange);font-weight:700;}
+  /* ===== reveal ===== */
+  .rv{display:flex;align-items:center;justify-content:space-between;gap:2vw;background:#fff;
+      border:.35vh solid var(--orange);border-radius:1.6vh;padding:1.5vh 2vw;cursor:pointer;
+      font-size:3vh;font-weight:700;text-align:left;color:var(--ink);}
+  .rv .a{color:#fff;background:#fff;border-radius:.8vh;padding:.2vh 1vw;transition:.15s;user-select:none;text-align:right;}
+  .rv.shown .a{color:var(--orange);background:var(--soft);}
+  .rv:not(.shown) .a .rj{visibility:hidden;}
+  .hint{font-size:1.9vh;color:#bbb;margin-top:2.5vh;}
+  .en{font-size:2.1vh;color:#5f6b7a;margin-top:2.2vh;max-width:80vw;line-height:1.65;
+      background:#fff;border-left:.5vh solid var(--orange);padding:1.2vh 1.5vw;text-align:left;}
+  /* 文法＝ローマ字メイン表示 */
+  .sm{display:block;font-size:.62em;color:#b08968;font-weight:400;margin-top:.4vh;}
+  .timer{font-size:2.2vh;background:var(--orange);color:#fff;border-radius:99px;padding:.5vh 2vw;
+         display:inline-block;margin-bottom:2.5vh;}
+  .roleA{color:var(--orange);font-weight:700;}
+  .memo{background:#fffdf5;border:.3vh solid #d9c9a3;border-radius:1.5vh;padding:2vh 2vw;text-align:left;
+        font-size:2.6vh;line-height:1.9;color:var(--ink);}
+  .bubble{border:.3vh solid var(--orange);border-radius:1.6vh;padding:1.3vh 2vw;font-size:2.8vh;
+          background:#fff;text-align:left;color:var(--ink);}
+  .bubble.shop{background:var(--soft);margin-left:8vw;}
+  /* ローマ字 */
+  .rj{font-size:.52em;color:#b08968;font-style:italic;font-weight:400;padding-left:.8vw;}
+  body.noromaji .rj{display:none;}
+  .rjbtn{position:fixed;top:2vh;right:2vw;z-index:20;font-size:2vh;padding:.8vh 1.8vw;border:none;
+         border-radius:1vh;background:var(--orange);color:#fff;cursor:pointer;font-weight:700;opacity:.85;}
+  body.noromaji .rjbtn{opacity:.4;}
+  /* nav */
+  .nav{position:fixed;bottom:2vh;right:2vw;display:flex;gap:1vw;z-index:10;}
+  .nav button{font-size:2.4vh;padding:1vh 2.2vw;border:none;border-radius:1.2vh;background:var(--orange);
+              color:#fff;cursor:pointer;font-weight:700;opacity:.85;}
+  .count{position:fixed;bottom:2vh;left:2vw;font-size:2vh;z-index:10;color:#b08968;}
+  .bar{position:fixed;top:0;left:0;height:.7vh;background:var(--orange);z-index:10;transition:width .25s;}
+  /* divider */
+  .slide.div{background:var(--orange);color:#fff;}
+  .div .kicker{color:#ffd9c2;}
+  .div h1{color:#fff;font-size:5.5vh;}
+  .div .rj{color:#ffd9c2;}
+  .kanjibox{font-size:7vh;font-weight:700;}
+
+  /* 目次 */
+  .tocov{position:fixed;inset:0;background:rgba(36,28,20,.55);z-index:40;display:none;align-items:center;justify-content:center;padding:4vh 4vw;}
+  .tocov.open{display:flex;}
+  .tocpanel{background:#fff7f0;border:3px solid #e8590c;border-radius:16px;max-width:640px;width:100%;max-height:85vh;overflow:auto;padding:18px;box-shadow:0 10px 40px rgba(0,0,0,.4);}
+  .tocitem{display:block;width:100%;text-align:left;background:#fff;border:none;border-left:6px solid #e8590c;
+    margin:6px 0;padding:9px 14px;border-radius:8px;font-size:2.1vh;cursor:pointer;color:#333;font-weight:700;}
+  .tocitem:hover{background:#ffe9dc;}
+  .tocitem .k{color:#e8590c;font-size:.72em;font-weight:700;}
+
+  /* ===== スマホ対応 ===== */
+  @media (max-width:700px){
+    .slide{justify-content:flex-start;overflow-y:auto;padding:9vh 4vw 12vh;}
+    .slide.div{justify-content:center;}
+    h1{font-size:4.2vh;} h2{font-size:3.4vh;margin-bottom:2vh;}
+    .big{font-size:2.6vh;} .grid{grid-template-columns:1fr !important;gap:1.2vh;}
+    .grid.g3{grid-template-columns:1fr 1fr !important;}
+    .rv{font-size:2.2vh !important;padding:1.4vh 3vw;}
+    table{font-size:1.8vh !important;} th,td{padding:1vh 1.5vw;}
+    .en{font-size:1.9vh;max-width:92vw;} .card{max-width:92vw;padding:2vh 3vw;}
+    .bubble{font-size:2.1vh;} .bubble.alt{margin-left:4vw;}
+    ul.plain{font-size:2.3vh;}
+    .kanjibox{font-size:4vh;}
+    .nav button{padding:1.4vh 5vw;}
+  }
+</style>
+</head>
+<body>
+<a class="home" href="index.html" style="position:fixed;top:2vh;left:2vw;z-index:20;font-size:2vh;padding:.8vh 1.5vw;border-radius:1vh;background:#b08968;color:#fff;font-weight:700;text-decoration:none;">≡ Menu</a>
+<div class="bar" id="bar"></div>
+<button class="rjbtn" id="rjbtn">Romaji</button>
+<div class="deck">
+<!-- 1 タイトル -->
+<section class="slide board active">
+  <div class="kicker">GENKI I — LESSON 8</div>
+  <h1>だい8か「バーベキュー」</h1>
+  <p class="sub" style="font-style:italic;">Barbecue</p>
+  <p class="big" style="color:#1971c2;font-size:2.6vh;margin-top:3vh;">たんしゅくけい ・ 〜とおもいます ・ 〜のが すき</p>
+</section>
+
+<!-- 2 もくひょう -->
+<section class="slide">
+  <div class="kicker">GOALS</div>
+  <h2>この かで できるように なること</h2>
+  <div class="grid g2">
+    <div class="card big" style="font-size:2.8vh;">① カジュアルな はなしかたが わかる</div>
+    <div class="card big" style="font-size:2.8vh;">② いけんを いう（〜とおもいます）</div>
+    <div class="card big" style="font-size:2.8vh;">③ ひとの ことばを つたえる</div>
+    <div class="card big" style="font-size:2.8vh;">④ すきなこと・とくいなことを いう</div>
+  </div>
+</section>
+
+<!-- 3 扉 32 -->
+<section class="slide div">
+  <div class="kicker">だい32かい / SESSION 32</div>
+  <h1>たんしゅくけい</h1>
+  <p class="sub" style="color:#ffe9dc;">Short (plain) forms</p>
+</section>
+
+<!-- 4 ウォームアップ -->
+<section class="slide">
+  <div class="kicker">WARM-UP</div>
+  <h2>はなしましょう</h2>
+  <div class="big">
+    しゅうまつ なにを しますか。<br>
+    バーベキューを したことが ありますか。<br>
+    どんな たべものが すきですか。
+  </div>
+</section>
+
+<!-- 5 文法❶ 動詞 現在 -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❶</div>
+  <h2>どうしの たんしゅくけい（げんざい）</h2>
+  <div class="grid g2">
+    <div class="card big" style="font-size:2.5vh;">たべます<br>→ たべる ／ たべない</div>
+    <div class="card big" style="font-size:2.5vh;">のみます<br>→ のむ ／ のまない</div>
+    <div class="card big" style="font-size:2.5vh;">します<br>→ する ／ しない</div>
+    <div class="card big" style="font-size:2.5vh;">きます<br>→ くる ／ こない</div>
+  </div>
+  <p class="en">The <b>plain (short) form</b> is used in casual speech and before words like とおもいます. Present: dictionary form (affirmative) / <b>ない</b>-form (negative).</p>
+</section>
+
+<!-- 6 文法❷ 動詞 過去 -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❷</div>
+  <h2>どうしの たんしゅくけい（かこ）</h2>
+  <div class="grid g2">
+    <div class="card big" style="font-size:2.5vh;">たべた<br>／ たべなかった</div>
+    <div class="card big" style="font-size:2.5vh;">のんだ<br>／ のまなかった</div>
+    <div class="card big" style="font-size:2.5vh;">した<br>／ しなかった</div>
+    <div class="card big" style="font-size:2.5vh;">きた<br>／ こなかった</div>
+  </div>
+  <p class="en">Plain past: the <b>た-form</b> (affirmative) — same shape as the て-form but with た/だ. Negative past: なかった.</p>
+</section>
+
+<!-- 7 文法❸ 形容詞・名詞 -->
+<section class="slide board nork">
+  <div class="kicker">GRAMMAR — 文法❸</div>
+  <h2>けいようし・めいしの たんしゅくけい<span class="sm">keiyoushi / meishi</span></h2>
+  <div class="grid g2" style="max-width:82vw;">
+    <div class="chalkbox big" style="font-size:2.3vh;"><span class="ilab">い-adj（たかい）</span><br>たかい ／ たかくない<br>たかかった ／ たかくなかった</div>
+    <div class="chalkbox big" style="font-size:2.3vh;"><span class="nlab">な-adj / めいし</span><br>すきだ ／ すきじゃない<br>すきだった ／ すきじゃなかった</div>
+  </div>
+  <div class="warn">めいし・な-けいようしは 「だ」！　い-adjに 「だ」は つかない</div>
+  <p class="en">い-adjectives use their normal plain forms (かった for past). な-adjectives and nouns use <b>だ / じゃない / だった / じゃなかった</b>.</p>
+</section>
+
+<!-- 8 ドリル 短縮形 -->
+<section class="slide">
+  <div class="kicker">DRILL</div>
+  <h2>たんしゅくけいに しましょう</h2>
+  <div class="grid g2">
+    <div class="rv">いきます<span class="a">いく ／ いかない ／ いった ／ いかなかった</span></div>
+    <div class="rv">よみます<span class="a">よむ ／ よまない ／ よんだ ／ よまなかった</span></div>
+    <div class="rv">たかいです<span class="a">たかい ／ たかくない ／ たかかった</span></div>
+    <div class="rv">げんきです<span class="a">げんきだ ／ げんきじゃない ／ げんきだった</span></div>
+  </div>
+  <p class="hint">いってから クリックで かくにん</p>
+</section>
+
+<!-- 9 扉 33 -->
+<section class="slide div">
+  <div class="kicker">だい33かい / SESSION 33</div>
+  <h1>〜とおもいます</h1>
+  <p class="sub" style="color:#ffe9dc;">I think that ~</p>
+</section>
+
+<!-- 10 文法❹ とおもいます -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❹</div>
+  <h2>たんしゅくけい ＋ とおもいます</h2>
+  <div class="big" style="text-align:left;max-width:80vw;">
+    あした あめが ふると おもいます。<br>
+    メアリーさんは こないと おもいます。<br>
+    にほんごは おもしろいと おもいます。
+  </div>
+  <p class="en">Use <b>[plain form] + とおもいます</b> to say "I think that ~." The clause before と is always in the plain form.</p>
+</section>
+
+<!-- 11 ドリル 意見 -->
+<section class="slide">
+  <div class="kicker">DRILL</div>
+  <h2>いけんを いいましょう</h2>
+  <div class="grid g2">
+    <div class="rv">あした・てんきが いい？<span class="a">あした てんきが いいと おもいます</span></div>
+    <div class="rv">にほんごの クラス・たのしい？<span class="a">たのしいと おもいます</span></div>
+    <div class="rv">せんせいは きょう くる？<span class="a">くると おもいます／こないと おもいます</span></div>
+  </div>
+</section>
+
+<!-- 12 文法❺ といっていました -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❺</div>
+  <h2>〜と いっていました</h2>
+  <div class="big" style="text-align:left;max-width:80vw;">
+    トムさんは あした くると いっていました。<br>
+    ははは げんきだと いっていました。
+  </div>
+  <p class="en"><b>[plain form] + といっていました</b> = "(someone) said that ~." Reports what another person said.</p>
+</section>
+
+<!-- 13 ドリル 伝える -->
+<section class="slide">
+  <div class="kicker">DRILL</div>
+  <h2>ともだちの ことばを つたえよう</h2>
+  <div class="grid g2">
+    <div class="rv">ゆき「いそがしい」<span class="a">ゆきさんは いそがしいと いっていました</span></div>
+    <div class="rv">けん「パーティーに いく」<span class="a">けんさんは パーティーに いくと いっていました</span></div>
+  </div>
+</section>
+
+<!-- 14 扉 34 -->
+<section class="slide div">
+  <div class="kicker">だい34かい / SESSION 34</div>
+  <h1>〜のが すき／じょうず</h1>
+  <p class="sub" style="color:#ffe9dc;">like / be good at doing ~</p>
+</section>
+
+<!-- 15 文法❻ のがすき -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❻</div>
+  <h2>どうし ＋ のが すき／じょうず／へた</h2>
+  <div class="big" style="text-align:left;max-width:80vw;">
+    りょうりを するのが すきです。<br>
+    うたを うたうのが じょうずです。<br>
+    えを かくのが へたです。
+  </div>
+  <p class="en">Turn a verb into a noun with <b>の</b>: [dictionary form] + <b>のが</b> すき/じょうず/へた = "like / good at / bad at doing ~."</p>
+</section>
+
+<!-- 16 ドリル のが -->
+<section class="slide">
+  <div class="kicker">DRILL</div>
+  <h2>いいましょう</h2>
+  <div class="grid g2">
+    <div class="rv">えいがを みる・すき<span class="a">えいがを みるのが すきです</span></div>
+    <div class="rv">りょうりを する・じょうず<span class="a">りょうりを するのが じょうずです</span></div>
+    <div class="rv">はやく おきる・へた<span class="a">はやく おきるのが へたです</span></div>
+  </div>
+</section>
+
+<!-- 17 文法❼ なにか・なにも -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❼</div>
+  <h2>なにか ／ なにも</h2>
+  <div class="big" style="text-align:left;max-width:80vw;">
+    なにか たべましたか。<br>
+    ── いいえ、なにも たべませんでした。
+  </div>
+  <p class="en"><b>なにか</b> = "something / anything" (question). <b>なにも + negative</b> = "nothing at all." (Drop を after なにか/なにも.)</p>
+</section>
+
+<!-- 18 扉 35 -->
+<section class="slide div">
+  <div class="kicker">だい35かい / SESSION 35</div>
+  <h1>カジュアルな はなしかた</h1>
+  <p class="sub" style="color:#ffe9dc;">Casual speech &amp; 〜ないでください</p>
+</section>
+
+<!-- 19 文法❽ ないでください -->
+<section class="slide">
+  <div class="kicker">GRAMMAR — 文法❽</div>
+  <h2>〜ないで ください</h2>
+  <div class="big" style="text-align:left;max-width:80vw;">
+    ここで しゃしんを とらないで ください。<br>
+    しんぱいしないで ください。
+  </div>
+  <p class="en"><b>ない-form (drop い) + でください</b> = "please don't ~." The polite way to ask someone not to do something.</p>
+</section>
+
+<!-- 20 文法❾ カジュアル -->
+<section class="slide board nork">
+  <div class="kicker">CASUAL — ためぐち</div>
+  <h2>ですます を とる<span class="sm">casual speech</span></h2>
+  <div class="chalkbox big" style="font-size:2.7vh;text-align:left;">
+    ていねい：げんきですか。<span class="sm">genki desu ka</span><br>
+    カジュアル：<b style="color:var(--yel)">げんき？</b><span class="sm">genki?</span><br>
+    ── うん、げんき。／ ううん、げんきじゃない。
+  </div>
+  <p class="en">Among friends, drop です/ます and use plain forms. Rising intonation replaces か. うん = casual yes, ううん = casual no.</p>
+</section>
+
+<!-- 21 ごい -->
+<section class="slide">
+  <div class="kicker">VOCAB — L8</div>
+  <h2>バーベキューの ことば</h2>
+  <div class="grid g3">
+    <div class="card big" style="font-size:2.4vh;">たべもの<br>くだもの<br>みず</div>
+    <div class="card big" style="font-size:2.4vh;">はし<br>にく<br>やさい</div>
+    <div class="card big" style="font-size:2.4vh;">おもう<br>いう<br>のる</div>
+  </div>
+</section>
+
+<!-- 22 タスク -->
+<section class="slide">
+  <div class="kicker">TASK — はなしましょう</div>
+  <h2>ともだちと カジュアルに</h2>
+  <div class="memo">
+    A：しゅうまつ なにを した？<br>
+    B：ともだちと バーベキューを した。<br>
+    A：たのしかった？<br>
+    B：うん、すごく たのしかったと おもう！
+  </div>
+  <p class="hint">ですます を つかわないで はなしてみよう</p>
+</section>
+
+<!-- 23 しゅくだい -->
+<section class="slide div">
+  <div class="kicker">HOMEWORK — しゅくだい</div>
+  <h1>おつかれさま！</h1>
+  <p class="sub" style="color:#ffe9dc;">① ワークブック L8　② 単語カード L8　③ 「〜とおもいます」で 5ぶん かく</p>
+</section>
+
+</div>
+
+<div class="count" id="count"></div>
+<div class="nav">
+  <button id="prev">←</button>
+  <button id="next">→</button>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll(".slide")];
+let cur=0;
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle("active",i===cur));
+  document.getElementById("count").textContent=(cur+1)+" / "+slides.length;
+  document.getElementById("bar").style.width=((cur+1)/slides.length*100)+"vw";
+}
+document.getElementById("next").onclick=()=>show(cur+1);
+document.getElementById("prev").onclick=()=>show(cur-1);
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();show(cur+1);}
+  if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();show(cur-1);}
+});
+document.querySelectorAll(".rv").forEach(el=>{
+  el.addEventListener("click",e=>{e.stopPropagation();el.classList.toggle("shown");});
+});
+
+// ===== ローマ字ふりがな自動付与 =====
+const DI={"きゃ":"kya","きゅ":"kyu","きょ":"kyo","ぎゃ":"gya","ぎゅ":"gyu","ぎょ":"gyo","しゃ":"sha","しゅ":"shu","しょ":"sho","じゃ":"ja","じゅ":"ju","じょ":"jo","ちゃ":"cha","ちゅ":"chu","ちょ":"cho","にゃ":"nya","にゅ":"nyu","にょ":"nyo","ひゃ":"hya","ひゅ":"hyu","ひょ":"hyo","びゃ":"bya","びゅ":"byu","びょ":"byo","ぴゃ":"pya","ぴゅ":"pyu","ぴょ":"pyo","みゃ":"mya","みゅ":"myu","みょ":"myo","りゃ":"rya","りゅ":"ryu","りょ":"ryo","てぃ":"ti","ふぃ":"fi","ふぁ":"fa"};
+const MONO={"あ":"a","い":"i","う":"u","え":"e","お":"o","か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko","が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go","さ":"sa","し":"shi","す":"su","せ":"se","そ":"so","ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo","た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to","だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do","な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no","は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho","ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo","ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po","ま":"ma","み":"mi","む":"mu","め":"me","も":"mo","や":"ya","ゆ":"yu","よ":"yo","ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro","わ":"wa","を":"o","ぁ":"a","ぃ":"i","ぅ":"u","ぇ":"e","ぉ":"o"};
+function kanaToRomaji(src){
+  src=src.replace(/は(?=[\s、。！？（）「」]|$)/g,"わ").replace(/へ(?=[\s、。！？（）「」]|$)/g,"え");
+  let s="";
+  for(const ch of src){const c=ch.codePointAt(0);
+    s+=(c>=0x30A1&&c<=0x30F6)?String.fromCodePoint(c-0x60):ch;}
+  const a=[...s];let out="",i=0;
+  while(i<a.length){
+    const two=a[i]+(a[i+1]||"");
+    if(DI[two]){out+=DI[two];i+=2;continue;}
+    const ch=a[i];
+    if(ch==="っ"){const nt=a[i+1]?a[i+1]+(a[i+2]||""):"";const nx=DI[nt]||MONO[a[i+1]]||"";
+      out+=nx.startsWith("ch")?"t":(nx?nx[0]:"");i++;continue;}
+    if(ch==="ー"){const m=out.match(/([aiueo])[^aiueo]*$/);out+=m?m[1]:"-";i++;continue;}
+    if(ch==="ん"){const nt=a[i+1]?a[i+1]+(a[i+2]||""):"";const nx=DI[nt]||MONO[a[i+1]]||"";
+      out+=(nx&&/^[aiueoy]/.test(nx))?"n'":"n";i++;continue;}
+    out+=(MONO[ch]!==undefined)?MONO[ch]:ch;i++;
+  }
+  return out.replace(/。/g,". ").replace(/、/g,", ").replace(/！/g,"!").replace(/？/g,"?").trim();
+}
+const KANA_RE=/[ぁ-んァ-ヶー]/;
+function addRj(el){
+  [...el.childNodes].forEach(node=>{
+    if(node.nodeType===3&&KANA_RE.test(node.textContent.trim())){
+      const sp=document.createElement("span");
+      sp.className="rj";
+      sp.textContent="("+kanaToRomaji(node.textContent.trim())+")";
+      node.after(sp);
+    }else if(node.nodeType===1&&node.tagName==="B"&&KANA_RE.test(node.textContent)){
+      // <b>強調</b> もまとめて処理しない（前後の文と一緒に読めるよう、b の後ろに付与）
+    }
+  });
+}
+// b タグ入りの行は行全体をまとめて変換
+function addRjWhole(el){
+  if(el.querySelector(".rj"))return;
+  const t=el.textContent.trim();
+  if(!KANA_RE.test(t))return;
+  const sp=document.createElement("span");
+  sp.className="rj";sp.style.display="block";sp.style.paddingLeft="0";
+  sp.textContent="("+kanaToRomaji(t)+")";
+  el.appendChild(sp);
+}
+document.querySelectorAll(".slide:not(.nork)").forEach(slide=>{
+  slide.querySelectorAll("h1, h2, .big, ul.plain li, .hint").forEach(el=>{
+    if(el.querySelector("b")||el.querySelector(".roleA"))addRjWhole(el);else addRj(el);
+  });
+  slide.querySelectorAll(".bubble, .card:not(:has(.big))").forEach(addRj);
+  slide.querySelectorAll(".rv").forEach(rv=>{
+    addRj(rv);
+    rv.querySelectorAll(".a").forEach(addRj);
+  });
+});
+document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("noromaji");
+
+// ===== 目次（ジャンプメニュー）=====
+(function(){
+  const btn=document.createElement("button");
+  btn.className="rjbtn";btn.style.top="7vh";btn.textContent="≡ Contents";
+  document.body.appendChild(btn);
+  const ov=document.createElement("div");ov.className="tocov";
+  let html="<div class='tocpanel'><h3 style='color:#e8590c;margin-bottom:10px;font-size:2.4vh;'>Contents — tap to jump (Esc to close)</h3>";
+  slides.forEach((s,i)=>{
+    const t=s.querySelector("h1,h2");
+    let title="スライド "+(i+1);
+    if(t){const c=t.cloneNode(true);c.querySelectorAll(".sm,.rj").forEach(x=>x.remove());title=c.textContent.trim();}
+    const k=s.querySelector(".kicker");const kt=k?k.textContent.trim():"";
+    html+='<button class="tocitem" data-i="'+i+'"><span class="k">'+(i+1)+(kt?"　"+kt:"")+'</span><br>'+title+'</button>';
+  });
+  ov.innerHTML=html+"</div>";document.body.appendChild(ov);
+  btn.onclick=()=>ov.classList.toggle("open");
+  ov.addEventListener("click",e=>{
+    const b=e.target.closest(".tocitem");
+    if(b){show(Number(b.dataset.i));ov.classList.remove("open");}
+    else if(e.target===ov)ov.classList.remove("open");
+  });
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")ov.classList.remove("open");});
+})();
+
+
+// ===== スマホ: スワイプでスライド送り =====
+(function(){
+  let sx=null,sy=null;
+  document.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  document.addEventListener("touchend",e=>{
+    if(sx===null)return;
+    const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;sx=null;
+    if(e.target.closest(".rv,.tocov,button,a"))return;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?show(cur+1):show(cur-1);}
+  },{passive:true});
+})();
+
+show(0);
+</script>
+</body>
+</html>
