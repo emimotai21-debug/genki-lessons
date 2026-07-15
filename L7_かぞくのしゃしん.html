@@ -102,6 +102,39 @@
     .kanjibox{font-size:4vh;}
     .nav button{padding:1.4vh 5vw;}
   }
+
+  /* ===== L7 redesign (same as L8) ===== */
+  h1 .ensub,h2 .ensub{display:block;font-size:2.3vh;color:#1565c0;font-weight:400;margin-top:.5vh;letter-spacing:.02em;}
+  .slide.gram{justify-content:flex-start;overflow-y:auto;padding:7.5vh 5vw 12vh;}
+  .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;padding:2.4vh 3vw;margin:1.2vh auto;display:inline-block;}
+  .exline{font-size:6vh;line-height:1.9;text-align:center;}
+  .exline.two{font-size:4.4vh;}
+  ruby rt{font-size:.32em;color:#1565c0;font-weight:700;line-height:1.1;}
+  .chg,.chg rt{color:#c92a2a !important;}
+  .arrow{font-size:3.4vh;color:var(--orange);margin:.3vh 0;font-weight:700;}
+  .lbl{font-size:2.3vh;color:#666;margin-bottom:.6vh;font-weight:700;letter-spacing:.04em;}
+  .lbl.i{color:#1971c2;} .lbl.n{color:#c2255c;}
+  .listrow{font-size:4vh;line-height:1.5;text-align:center;margin:.5vh 0;}
+  .listrow .rom{display:block;font-size:.42em;color:#1565c0;font-weight:700;margin-top:.1vh;}
+  .listrow .chg{color:#c92a2a;}
+  body.noromaji rt,body.noromaji .listrow .rom{visibility:hidden;}
+  .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;padding:1.4vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.6;margin-top:1.6vh;}
+  .enx b{color:#c92a2a;} .enx .k{color:#e8590c;font-weight:700;}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:2vh 3vw;max-width:90vw;margin:0 auto;}
+  .prac{display:inline-block;background:#eafaf0;border:.3vh solid #2f9e44;color:#2b8a3e;border-radius:1.4vh;padding:1vh 2.2vw;font-size:2.1vh;font-weight:700;margin-top:2vh;}
+  .prac b{color:#c2410c;}
+  .slide.drill{justify-content:flex-start;overflow-y:auto;padding:8vh 5vw 12vh;}
+  .drill .rv{display:block !important;text-align:center;font-size:3.8vh;padding:2.2vh 2vw;line-height:1.5;}
+  .drill .rv ruby rt{font-size:.3em;}
+  .drill .rv .a{display:block;margin-top:1.2vh;font-size:.82em;line-height:1.9;}
+  .drill .rv:not(.shown) .a{color:#ecdccb;background:#ecdccb;border-radius:1vh;}
+  .drill .rv:not(.shown) .a rt{visibility:hidden !important;}
+  .drill .rv:not(.shown) .a ruby{color:#ecdccb !important;}
+  .drill .rv.shown .a{color:#c2410c;background:var(--soft);padding:1.2vh 1.5vw;border-radius:1vh;}
+  .drill .grid{gap:2vh 3vw;}
+  .memo ruby rt{font-size:.34em;color:#1565c0;font-weight:700;}
+  @media(max-width:700px){.exline{font-size:4.4vh;}.exline.two{font-size:3.3vh;}
+     .listrow{font-size:3.2vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.1vh;}}
 </style>
 </head>
 <body>
@@ -109,271 +142,243 @@
 <div class="bar" id="bar"></div>
 <button class="rjbtn" id="rjbtn">Romaji</button>
 <div class="deck">
-<!-- 1 タイトル -->
 <section class="slide board active">
   <div class="kicker">GENKI I — LESSON 7</div>
-  <h1>だい7か「かぞくの しゃしん」</h1>
-  <p class="sub" style="font-style:italic;">Family Photo</p>
-  <p class="big" style="color:#1971c2;font-size:2.6vh;margin-top:3vh;">〜ています ・ ひとの びょうしゃ ・ けいようしの て-けい</p>
+  <h1>だい7か「かぞくの しゃしん」<span class="ensub">Lesson 7: Family Picture</span></h1>
+  <p class="big" style="color:#1971c2;font-size:2.5vh;margin-top:3vh;">〜ています ・ describing people ・ 〜くて／〜で ・ 〜に行く</p>
 </section>
 
-<!-- 2 もくひょう -->
 <section class="slide">
   <div class="kicker">GOALS</div>
-  <h2>この かで できるように なること</h2>
+  <h2>この かで できること<span class="ensub">What you can do after this lesson</span></h2>
   <div class="grid g2">
-    <div class="card big" style="font-size:2.8vh;">① かぞくを しょうかいする</div>
-    <div class="card big" style="font-size:2.8vh;">② ひとの がいけんを びょうしゃする</div>
-    <div class="card big" style="font-size:2.8vh;">③ いま していることを いう</div>
-    <div class="card big" style="font-size:2.8vh;">④ しゅうかん・じょうたいを いう</div>
+    <div class="card" style="font-size:2.6vh;">① いま していることを いう<br><span style="color:#1565c0;font-size:.8em;">Say what someone is doing now</span></div>
+    <div class="card" style="font-size:2.6vh;">② かぞくを しょうかいする<br><span style="color:#1565c0;font-size:.8em;">Introduce your family</span></div>
+    <div class="card" style="font-size:2.6vh;">③ ひとの がいけんを びょうしゃする<br><span style="color:#1565c0;font-size:.8em;">Describe how people look / dress</span></div>
+    <div class="card" style="font-size:2.6vh;">④ 〜しに いく<br><span style="color:#1565c0;font-size:.8em;">Go somewhere to do something</span></div>
   </div>
 </section>
 
-<!-- 3 扉 28 -->
 <section class="slide div">
-  <div class="kicker">だい28かい / SESSION 28</div>
+  <div class="kicker">SESSION 28</div>
   <h1>〜ています</h1>
   <p class="sub" style="color:#ffe9dc;">Actions in progress</p>
 </section>
 
-<!-- 4 ウォームアップ -->
-<section class="slide">
-  <div class="kicker">WARM-UP</div>
-  <h2>はなしましょう</h2>
-  <div class="big">
-    いま なにを していますか。<br>
-    かぞくは なんにん いますか。<br>
-    きょうだいが いますか。
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❶ — 〜ています</div>
+  <h2>〜て ＋ います<span class="ensub">An action in progress (is ~ing)</span></h2>
+  <div class="lbl">EXAMPLE — て-form ＋ います</div>
+  <div class="exbox">
+    <div class="exline"><ruby class="">たべ<rt>tabe</rt></ruby><ruby class="">て<rt>te</rt></ruby>　→　<ruby class="">たべ<rt>tabe</rt></ruby><ruby class="chg">て<rt>te</rt></ruby><ruby class="chg">います<rt>imasu</rt></ruby></div>
   </div>
+  <p class="enx">Add <span class="k">います</span> to the <b>て-form</b> (from Lesson 6) to say an action is <b>in progress</b> — “is ~ing right now.” たべて → たべ<b>ています</b>. It also expresses habits and, with some verbs, ongoing states.</p>
 </section>
 
-<!-- 5 文法❶ 進行 -->
-<section class="slide">
-  <div class="kicker">GRAMMAR — 文法❶</div>
-  <h2>て-form ＋ います<span class="sm">te-form + imasu</span></h2>
-  <div class="grid g3">
-    <div class="card big" style="font-size:2.5vh;">たべる<br>→ たべています</div>
-    <div class="card big" style="font-size:2.5vh;">よむ<br>→ よんでいます</div>
-    <div class="card big" style="font-size:2.5vh;">する<br>→ しています</div>
-  </div>
-  <p class="en">Add <b>います</b> to the て-form to say an action is <b>in progress</b> — "is ~ing right now." (Make the て-form the same way you learned in Lesson 6.)</p>
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❶ — more examples</div>
+  <h2>れい：〜ています<span class="ensub">progressive</span></h2>
+  <div class="lbl">じしょけい　→　〜ています</div>
+  <div class="listrow">のむ　→　のん<span class="chg">でいます</span><span class="rom">nomu → non<span class="chg">de imasu</span></span></div>
+  <div class="listrow">よむ　→　よん<span class="chg">でいます</span><span class="rom">yomu → yon<span class="chg">de imasu</span></span></div>
+  <div class="listrow">みる　→　み<span class="chg">ています</span><span class="rom">miru → mi<span class="chg">te imasu</span></span></div>
+  <div class="listrow">する　→　し<span class="chg">ています</span><span class="rom">suru → shi<span class="chg">te imasu</span></span></div>
+  <div class="listrow">はなす　→　はなし<span class="chg">ています</span><span class="rom">hanasu → hanashi<span class="chg">te imasu</span></span></div>
+  <p class="enx">Also for <b>habits / occupation</b>: にほんごを おしえ<b>ています</b> = “I teach Japanese.”</p>
+  <div class="prac">📖 きょうかしょ <b>練習 I</b>（p.176）・ ワークブック L7</div>
 </section>
 
-<!-- 6 ドリル 進行 -->
-<section class="slide">
-  <div class="kicker">DRILL</div>
-  <h2>しんこうけいに しましょう</h2>
+<section class="slide drill">
+  <div class="kicker">DRILL ❶ — 〜ています</div>
+  <h2>しんこうけいに しよう<span class="ensub">Make the progressive — tap to check</span></h2>
   <div class="grid g2">
-    <div class="rv">のむ<span class="a">のんでいます</span></div>
-    <div class="rv">はなす<span class="a">はなしています</span></div>
-    <div class="rv">ねる<span class="a">ねています</span></div>
-    <div class="rv">べんきょうする<span class="a">べんきょうしています</span></div>
-    <div class="rv">まつ<span class="a">まっています</span></div>
-    <div class="rv">きく<span class="a">きいています</span></div>
-  </div>
-  <p class="hint">いってから クリックで かくにん</p>
-</section>
-
-<!-- 7 かいわ 進行 -->
-<section class="slide">
-  <div class="kicker">MINI-TALK</div>
-  <h2>いま なにを していますか</h2>
-  <div class="grid g2">
-    <div class="bubble">A：もしもし。いま なにを していますか。</div>
-    <div class="bubble shop">B：テレビを みています。</div>
-    <div class="bubble">A：ごはんを たべていますか。</div>
-    <div class="bubble shop">B：いいえ、コーヒーを のんでいます。</div>
+    <div class="rv"><ruby class="">のむ<rt>nomu</rt></ruby><span class="a"><ruby class="">のんでいます<rt>nonde imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">かく<rt>kaku</rt></ruby><span class="a"><ruby class="">かいています<rt>kaite imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">たべる<rt>taberu</rt></ruby><span class="a"><ruby class="">たべています<rt>tabete imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">する<rt>suru</rt></ruby><span class="a"><ruby class="">しています<rt>shite imasu</rt></ruby></span></div>
   </div>
 </section>
 
-<!-- 8 扉 29 -->
 <section class="slide div">
-  <div class="kicker">だい29かい / SESSION 29</div>
-  <h1>しゅうかん・しょくぎょう</h1>
-  <p class="sub" style="color:#ffe9dc;">Habits &amp; occupation with 〜ています</p>
-</section>
-
-<!-- 9 文法❷ 習慣 -->
-<section class="slide">
-  <div class="kicker">GRAMMAR — 文法❷</div>
-  <h2>〜ています ＝ しゅうかん／しごと</h2>
-  <div class="big" style="text-align:left;max-width:80vw;">
-    にほんごを おしえています。<br>
-    ぎんこうで はたらいています。<br>
-    まいあさ ジョギングを しています。
-  </div>
-  <p class="en">〜ています also describes <b>habitual actions</b> and <b>what someone does for a living</b>. "にほんごを おしえています" = "I teach Japanese (as my job)."</p>
-</section>
-
-<!-- 10 ドリル 習慣 -->
-<section class="slide">
-  <div class="kicker">DRILL</div>
-  <h2>しつもんに こたえましょう</h2>
-  <div class="grid g2">
-    <div class="rv">どこで はたらいていますか。<span class="a">〜で はたらいています</span></div>
-    <div class="rv">まいにち なにを していますか。<span class="a">まいにち 〜を しています</span></div>
-    <div class="rv">なにを べんきょうしていますか。<span class="a">〜を べんきょうしています</span></div>
-    <div class="rv">どんな おんがくを ききますか。<span class="a">よく 〜を きいています</span></div>
-  </div>
-  <p class="hint">じぶんのことを こたえてみよう</p>
-</section>
-
-<!-- 11 扉 30 -->
-<section class="slide div">
-  <div class="kicker">だい30かい / SESSION 30</div>
+  <div class="kicker">SESSION 29</div>
   <h1>じょうたいの 〜ています</h1>
   <p class="sub" style="color:#ffe9dc;">Resultant states</p>
 </section>
 
-<!-- 12 文法❸ 状態 -->
-<section class="slide">
-  <div class="kicker">GRAMMAR — 文法❸</div>
-  <h2>じょうたいを あらわす 〜ています</h2>
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❷ — 〜ています (state)</div>
+  <h2>じょうたいの 〜ています<span class="ensub">A continuing state</span></h2>
+  <div class="lbl">EXAMPLE</div>
+  <div class="exbox">
+    <div class="exline two"><ruby class="">けっこん<rt>kekkon</rt></ruby><ruby class="">して<rt>shite</rt></ruby>　→　<ruby class="">けっこん<rt>kekkon</rt></ruby><ruby class="chg">して<rt>shite</rt></ruby><ruby class="chg">います<rt>imasu</rt></ruby></div>
+    <div class="exline two" style="font-size:2.6vh;color:#666;">is married (a state, not an action)</div>
+  </div>
+  <p class="enx">With some verbs, <span class="k">〜ています</span> shows a <b>state that continues</b> — being married, living somewhere, knowing, having.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❷ — more examples</div>
+  <h2>れい：じょうたい<span class="ensub">states</span></h2>
+  <div class="lbl">verb　→　〜ています（state）</div>
+  <div class="listrow">すむ　→　すん<span class="chg">でいます</span>　live in<span class="rom">sumu → sun<span class="chg">de imasu</span></span></div>
+  <div class="listrow">しる　→　しっ<span class="chg">ています</span>　know<span class="rom">shiru → shit<span class="chg">te imasu</span></span></div>
+  <div class="listrow">もつ　→　もっ<span class="chg">ています</span>　have<span class="rom">motsu → mot<span class="chg">te imasu</span></span></div>
+  <div class="listrow">ふとる　→　ふとっ<span class="chg">ています</span>　be heavy<span class="rom">futoru → futot<span class="chg">te imasu</span></span></div>
+  <div class="listrow">やせる　→　やせ<span class="chg">ています</span>　be thin<span class="rom">yaseru → yase<span class="chg">te imasu</span></span></div>
+
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❷ — TRAP</div>
+  <h2>「しる」の こたえかた<span class="ensub">How to answer 「しっていますか」 ★</span></h2>
+  <div class="exbox">
+    <div class="exline two"><ruby class="">しって<rt>shitte</rt></ruby><ruby class="">います<rt>imasu</rt></ruby>か。</div>
+    <div class="exline two" style="color:#1971c2;"><ruby class="">はい<rt>hai</rt></ruby>、<ruby class="">しって<rt>shitte</rt></ruby><ruby class="">います<rt>imasu</rt></ruby>。</div>
+    <div class="exline two" style="color:#c92a2a;"><ruby class="">いいえ<rt>iie</rt></ruby>、<ruby class="chg">しり<rt>shiri</rt></ruby><ruby class="chg">ません<rt>masen</rt></ruby>。　<span style="font-size:.5em;">×しっていません</span></div>
+  </div>
+  <p class="enx">“Do you know ~?” → Yes: しっています ／ No: <b>しりません</b> (never ×しっていません).</p>
+  <div class="prac">📖 きょうかしょ <b>練習 II</b>（p.177）・ ワークブック L7</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❷ — states</div>
+  <h2>こたえよう<span class="ensub">Answer with a state — tap to check</span></h2>
   <div class="grid g2">
-    <div class="card big" style="font-size:2.5vh;">けっこんする<br>→ けっこんしています<br><span style="color:#888;font-size:.8em;">be married</span></div>
-    <div class="card big" style="font-size:2.5vh;">すむ<br>→ すんでいます<br><span style="color:#888;font-size:.8em;">live in</span></div>
-    <div class="card big" style="font-size:2.5vh;">しる<br>→ しっています<br><span style="color:#888;font-size:.8em;">know</span></div>
-    <div class="card big" style="font-size:2.5vh;">もつ<br>→ もっています<br><span style="color:#888;font-size:.8em;">have</span></div>
-  </div>
-  <p class="en">With some verbs, 〜ています shows a <b>state that continues</b> after the action — being married, living somewhere, knowing something, having something.</p>
-</section>
-
-<!-- 13 しる 注意 -->
-<section class="slide board nork">
-  <div class="kicker">TRAP — ちゅうい</div>
-  <h2>「しる」の こたえかた<span class="sm">shiru</span></h2>
-  <div class="chalkbox big" style="font-size:2.9vh;text-align:left;">
-    Q: ロバートさんを <b style="color:var(--yel)">しっていますか</b>？<br>
-    <span class="ilab">○ はい、しっています。</span><br>
-    <span class="nlab">○ いいえ、しりません。</span><br>
-    <span class="nlab" style="text-decoration:line-through;">× いいえ、しっていません。</span>
-    <span class="sm">shitte imasu / shirimasen</span>
-  </div>
-  <div class="warn">こたえの ひていは 「しりません」！</div>
-  <p class="en">"Do you know ~?" → Yes: しっています / No: <b>しりません</b> (never ×しっていません).</p>
-</section>
-
-<!-- 14 ドリル 状態 -->
-<section class="slide">
-  <div class="kicker">DRILL</div>
-  <h2>じょうたいで こたえましょう</h2>
-  <div class="grid g2">
-    <div class="rv">おにいさんは けっこんしていますか。<span class="a">はい、けっこんしています</span></div>
-    <div class="rv">どこに すんでいますか。<span class="a">〜に すんでいます</span></div>
-    <div class="rv">わたしの なまえを しっていますか。<span class="a">はい、しっています／いいえ、しりません</span></div>
-    <div class="rv">くるまを もっていますか。<span class="a">はい、もっています／いいえ、もっていません</span></div>
+    <div class="rv"><ruby class="">けっこん<rt>kekkon</rt></ruby><ruby class="">している<rt>shite iru</rt></ruby>？<span class="a"><ruby class="">はい<rt>hai</rt></ruby>、<ruby class="">けっこん<rt>kekkon</rt></ruby><ruby class="">しています<rt>shite imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">どこ<rt>doko</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">すんでいる<rt>sunde iru</rt></ruby>？<span class="a"><ruby class="">〜<rt></rt></ruby><ruby class="">に<rt>ni</rt></ruby> <ruby class="">すんでいます<rt>sunde imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">わたし<rt>watashi</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">しっている<rt>shitte iru</rt></ruby>？<span class="a"><ruby class="">しっています<rt>shitte imasu</rt></ruby> ／ <ruby class="">しりません<rt>shirimasen</rt></ruby></span></div>
   </div>
 </section>
 
-<!-- 15 扉 31 -->
 <section class="slide div">
-  <div class="kicker">だい31かい / SESSION 31</div>
+  <div class="kicker">SESSION 30</div>
   <h1>ひとの びょうしゃ</h1>
   <p class="sub" style="color:#ffe9dc;">Describing people</p>
 </section>
 
-<!-- 16 ごい: からだ・いろ -->
-<section class="slide">
-  <div class="kicker">VOCAB — からだ ・ いろ</div>
-  <h2>あたらしい ことば</h2>
-  <div class="grid g3">
-    <div class="card big" style="font-size:2.5vh;">め ・ くち<br>かみ ・ かお</div>
-    <div class="card big" style="font-size:2.5vh;color:#1971c2;">あおい ・ あかい<br>くろい ・ しろい</div>
-    <div class="card big" style="font-size:2.5vh;">せ ・ め<br>ながい ・ みじかい</div>
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❸ — wearing</div>
+  <h2>きるもの の いいかた<span class="ensub">Verbs for wearing things</span></h2>
+  <div class="lbl">EXAMPLE</div>
+  <div class="exbox">
+    <div class="exline two"><ruby class="">めがね<rt>megane</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かけて<rt>kakete</rt></ruby><ruby class="">います<rt>imasu</rt></ruby></div>
   </div>
+  <div class="listrow" style="font-size:3.2vh;"><ruby class="">ぼうし<rt>boushi</rt></ruby>→<ruby class="">かぶる<rt>kaburu</rt></ruby>　／　<ruby class="">シャツ<rt>shatsu</rt></ruby>→<ruby class="">きる<rt>kiru</rt></ruby>　／　<ruby class="">ズボン<rt>zubon</rt></ruby>→<ruby class="">はく<rt>haku</rt></ruby></div>
+  <p class="enx">Use <span class="k">〜ています</span> to describe what someone is <b>wearing</b>. Different verbs: めがね→<b>かける</b>, ぼうし→<b>かぶる</b>, シャツ→<b>きる</b>, ズボン・くつ→<b>はく</b>.</p>
 </section>
 
-<!-- 17 文法❹ 着る系 -->
-<section class="slide">
-  <div class="kicker">GRAMMAR — 文法❹</div>
-  <h2>きている ・ かけている</h2>
-  <div class="big" style="text-align:left;max-width:80vw;">
-    めがねを かけています。<br>
-    ぼうしを かぶっています。<br>
-    しろい Tシャツを きています。
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❸ — X は Y が</div>
+  <h2>X は Y が けいようし<span class="ensub">Describing one feature of a person</span></h2>
+  <div class="exbox">
+    <div class="exline two"><ruby class="">ちち<rt>chichi</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">せ<rt>se</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">たかい<rt>takai</rt></ruby><ruby class="">です<rt>desu</rt></ruby></div>
+    <div class="exline two"><ruby class="">あね<rt>ane</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">かみ<rt>kami</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">ながい<rt>nagai</rt></ruby><ruby class="">です<rt>desu</rt></ruby></div>
   </div>
-  <p class="en">Use 〜ています to describe <b>what someone is wearing</b> in a photo. Different verbs for different items: めがね→かける, ぼうし→かぶる, ふく/Tシャツ→きる.</p>
+  <p class="enx"><b>X は Y が [adjective]</b> describes one part/feature. ちちは <b>せが たかい</b> = “my father is tall.” Idioms: せが たかい／ひくい, あたまが いい, かみが ながい.</p>
 </section>
 
-<!-- 18 文法❺ XはYが -->
-<section class="slide">
-  <div class="kicker">GRAMMAR — 文法❺</div>
-  <h2>Xは Yが けいようし</h2>
-  <div class="big" style="text-align:left;max-width:80vw;">
-    ちちは せが たかいです。<br>
-    あねは かみが ながいです。<br>
-    いもうとは あたまが いいです。
-  </div>
-  <p class="en">To describe one part or feature of a person, use <b>X は Y が [adjective]</b>. "ちちは せが たかいです" = "As for my father, (his) height is tall."</p>
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❸ — counting people</div>
+  <h2>なんにん？<span class="ensub">Counting people (〜人)</span></h2>
+  <div class="listrow"><ruby class="">ひとり<rt>hitori</rt></ruby> ・ <ruby class="">ふたり<rt>futari</rt></ruby> ・ <ruby class="">さんにん<rt>san-nin</rt></ruby> ・ <ruby class="">よにん<rt>yo-nin</rt></ruby> …</div>
+  <div class="exbox"><div class="exline two"><ruby class="">かぞく<rt>kazoku</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">よにん<rt>yo-nin</rt></ruby><ruby class="">です<rt>desu</rt></ruby></div></div>
+  <p class="enx">Counter <span class="k">〜人</span>. <b>ひとり</b> (1) and <b>ふたり</b> (2) are special; from 3 use 〜にん (よにん = 4, not ×よんにん).</p>
+  <div class="prac">📖 きょうかしょ <b>練習 III</b>（p.178）・ ワークブック L7</div>
 </section>
 
-<!-- 19 文法❻ て で つなぐ -->
-<section class="slide">
-  <div class="kicker">GRAMMAR — 文法❻</div>
-  <h2>けいようしを て で つなぐ</h2>
+<section class="slide drill">
+  <div class="kicker">DRILL ❸ — describe</div>
+  <h2>びょうしゃしよう<span class="ensub">Describe — tap to check</span></h2>
   <div class="grid g2">
-    <div class="chalkbox big" style="font-size:2.5vh;"><span class="ilab">い-adj</span><br>たかい → たか<b style="color:var(--orange)">くて</b><br>せが たかくて、かみが ながいです。</div>
-    <div class="chalkbox big" style="font-size:2.5vh;"><span class="nlab">な-adj</span><br>しんせつ → しんせつ<b style="color:var(--orange)">で</b><br>しんせつで、あたまが いいです。</div>
+    <div class="rv"><ruby class="">めがね<rt>megane</rt></ruby><span class="a"><ruby class="">めがね<rt>megane</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かけています<rt>kakete imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">せ<rt>se</rt></ruby>・<ruby class="">たかい<rt>takai</rt></ruby><span class="a"><ruby class="">せ<rt>se</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">たかいです<rt>takai desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">ぼうし<rt>boushi</rt></ruby><span class="a"><ruby class="">ぼうし<rt>boushi</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かぶっています<rt>kabutte imasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">かぞく<rt>kazoku</rt></ruby>・4<span class="a"><ruby class="">かぞく<rt>kazoku</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">よにん<rt>yo-nin</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
   </div>
-  <p class="en">Join two descriptions with the て-form of the adjective: い-adj drop い → <b>くて</b>; な-adj (and nouns) add <b>で</b>.</p>
 </section>
 
-<!-- 20 ドリル つなぐ -->
-<section class="slide">
-  <div class="kicker">DRILL</div>
-  <h2>ふたつ つないで いいましょう</h2>
-  <div class="grid g2">
-    <div class="rv">たかい ＋ かっこいい<span class="a">たかくて かっこいいです</span></div>
-    <div class="rv">しんせつ（な）＋ おもしろい<span class="a">しんせつで おもしろいです</span></div>
-    <div class="rv">かわいい ＋ わかい<span class="a">かわいくて わかいです</span></div>
-    <div class="rv">きれい（な）＋ あたまが いい<span class="a">きれいで あたまが いいです</span></div>
-  </div>
-  <p class="hint">いってから クリック</p>
-</section>
-
-<!-- 21 にんずう -->
-<section class="slide">
-  <div class="kicker">COUNTING — なんにん</div>
-  <h2>かぞくは なんにんですか</h2>
-  <div class="grid g3">
-    <div class="card big" style="font-size:2.4vh;">ひとり<br>ふたり<br>さんにん</div>
-    <div class="card big" style="font-size:2.4vh;">よにん<br>ごにん<br>ろくにん</div>
-    <div class="card big" style="font-size:2.4vh;">しちにん<br>はちにん<br>きゅうにん</div>
-  </div>
-  <p class="en">People counter: <b>ひとり</b> (1), <b>ふたり</b> (2) are special; from 3 on use <b>〜にん</b> (よにん = 4, not ×よんにん).</p>
-</section>
-
-<!-- 22 ひんど -->
-<section class="slide">
-  <div class="kicker">ADVERBS — ひんど</div>
-  <h2>よく ・ ときどき ・ あまり ・ ぜんぜん</h2>
-  <div class="big" style="text-align:left;max-width:80vw;">
-    よく えいがを みます。<br>
-    ときどき りょうりを します。<br>
-    あまり テレビを みません。<br>
-    ぜんぜん おさけを のみません。
-  </div>
-  <p class="en"><b>あまり</b> and <b>ぜんぜん</b> must be used with a <b>negative</b> verb. よく = often/well, ときどき = sometimes.</p>
-</section>
-
-<!-- 23 まとめ タスク -->
-<section class="slide">
-  <div class="kicker">TASK — はなしましょう</div>
-  <h2>かぞくの しゃしんを しょうかい</h2>
-  <div class="memo">
-    ① これは わたしの かぞくです。<br>
-    ② ちちは せが たかくて、めがねを かけています。<br>
-    ③ はは は りょうりが じょうずで、やさしいです。<br>
-    ④ いもうとは こうこうせいで、こうこうに かよっています。
-  </div>
-  <p class="hint">じぶんの かぞく／すきな ひとで つくってみよう</p>
-</section>
-
-<!-- 24 しゅくだい -->
 <section class="slide div">
-  <div class="kicker">HOMEWORK — しゅくだい</div>
+  <div class="kicker">SESSION 31</div>
+  <h1>けいようしの て-form ・ 〜に行く</h1>
+  <p class="sub" style="color:#ffe9dc;">Joining adjectives &amp; going to do</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❹ — joining adjectives</div>
+  <h2>けいようしを て で つなぐ<span class="ensub">Join two descriptions with て</span></h2>
+  <div class="twocol">
+    <div class="exbox"><div class="lbl i">い-adj</div><div class="exline two"><ruby class="">たか<rt>taka</rt></ruby><ruby class="">い<rt>i</rt></ruby> → <ruby class="">たか<rt>taka</rt></ruby><ruby class="chg">くて<rt>kute</rt></ruby></div></div>
+    <div class="exbox"><div class="lbl n">な-adj / noun</div><div class="exline two"><ruby class="">しんせつ<rt>shinsetsu</rt></ruby> → <ruby class="">しんせつ<rt>shinsetsu</rt></ruby><ruby class="chg">で<rt>de</rt></ruby></div></div>
+  </div>
+  <div class="exbox"><div class="exline two"><ruby class="">せ<rt>se</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">たか<rt>taka</rt></ruby><ruby class="chg">くて<rt>kute</rt></ruby>、<ruby class="">かみ<rt>kami</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">ながい<rt>nagai</rt></ruby><ruby class="">です<rt>desu</rt></ruby></div></div>
+  <p class="enx">Join descriptions with the て-form of the adjective: <b>い→くて</b>, <b>な-adj / noun→で</b>. (いい is irregular → <b>よくて</b>.)</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❹ — more examples</div>
+  <h2>れい：て で つなぐ<span class="ensub"></span></h2>
+  <div class="lbl i">い-adjectives</div>
+  <div class="listrow">やすい→やす<span class="chg">くて</span>　／　いい→<span class="chg">よくて</span><span class="rom">yasui→yasu<span class="chg">kute</span> / ii→<span class="chg">yokute</span></span></div>
+  <div class="lbl n" style="margin-top:1vh;">な-adj / noun</div>
+  <div class="listrow">きれい→きれい<span class="chg">で</span>　／　げんき→げんき<span class="chg">で</span><span class="rom">kirei→kirei<span class="chg">de</span> / genki→genki<span class="chg">de</span></span></div>
+
+  <div class="prac">📖 きょうかしょ <b>練習 IV</b>（p.179）・ ワークブック L7</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❹ — join</div>
+  <h2>ふたつ つなごう<span class="ensub">Join two — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">たかい<rt>takai</rt></ruby>＋<ruby class="">かっこいい<rt>kakkoii</rt></ruby><span class="a"><ruby class="">たか<rt>taka</rt></ruby><ruby class="">くて<rt>kute</rt></ruby> <ruby class="">かっこいい<rt>kakkoii</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">しんせつ<rt>shinsetsu</rt></ruby>＋<ruby class="">おもしろい<rt>omoshiroi</rt></ruby><span class="a"><ruby class="">しんせつ<rt>shinsetsu</rt></ruby><ruby class="">で<rt>de</rt></ruby> <ruby class="">おもしろい<rt>omoshiroi</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">かわいい<rt>kawaii</rt></ruby>＋<ruby class="">やさしい<rt>yasashii</rt></ruby><span class="a"><ruby class="">かわい<rt>kawai</rt></ruby><ruby class="">くて<rt>kute</rt></ruby> <ruby class="">やさしい<rt>yasashii</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❺ — 〜に行く</div>
+  <h2>〜に いく／くる／かえる<span class="ensub">Go / come / return to do something</span></h2>
+  <div class="lbl">place に ＋ [verb stem] に いきます</div>
+  <div class="exbox">
+    <div class="exline two"><ruby class="">きょうと<rt>Kyouto</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="chg">とり<rt>tori</rt></ruby> <ruby class="chg">に<rt>ni</rt></ruby> <ruby class="">いきます<rt>ikimasu</rt></ruby></div>
+  </div>
+  <p class="enx">Verb <b>stem</b> ＋ <span class="k">に いく／くる／かえる</span> = go/come/return <b>in order to do</b> something. とる→<b>とり</b>に いきます = “go to take (photos).” たべる→<b>たべ</b>に, みる→<b>み</b>に.</p>
+  <div class="prac">📖 きょうかしょ <b>練習 V</b>（p.181）・ ワークブック L7</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❺ — 〜に行く</div>
+  <h2>いおう<span class="ensub">Say it — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">としょかん<rt>toshokan</rt></ruby>・<ruby class="">ほん<rt>hon</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かえす<rt>kaesu</rt></ruby><span class="a"><ruby class="">としょかん<rt>toshokan</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">ほん<rt>hon</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かえし<rt>kaeshi</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">いきます<rt>ikimasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">しょくどう<rt>shokudou</rt></ruby>・<ruby class="">ひるごはん<rt>hirugohan</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">たべる<rt>taberu</rt></ruby><span class="a"><ruby class="">しょくどう<rt>shokudou</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">ひるごはん<rt>hirugohan</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">たべ<rt>tabe</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">いきます<rt>ikimasu</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">VOCAB — L7</div>
+  <h2>かぞく・からだ の ことば<span class="ensub">Key words for this lesson</span></h2>
+  <div class="grid g3">
+    <div class="card" style="font-size:2.3vh;">ちち father<br>はは mother<br>あに older bro.<br>あね older sis.</div>
+    <div class="card" style="font-size:2.3vh;">め eye<br>くち mouth<br>かみ hair<br>めがね glasses</div>
+    <div class="card" style="font-size:2.3vh;">きる wear<br>かぶる wear(hat)<br>すむ live<br>しる know</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="kicker">TASK — introduce a photo</div>
+  <h2>かぞくの しゃしんを しょうかい<span class="ensub">Introduce a family photo</span></h2>
+  <div class="memo" style="font-size:2.8vh;line-height:2.3;">
+    <ruby class="">これ<rt>kore</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">わたし<rt>watashi</rt></ruby> <ruby class="">の<rt>no</rt></ruby> <ruby class="">かぞく<rt>kazoku</rt></ruby><ruby class="">です<rt>desu</rt></ruby>。<br>
+    <ruby class="">ちち<rt>chichi</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">せ<rt>se</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">たか<rt>taka</rt></ruby><ruby class="">くて<rt>kute</rt></ruby>、<ruby class="">めがね<rt>megane</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かけています<rt>kakete imasu</rt></ruby>。<br>
+    <ruby class="">あね<rt>ane</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">けっこん<rt>kekkon</rt></ruby><ruby class="">していて<rt>shite ite</rt></ruby>、<ruby class="">とうきょう<rt>Toukyou</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">すんでいます<rt>sunde imasu</rt></ruby>。
+  </div>
+  <p class="hint" style="color:#1565c0;">Describe 2–3 people in your own family photo.</p>
+</section>
+
+<section class="slide div">
+  <div class="kicker">HOMEWORK</div>
   <h1>おつかれさま！</h1>
-  <p class="sub" style="color:#ffe9dc;">① ワークブック L7　② 単語カード L7　③ かぞくの しょうかいを 5ぶん かく</p>
+  <p class="sub" style="color:#ffe9dc;">① Workbook L7　② Vocab Cards L7　③ Write a 5-line family introduction</p>
 </section>
 
 </div>
@@ -449,11 +454,11 @@ function addRjWhole(el){
   el.appendChild(sp);
 }
 document.querySelectorAll(".slide:not(.nork)").forEach(slide=>{
-  slide.querySelectorAll("h1, h2, .big, ul.plain li, .hint").forEach(el=>{
+  slide.querySelectorAll(".__noauto__").forEach(el=>{
     if(el.querySelector("b")||el.querySelector(".roleA"))addRjWhole(el);else addRj(el);
   });
-  slide.querySelectorAll(".bubble, .card:not(:has(.big))").forEach(addRj);
-  slide.querySelectorAll(".rv").forEach(rv=>{
+  slide.querySelectorAll(".__noauto__").forEach(addRj);
+  slide.querySelectorAll(".__noauto_rv__").forEach(rv=>{
     addRj(rv);
     rv.querySelectorAll(".a").forEach(addRj);
   });
@@ -470,7 +475,7 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
   slides.forEach((s,i)=>{
     const t=s.querySelector("h1,h2");
     let title="スライド "+(i+1);
-    if(t){const c=t.cloneNode(true);c.querySelectorAll(".sm,.rj").forEach(x=>x.remove());title=c.textContent.trim();}
+    if(t){const c=t.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub").forEach(x=>x.remove());title=c.textContent.trim();}
     const k=s.querySelector(".kicker");const kt=k?k.textContent.trim():"";
     html+='<button class="tocitem" data-i="'+i+'"><span class="k">'+(i+1)+(kt?"　"+kt:"")+'</span><br>'+title+'</button>';
   });
