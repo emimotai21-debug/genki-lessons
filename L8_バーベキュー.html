@@ -103,29 +103,37 @@
     .nav button{padding:1.4vh 5vw;}
   }
 
-  /* ===== L8 redesign: ruby romaji, English titles, colored change ===== */
+  /* ===== L8: ruby romaji, English titles, colored change, practice refs ===== */
   h1 .ensub,h2 .ensub{display:block;font-size:2.3vh;color:#1565c0;font-weight:400;margin-top:.5vh;letter-spacing:.02em;}
   .slide.gram{justify-content:flex-start;overflow-y:auto;padding:7.5vh 5vw 12vh;}
-  .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;
-         padding:2.6vh 3.4vw;margin:1.4vh auto;display:inline-block;}
-  .exline{font-size:6.4vh;line-height:1.85;text-align:center;}
+  .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;padding:2.6vh 3.4vw;margin:1.4vh auto;display:inline-block;}
+  .exline{font-size:6.4vh;line-height:1.9;text-align:center;}
   .exline.two{font-size:4.6vh;}
-  ruby{ruby-position:over;}
   ruby rt{font-size:.32em;color:#1565c0;font-weight:700;line-height:1.1;}
   .chg,.chg rt{color:#c92a2a !important;}
   .arrow{font-size:3.6vh;color:var(--orange);margin:.4vh 0;font-weight:700;}
-  .lbl{font-size:2.3vh;color:#666;margin-bottom:.6vh;font-weight:700;letter-spacing:.05em;}
+  .lbl{font-size:2.3vh;color:#666;margin-bottom:.6vh;font-weight:700;letter-spacing:.04em;}
   .lbl.i{color:#1971c2;} .lbl.n{color:#c2255c;}
-  .listrow{font-size:4.4vh;line-height:1.55;text-align:center;margin:.4vh 0;}
+  .listrow{font-size:4.2vh;line-height:1.5;text-align:center;margin:.5vh 0;}
   .listrow .rom{display:block;font-size:.42em;color:#1565c0;font-weight:700;margin-top:.1vh;}
   .listrow .chg{color:#c92a2a;}
   body.noromaji rt,body.noromaji .listrow .rom{visibility:hidden;}
-  .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;
-       padding:1.5vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.62;margin-top:2vh;}
+  .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;padding:1.5vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.62;margin-top:1.8vh;}
   .enx b{color:#c92a2a;} .enx .k{color:#e8590c;font-weight:700;}
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:2vh 3vw;max-width:90vw;margin:0 auto;}
-  @media(max-width:700px){.exline{font-size:4.6vh;} .exline.two{font-size:3.4vh;}
-     .listrow{font-size:3.4vh;} .twocol{grid-template-columns:1fr;} }
+  .prac{display:inline-block;background:#eafaf0;border:.3vh solid #2f9e44;color:#2b8a3e;border-radius:1.4vh;padding:1vh 2.2vw;font-size:2.1vh;font-weight:700;margin-top:2vh;}
+  .prac b{color:#c2410c;}
+  /* roomy ruby drill cards */
+  .slide.drill{justify-content:flex-start;overflow-y:auto;padding:8vh 5vw 12vh;}
+  .drill .rv{display:block !important;text-align:center;font-size:4vh;padding:2.4vh 2vw;line-height:1.5;}
+  .drill .rv ruby rt{font-size:.3em;}
+  .drill .rv .a{display:block;margin-top:1.4vh;font-size:.82em;line-height:1.9;}
+  .drill .rv:not(.shown) .a{color:#ecdccb;background:#ecdccb;border-radius:1vh;}
+  .drill .rv.shown .a{color:#c2410c;background:var(--soft);padding:1.2vh 1.5vw;border-radius:1vh;}
+  .drill .grid{gap:2vh 3vw;}
+  .memo ruby rt{font-size:.34em;color:#1565c0;font-weight:700;}
+  @media(max-width:700px){.exline{font-size:4.6vh;}.exline.two{font-size:3.4vh;}
+     .listrow{font-size:3.3vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.2vh;}}
 </style>
 </head>
 <body>
@@ -174,23 +182,34 @@
   <div class="lbl">〜ます　→　じしょけい ／ ない-form</div>
   <div class="listrow">のみ<span class="chg">ます</span>　→　の<span class="chg">む</span>　／　の<span class="chg">まない</span><span class="rom">nomi<span class="chg">masu</span> → no<span class="chg">mu</span> / no<span class="chg">manai</span></span></div>
   <div class="listrow">かき<span class="chg">ます</span>　→　か<span class="chg">く</span>　／　か<span class="chg">かない</span><span class="rom">kaki<span class="chg">masu</span> → ka<span class="chg">ku</span> / ka<span class="chg">kanai</span></span></div>
-  <div class="listrow">はなし<span class="chg">ます</span>　→　はな<span class="chg">す</span>　／　はな<span class="chg">さない</span><span class="rom">hanashi<span class="chg">masu</span> → hana<span class="chg">su</span> / hana<span class="chg">sanai</span></span></div>
   <div class="listrow">み<span class="chg">ます</span>　→　み<span class="chg">る</span>　／　み<span class="chg">ない</span><span class="rom">mi<span class="chg">masu</span> → mi<span class="chg">ru</span> / mi<span class="chg">nai</span></span></div>
   <div class="listrow"><span class="chg">します</span>　→　<span class="chg">する</span>　／　<span class="chg">しない</span><span class="rom"><span class="chg">shimasu</span> → <span class="chg">suru</span> / <span class="chg">shinai</span></span></div>
   <div class="listrow"><span class="chg">きます</span>　→　<span class="chg">くる</span>　／　<span class="chg">こない</span><span class="rom"><span class="chg">kimasu</span> → <span class="chg">kuru</span> / <span class="chg">konai</span></span></div>
-  <p class="enx"><b>する</b> and <b>くる</b> are irregular. Everything in <span style="color:#c92a2a;font-weight:700;">red</span> is the part that changes.</p>
+  <p class="enx"><b>する</b> and <b>くる</b> are irregular. Red = the part that changes.</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 I</b>（文法❶ ふつうけい・げんざい）・ ワークブック L8</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❶ — plain present</div>
+  <h2>ふつうけいに しよう<span class="ensub">Change to plain present — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">いきます<rt>ikimasu</rt></ruby><span class="a"><ruby class="">いく<rt>iku</rt></ruby> ／ <ruby class="">いかない<rt>ikanai</rt></ruby></span></div>
+    <div class="rv"><ruby class="">よみます<rt>yomimasu</rt></ruby><span class="a"><ruby class="">よむ<rt>yomu</rt></ruby> ／ <ruby class="">よまない<rt>yomanai</rt></ruby></span></div>
+    <div class="rv"><ruby class="">たべます<rt>tabemasu</rt></ruby><span class="a"><ruby class="">たべる<rt>taberu</rt></ruby> ／ <ruby class="">たべない<rt>tabenai</rt></ruby></span></div>
+    <div class="rv"><ruby class="">します<rt>shimasu</rt></ruby><span class="a"><ruby class="">する<rt>suru</rt></ruby> ／ <ruby class="">しない<rt>shinai</rt></ruby></span></div>
+  </div>
 </section>
 
 <section class="slide gram">
-  <div class="kicker">GRAMMAR ❷ — Plain form, past</div>
-  <h2>ふつうけい（かこ）<span class="ensub">Plain form — past tense</span></h2>
-  <div class="lbl">EXAMPLE</div>
+  <div class="kicker">GRAMMAR ❷ — Plain past (た-form)</div>
+  <h2>た-form の つくりかた<span class="ensub">How to make the た-form (from the て-form)</span></h2>
+  <div class="lbl">て-form → た-form　（て→た, で→だ）</div>
   <div class="exbox">
-    <div class="exline"><ruby class="">たべ<rt>tabe</rt></ruby><ruby class="">る<rt>ru</rt></ruby></div>
-    <div class="arrow">↓</div>
-    <div class="exline"><ruby class="">たべ<rt>tabe</rt></ruby><ruby class="chg">た<rt>ta</rt></ruby>　<span style="font-size:.5em;color:#666;">(＝ past)</span></div>
+    <div class="exline two"><ruby class="">たべ<rt>tabe</rt></ruby><ruby class="chg">て<rt>te</rt></ruby>　→　<ruby class="">たべ<rt>tabe</rt></ruby><ruby class="chg">た<rt>ta</rt></ruby></div>
+    <div class="exline two"><ruby class="">のん<rt>non</rt></ruby><ruby class="chg">で<rt>de</rt></ruby>　→　<ruby class="">のん<rt>non</rt></ruby><ruby class="chg">だ<rt>da</rt></ruby></div>
+    <div class="exline two"><ruby class="">かい<rt>kai</rt></ruby><ruby class="chg">て<rt>te</rt></ruby>　→　<ruby class="">かい<rt>kai</rt></ruby><ruby class="chg">た<rt>ta</rt></ruby></div>
   </div>
-  <p class="enx">Plain past = the <b>た-form</b>. It has the same shape as the て-form, but with <span class="k">た/だ</span>: たべて → たべ<b>た</b>. Negative past: <b>なかった</b> → たべ<b>なかった</b>.</p>
+  <p class="enx">You already know the <b>て-form</b> from Lesson 6. To make the plain <b>past</b>, just change <span class="k">て→た</span> and <span class="k">で→だ</span>: たべて→たべ<b>た</b>, のんで→のん<b>だ</b>. The negative past is <b>なかった</b>: たべ<b>なかった</b>.</p>
 </section>
 
 <section class="slide gram">
@@ -201,8 +220,19 @@
   <div class="listrow">かく　→　か<span class="chg">いた</span>　／　か<span class="chg">かなかった</span><span class="rom">kaku → ka<span class="chg">ita</span> / ka<span class="chg">kanakatta</span></span></div>
   <div class="listrow">たべる　→　たべ<span class="chg">た</span>　／　たべ<span class="chg">なかった</span><span class="rom">taberu → tabe<span class="chg">ta</span> / tabe<span class="chg">nakatta</span></span></div>
   <div class="listrow">する　→　<span class="chg">した</span>　／　<span class="chg">しなかった</span><span class="rom">suru → <span class="chg">shita</span> / <span class="chg">shinakatta</span></span></div>
-  <div class="listrow">くる　→　<span class="chg">きた</span>　／　<span class="chg">こなかった</span><span class="rom">kuru → <span class="chg">kita</span> / <span class="chg">konakatta</span></span></div>
-  <p class="enx">The past affirmative is the <b>た-form</b> (like the て-form: のんで→のん<b>だ</b>, かいて→かい<b>た</b>).</p>
+  <p class="enx">The past affirmative is the <b>た-form</b> (same as て-form: のんで→のん<b>だ</b>).</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 II</b>（文法❷ ふつうけい・かこ）・ ワークブック L8</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❷ — plain past</div>
+  <h2>かこに しよう<span class="ensub">Change to plain past — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">のむ<rt>nomu</rt></ruby><span class="a"><ruby class="">のんだ<rt>nonda</rt></ruby> ／ <ruby class="">のまなかった<rt>nomanakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">かく<rt>kaku</rt></ruby><span class="a"><ruby class="">かいた<rt>kaita</rt></ruby> ／ <ruby class="">かかなかった<rt>kakanakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">たべる<rt>taberu</rt></ruby><span class="a"><ruby class="">たべた<rt>tabeta</rt></ruby> ／ <ruby class="">たべなかった<rt>tabenakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">くる<rt>kuru</rt></ruby><span class="a"><ruby class="">きた<rt>kita</rt></ruby> ／ <ruby class="">こなかった<rt>konakatta</rt></ruby></span></div>
+  </div>
 </section>
 
 <section class="slide gram">
@@ -227,20 +257,10 @@
   <div class="lbl i">い-adj（たかい）</div>
   <div class="listrow">たかい ／ たか<span class="chg">くない</span> ／ たか<span class="chg">かった</span> ／ たか<span class="chg">くなかった</span><span class="rom">takai / taka<span class="chg">kunai</span> / taka<span class="chg">katta</span> / taka<span class="chg">kunakatta</span></span></div>
   <div class="lbl n" style="margin-top:1.5vh;">な-adj ／ noun（しずか・がくせい）</div>
-  <div class="listrow">しずか<span class="chg">だ</span> ／ しずか<span class="chg">じゃない</span> ／ しずか<span class="chg">だった</span> ／ しずか<span class="chg">じゃなかった</span><span class="rom">shizuka<span class="chg">da</span> / shizuka<span class="chg">janai</span> / shizuka<span class="chg">datta</span> / shizuka<span class="chg">janakatta</span></span></div>
+  <div class="listrow">しずか<span class="chg">だ</span> ／ しずか<span class="chg">じゃない</span> ／ しずか<span class="chg">だった</span><span class="rom">shizuka<span class="chg">da</span> / shizuka<span class="chg">janai</span> / shizuka<span class="chg">datta</span></span></div>
   <div class="listrow">がくせい<span class="chg">だ</span> ／ がくせい<span class="chg">じゃない</span> ／ がくせい<span class="chg">だった</span><span class="rom">gakusei<span class="chg">da</span> / gakusei<span class="chg">janai</span> / gakusei<span class="chg">datta</span></span></div>
   <p class="enx"><b>Watch out:</b> い-adjectives never take だ (×たかいだ). Only な-adjectives &amp; nouns take <span class="k">だ</span>.</p>
-</section>
-
-<section class="slide">
-  <div class="kicker">DRILL — plain form</div>
-  <h2>ふつうけいに しよう<span class="ensub">Change to the plain form — tap to check</span></h2>
-  <div class="grid g2">
-    <div class="rv">いきます<span class="a">いく ／ いかない ／ いった ／ いかなかった</span></div>
-    <div class="rv">よみます<span class="a">よむ ／ よまない ／ よんだ ／ よまなかった</span></div>
-    <div class="rv">たかいです<span class="a">たかい ／ たかくない ／ たかかった</span></div>
-    <div class="rv">げんきです<span class="a">げんきだ ／ げんきじゃない ／ げんきだった</span></div>
-  </div>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 III</b>（文法❸ けいようし・めいしの ふつうけい）・ ワークブック L8</div>
 </section>
 
 <section class="slide div">
@@ -256,17 +276,18 @@
   <div class="exbox">
     <div class="exline two"><ruby class="">あした<rt>ashita</rt></ruby> <ruby class="">あめ<rt>ame</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="chg">ふる<rt>furu</rt></ruby> <ruby class="chg">と<rt>to</rt></ruby> <ruby class="chg">おもい<rt>omoi</rt></ruby><ruby class="chg">ます<rt>masu</rt></ruby>。</div>
   </div>
-  <p class="enx">Use <span class="k">[plain form] ＋ と おもいます</span> to say “I think that ~.” The part before <b>と</b> must be in the <b>plain form</b>: ふる (not ふります). → “I think it will rain tomorrow.”</p>
+  <p class="enx">Use <span class="k">[plain form] ＋ と おもいます</span> to say “I think that ~.” The part before <b>と</b> must be <b>plain form</b>: ふる (not ふります). → “I think it will rain tomorrow.”</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 IV</b>（文法❹ 〜とおもいます）・ ワークブック L8</div>
 </section>
 
-<section class="slide">
-  <div class="kicker">DRILL — 〜とおもいます</div>
+<section class="slide drill">
+  <div class="kicker">DRILL ❹ — 〜とおもいます</div>
   <h2>いけんを いおう<span class="ensub">Give your opinion — tap to check</span></h2>
   <div class="grid g2">
-    <div class="rv">あした・てんき が いい？<span class="a">あした てんき が いい と おもいます</span></div>
-    <div class="rv">せんせいは くる？<span class="a">くる と おもいます ／ こない と おもいます</span></div>
-    <div class="rv">この えいが・おもしろい？<span class="a">おもしろい と おもいます</span></div>
-    <div class="rv">にほんご は むずかしい？<span class="a">むずかしい と おもいます</span></div>
+    <div class="rv"><ruby class="">あした<rt>ashita</rt></ruby> <ruby class="">てんき<rt>tenki</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">いい<rt>ii</rt></ruby>？<span class="a"><ruby class="">あした<rt>ashita</rt></ruby> <ruby class="">てんき<rt>tenki</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">いい<rt>ii</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">せんせい<rt>sensei</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">くる<rt>kuru</rt></ruby>？<span class="a"><ruby class="">くる<rt>kuru</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby> ／ <ruby class="">こない<rt>konai</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">この<rt>kono</rt></ruby> <ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">おもしろい<rt>omoshiroi</rt></ruby>？<span class="a"><ruby class="">おもしろい<rt>omoshiroi</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">にほんご<rt>nihongo</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">むずかしい<rt>muzukashii</rt></ruby>？<span class="a"><ruby class="">むずかしい<rt>muzukashii</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby></span></div>
   </div>
 </section>
 
@@ -277,7 +298,8 @@
   <div class="exbox">
     <div class="exline two"><ruby class="">トム<rt>Tomu</rt></ruby> <ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">あした<rt>ashita</rt></ruby> <ruby class="chg">くる<rt>kuru</rt></ruby> <ruby class="chg">と<rt>to</rt></ruby> <ruby class="chg">いって<rt>itte</rt></ruby><ruby class="chg">いました<rt>imashita</rt></ruby>。</div>
   </div>
-  <p class="enx"><span class="k">[plain form] ＋ と いっていました</span> = “(someone) said that ~.” Report another person’s words. → “Tom said that he will come tomorrow.”</p>
+  <p class="enx"><span class="k">[plain form] ＋ と いっていました</span> = “(someone) said that ~.” → “Tom said that he will come tomorrow.”</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 V</b>（文法❺ 〜といっていました）・ ワークブック L8</div>
 </section>
 
 <section class="slide div">
@@ -293,17 +315,18 @@
   <div class="exbox">
     <div class="exline two"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">する<rt>suru</rt></ruby> <ruby class="chg">の<rt>no</rt></ruby><ruby class="chg">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby>。</div>
   </div>
-  <p class="enx">Add <span class="k">の</span> to a <b>dictionary-form verb</b> to make it a noun, then use が すき / じょうず / へた: する<b>のが</b> すきです = “I like cooking.” Also じょうず (good at) / へた (bad at).</p>
+  <p class="enx">Add <span class="k">の</span> to a <b>dictionary-form verb</b> to make it a noun, then use が すき／じょうず／へた: する<b>のが</b> すきです = “I like cooking.”</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 VI</b>（文法❻ 〜のが すき／じょうず／へた）・ ワークブック L8</div>
 </section>
 
-<section class="slide">
-  <div class="kicker">DRILL — 〜のが</div>
+<section class="slide drill">
+  <div class="kicker">DRILL ❻ — 〜のが</div>
   <h2>いおう<span class="ensub">Say it — tap to check</span></h2>
   <div class="grid g2">
-    <div class="rv">えいが を みる・すき<span class="a">えいが を みる の が すき です</span></div>
-    <div class="rv">うた を うたう・じょうず<span class="a">うた を うたう の が じょうず です</span></div>
-    <div class="rv">はやく おきる・へた<span class="a">はやく おきる の が へた です</span></div>
-    <div class="rv">りょうり を する・すき<span class="a">りょうり を する の が すき です</span></div>
+    <div class="rv"><ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">みる<rt>miru</rt></ruby>・<ruby class="">すき<rt>suki</rt></ruby><span class="a"><ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">みる<rt>miru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">うた<rt>uta</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">うたう<rt>utau</rt></ruby>・<ruby class="">じょうず<rt>jouzu</rt></ruby><span class="a"><ruby class="">うた<rt>uta</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">うたう<rt>utau</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">じょうず<rt>jouzu</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">はやく<rt>hayaku</rt></ruby> <ruby class="">おきる<rt>okiru</rt></ruby>・<ruby class="">へた<rt>heta</rt></ruby><span class="a"><ruby class="">はやく<rt>hayaku</rt></ruby> <ruby class="">おきる<rt>okiru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">へた<rt>heta</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">する<rt>suru</rt></ruby>・<ruby class="">すき<rt>suki</rt></ruby><span class="a"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">する<rt>suru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
   </div>
 </section>
 
@@ -315,7 +338,8 @@
     <div class="arrow">↓</div>
     <div class="exline two"><ruby class="">いいえ<rt>iie</rt></ruby>、<ruby class="">なにも<rt>nanimo</rt></ruby> <ruby class="">たべ<rt>tabe</rt></ruby><ruby class="">ませんでした<rt>masendeshita</rt></ruby>。</div>
   </div>
-  <p class="enx"><span class="k">なにか</span> = “something / anything” (in questions). <span class="k">なにも ＋ negative</span> = “nothing at all.” Drop を after なにか / なにも.</p>
+  <p class="enx"><span class="k">なにか</span> = “something / anything.” <span class="k">なにも ＋ negative</span> = “nothing at all.” Drop を after なにか／なにも.</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 VII</b>（文法❼ なにか・なにも）・ ワークブック L8</div>
 </section>
 
 <section class="slide div">
@@ -332,14 +356,15 @@
     <div class="exline two"><ruby class="">ここ<rt>koko</rt></ruby> <ruby class="">で<rt>de</rt></ruby> <ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">とら<rt>tora</rt></ruby><ruby class="chg">ない<rt>nai</rt></ruby><ruby class="chg">で<rt>de</rt></ruby> <ruby class="">ください<rt>kudasai</rt></ruby>。</div>
   </div>
   <p class="enx"><span class="k">ない-form ＋ で ください</span> = “please don’t ~.” とる → とら<b>ない</b> → とら<b>ないでください</b>. → “Please don’t take photos here.”</p>
+  <div class="prac">📖 きょうかしょ <b>だい8か 練習 VIII</b>（文法❽ 〜ないでください）・ ワークブック L8</div>
 </section>
 
 <section class="slide gram">
   <div class="kicker">GRAMMAR ❾ — Casual speech</div>
   <h2>ためぐち<span class="ensub">Casual speech (drop です／ます)</span></h2>
   <div class="exbox">
-    <div class="lbl">ていねい → カジュアル</div>
-    <div class="exline two"><ruby class="">げんき<rt>genki</rt></ruby><ruby class="">ですか<rt>desu ka</rt></ruby>？　→　<ruby class="chg">げんき<rt>genki</rt></ruby>？</div>
+  <div class="lbl">ていねい → カジュアル</div>
+    <div class="exline two"><ruby class="">げんき<rt>genki</rt></ruby><ruby class="">ですか<rt>desuka</rt></ruby>？　→　<ruby class="chg">げんき<rt>genki</rt></ruby>？</div>
     <div class="exline two" style="font-size:3.2vh;">── <ruby class="">うん<rt>un</rt></ruby>、<ruby class="">げんき<rt>genki</rt></ruby>。 ／ <ruby class="">ううん<rt>uun</rt></ruby>、<ruby class="">げんき<rt>genki</rt></ruby><ruby class="">じゃない<rt>janai</rt></ruby>。</div>
   </div>
   <p class="enx">Among friends, drop です／ます and use the <b>plain form</b>. Rising intonation replaces か. <span class="k">うん</span> = casual “yes,” <span class="k">ううん</span> = casual “no.”</p>
@@ -354,17 +379,16 @@
     <div class="card" style="font-size:2.4vh;">おもう think<br>いう say<br>のる ride</div>
   </div>
 </section>
-
 <section class="slide">
   <div class="kicker">TASK — talk casually</div>
   <h2>ともだちと カジュアルに<span class="ensub">Chat with a friend in plain form</span></h2>
-  <div class="memo">
-    A：しゅうまつ なに を した？<br>
-    B：ともだち と バーベキュー を した。<br>
-    A：たのしかった？<br>
-    B：うん、すごく たのしかった と おもう！
+  <div class="memo" style="font-size:3vh;line-height:2.4;">
+    A：<ruby class="">しゅうまつ<rt>shuumatsu</rt></ruby> <ruby class="">なに<rt>nani</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>？<br>
+    B：<ruby class="">ともだち<rt>tomodachi</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">バーベキュー<rt>baabekyuu</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>。<br>
+    A：<ruby class="">たのしかった<rt>tanoshikatta</rt></ruby>？<br>
+    B：<ruby class="">うん<rt>un</rt></ruby>、<ruby class="">すごく<rt>sugoku</rt></ruby> <ruby class="">たのしかった<rt>tanoshikatta</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもう<rt>omou</rt></ruby>！
   </div>
-  <p class="hint">ですます を つかわないで はなしてみよう（Try it without です／ます）</p>
+  <p class="hint" style="color:#1565c0;">Try it without です／ます — use the plain form!</p>
 </section>
 
 <section class="slide div">
@@ -446,11 +470,11 @@ function addRjWhole(el){
   el.appendChild(sp);
 }
 document.querySelectorAll(".slide:not(.nork)").forEach(slide=>{
-  slide.querySelectorAll(".big, ul.plain li, .hint").forEach(el=>{
+  slide.querySelectorAll(".__noauto__").forEach(el=>{
     if(el.querySelector("b")||el.querySelector(".roleA"))addRjWhole(el);else addRj(el);
   });
-  slide.querySelectorAll(".bubble").forEach(addRj);
-  slide.querySelectorAll(".rv").forEach(rv=>{
+  slide.querySelectorAll(".__noauto__").forEach(addRj);
+  slide.querySelectorAll(".__noauto_rv__").forEach(rv=>{
     addRj(rv);
     rv.querySelectorAll(".a").forEach(addRj);
   });
