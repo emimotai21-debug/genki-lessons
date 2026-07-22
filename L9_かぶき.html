@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>げんき I だい9か レッスンスライド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--orange:#e8590c;--bg:#fff7f0;--ink:#333;--soft:#fff3e6;
+        --board:#2f4a3c;--wood:#8b5e3c;--chalk:#fdf6e3;--yel:#ffe08a;--pink:#ffb3c1;--blue:#a8d8ea;}
+  *{box-sizing:border-box;margin:0;padding:0;font-family:"BIZ UDPGothic","Hiragino Sans","Yu Gothic","Noto Sans JP",sans-serif;}
+  html,body{height:100%;background:#241c14;}
+  .deck{position:relative;width:100vw;height:100vh;overflow:hidden;}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;align-items:center;
+         background:var(--bg);color:var(--ink);padding:5vh 6vw;text-align:center;}
+  .slide.active{display:flex;}
+  .kicker{font-size:2vh;color:var(--orange);font-weight:700;letter-spacing:.2em;margin-bottom:1.5vh;}
+  h1{font-size:6.5vh;color:var(--orange);line-height:1.35;}
+  h2{font-size:5vh;color:var(--orange);margin-bottom:3.5vh;line-height:1.35;}
+  .sub{font-size:2.4vh;color:#999;margin-top:2vh;}
+  .big{font-size:3.8vh;line-height:1.9;}
+  ul.plain{list-style:none;font-size:3vh;line-height:2;text-align:left;}
+  ul.plain li::before{content:"▸ ";color:var(--orange);}
+  .grid{display:grid;gap:1.8vh 2.5vw;width:100%;max-width:88vw;}
+  .g2{grid-template-columns:1fr 1fr;}
+  .g3{grid-template-columns:1fr 1fr 1fr;}
+  .card{background:#fff;border:.4vh solid var(--orange);border-radius:2.2vh;padding:3vh 3vw;max-width:82vw;}
+  /* ===== 文法解説スライド（明るいデザイン）===== */
+  .slide.board{--chalk:#333333;--yel:#e8590c;--blue:#1971c2;--pink:#c2255c;
+    background:var(--bg);color:var(--ink);}
+  .board h2{color:var(--orange);}
+  .board .warn{color:#c2255c;font-weight:700;font-size:2.8vh;margin-top:3vh;}
+  .board .chalkbox{border:.3vh dashed var(--orange);border-radius:1.5vh;padding:2.5vh 2vw;background:#fff;}
+  .board table{border-collapse:collapse;font-size:2.9vh;margin:0 auto;background:#fff;}
+  .board th,.board td{border:.25vh solid #c9b8a8;padding:1.6vh 2.2vw;}
+  .board th{color:var(--orange);font-weight:700;}
+  .board .ilab{color:#1971c2;font-weight:700;}
+  .board .nlab{color:#c2255c;font-weight:700;}
+  .board .ylab{color:var(--orange);font-weight:700;}
+  /* ===== reveal ===== */
+  .rv{display:flex;align-items:center;justify-content:space-between;gap:2vw;background:#fff;
+      border:.35vh solid var(--orange);border-radius:1.6vh;padding:1.5vh 2vw;cursor:pointer;
+      font-size:3vh;font-weight:700;text-align:left;color:var(--ink);}
+  .rv .a{color:#fff;background:#fff;border-radius:.8vh;padding:.2vh 1vw;transition:.15s;user-select:none;text-align:right;}
+  .rv.shown .a{color:var(--orange);background:var(--soft);}
+  .rv:not(.shown) .a .rj{visibility:hidden;}
+  .hint{font-size:1.9vh;color:#bbb;margin-top:2.5vh;}
+  .en{font-size:2.1vh;color:#5f6b7a;margin-top:2.2vh;max-width:80vw;line-height:1.65;
+      background:#fff;border-left:.5vh solid var(--orange);padding:1.2vh 1.5vw;text-align:left;}
+  /* 文法＝ローマ字メイン表示 */
+  .sm{display:block;font-size:.62em;color:#b08968;font-weight:400;margin-top:.4vh;}
+  .timer{font-size:2.2vh;background:var(--orange);color:#fff;border-radius:99px;padding:.5vh 2vw;
+         display:inline-block;margin-bottom:2.5vh;}
+  .roleA{color:var(--orange);font-weight:700;}
+  .memo{background:#fffdf5;border:.3vh solid #d9c9a3;border-radius:1.5vh;padding:2vh 2vw;text-align:left;
+        font-size:2.6vh;line-height:1.9;color:var(--ink);}
+  .bubble{border:.3vh solid var(--orange);border-radius:1.6vh;padding:1.3vh 2vw;font-size:2.8vh;
+          background:#fff;text-align:left;color:var(--ink);}
+  .bubble.shop{background:var(--soft);margin-left:8vw;}
+  /* ローマ字 */
+  .rj{font-size:.52em;color:#b08968;font-style:italic;font-weight:400;padding-left:.8vw;}
+  body.noromaji .rj{display:none;}
+  .rjbtn{position:fixed;top:2vh;right:2vw;z-index:20;font-size:2vh;padding:.8vh 1.8vw;border:none;
+         border-radius:1vh;background:var(--orange);color:#fff;cursor:pointer;font-weight:700;opacity:.85;}
+  body.noromaji .rjbtn{opacity:.4;}
+  /* nav */
+  .nav{position:fixed;bottom:2vh;right:2vw;display:flex;gap:1vw;z-index:10;}
+  .nav button{font-size:2.4vh;padding:1vh 2.2vw;border:none;border-radius:1.2vh;background:var(--orange);
+              color:#fff;cursor:pointer;font-weight:700;opacity:.85;}
+  .count{position:fixed;bottom:2vh;left:2vw;font-size:2vh;z-index:10;color:#b08968;}
+  .bar{position:fixed;top:0;left:0;height:.7vh;background:var(--orange);z-index:10;transition:width .25s;}
+  /* divider */
+  .slide.div{background:var(--orange);color:#fff;}
+  .div .kicker{color:#ffd9c2;}
+  .div h1{color:#fff;font-size:5.5vh;}
+  .div .rj{color:#ffd9c2;}
+  .kanjibox{font-size:7vh;font-weight:700;}
+
+  /* 目次 */
+  .tocov{position:fixed;inset:0;background:rgba(36,28,20,.55);z-index:40;display:none;align-items:center;justify-content:center;padding:4vh 4vw;}
+  .tocov.open{display:flex;}
+  .tocpanel{background:#fff7f0;border:3px solid #e8590c;border-radius:16px;max-width:640px;width:100%;max-height:85vh;overflow:auto;padding:18px;box-shadow:0 10px 40px rgba(0,0,0,.4);}
+  .tocitem{display:block;width:100%;text-align:left;background:#fff;border:none;border-left:6px solid #e8590c;
+    margin:6px 0;padding:9px 14px;border-radius:8px;font-size:2.1vh;cursor:pointer;color:#333;font-weight:700;}
+  .tocitem:hover{background:#ffe9dc;}
+  .tocitem .k{color:#e8590c;font-size:.72em;font-weight:700;}
+
+  /* ===== スマホ対応 ===== */
+  @media (max-width:700px){
+    .slide{justify-content:flex-start;overflow-y:auto;padding:9vh 4vw 12vh;}
+    .slide.div{justify-content:center;}
+    h1{font-size:4.2vh;} h2{font-size:3.4vh;margin-bottom:2vh;}
+    .big{font-size:2.6vh;} .grid{grid-template-columns:1fr !important;gap:1.2vh;}
+    .grid.g3{grid-template-columns:1fr 1fr !important;}
+    .rv{font-size:2.2vh !important;padding:1.4vh 3vw;}
+    table{font-size:1.8vh !important;} th,td{padding:1vh 1.5vw;}
+    .en{font-size:1.9vh;max-width:92vw;} .card{max-width:92vw;padding:2vh 3vw;}
+    .bubble{font-size:2.1vh;} .bubble.alt{margin-left:4vw;}
+    ul.plain{font-size:2.3vh;}
+    .kanjibox{font-size:4vh;}
+    .nav button{padding:1.4vh 5vw;}
+  }
+
+  /* ===== L7 redesign (same as L8) ===== */
+  h1 .ensub,h2 .ensub{display:block;font-size:2.3vh;color:#1565c0;font-weight:400;margin-top:.5vh;letter-spacing:.02em;}
+  .slide.gram{justify-content:flex-start;overflow-y:auto;padding:7.5vh 5vw 12vh;}
+  .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;padding:2.4vh 3vw;margin:1.2vh auto;display:inline-block;}
+  .exline{font-size:6vh;line-height:1.9;text-align:center;}
+  .exline.two{font-size:4.4vh;}
+  ruby{margin:0 .12em;}
+  ruby rt{font-size:.5em;color:#1565c0;font-weight:700;line-height:1.15;}
+  .chg,.chg rt{color:#c92a2a !important;}
+  .arrow{font-size:3.4vh;color:var(--orange);margin:.3vh 0;font-weight:700;}
+  .lbl{font-size:2.3vh;color:#666;margin-bottom:.6vh;font-weight:700;letter-spacing:.04em;}
+  .lbl.i{color:#1971c2;} .lbl.n{color:#c2255c;}
+  .listrow{font-size:4vh;line-height:1.5;text-align:center;margin:.5vh 0;}
+  .listrow .rom{display:block;font-size:.52em;color:#1565c0;font-weight:700;margin-top:.2vh;}
+  .listrow .chg{color:#c92a2a;}
+  body.noromaji rt,body.noromaji .listrow .rom{visibility:hidden;}
+  .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;padding:1.4vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.6;margin-top:1.6vh;}
+  .enx b{color:#c92a2a;} .enx .k{color:#e8590c;font-weight:700;}
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:2vh 3vw;max-width:90vw;margin:0 auto;}
+  .prac{display:inline-block;background:#eafaf0;border:.3vh solid #2f9e44;color:#2b8a3e;border-radius:1.4vh;padding:1vh 2.2vw;font-size:2.1vh;font-weight:700;margin-top:2vh;}
+  .prac b{color:#c2410c;}
+  .slide.drill{justify-content:flex-start;overflow-y:auto;padding:8vh 5vw 12vh;}
+  .drill .rv{display:block !important;text-align:center;font-size:3.8vh;padding:2.2vh 2vw;line-height:1.5;}
+  .drill .rv ruby rt{font-size:.46em;}
+  .drill .rv .a{display:block;margin-top:1.2vh;font-size:.82em;line-height:1.9;}
+  .drill .rv:not(.shown) .a{color:#ecdccb;background:#ecdccb;border-radius:1vh;}
+  .drill .rv:not(.shown) .a rt{visibility:hidden !important;}
+  .drill .rv:not(.shown) .a ruby{color:#ecdccb !important;}
+  .drill .rv.shown .a{color:#c2410c;background:var(--soft);padding:1.2vh 1.5vw;border-radius:1vh;}
+  .drill .grid{gap:2vh 3vw;}
+  .memo ruby rt{font-size:.48em;color:#1565c0;font-weight:700;}
+  /* 「今ここ」バッジ */
+  #nowbadge{position:fixed;top:1.3vh;left:50%;transform:translateX(-50%);z-index:15;
+    background:#2f4a3c;color:#fff;border-radius:99px;padding:.55vh 2.2vw;font-size:1.9vh;font-weight:700;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:62vw;text-align:center;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em;}
+  #nowbadge .p{color:#ffd9a8;margin-left:.5vw;}
+  @media(max-width:700px){#nowbadge{font-size:1.6vh;max-width:56vw;top:1vh;}
+     .exline{font-size:4.4vh;}.exline.two{font-size:3.3vh;}
+     .listrow{font-size:3.2vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.1vh;}}
+
+  html,body{height:auto !important;overflow:visible !important;background:var(--bg);}
+  body{overflow-y:auto !important;padding-top:7.6vh;}
+  .deck{position:static !important;height:auto !important;overflow:visible !important;}
+  .slide{position:static !important;display:flex !important;height:auto !important;min-height:74vh;
+    inset:auto !important;border-bottom:.35vh dashed #e6c9a3;scroll-margin-top:9vh;}
+  .slide.div{min-height:auto;border-bottom:none;padding:5.5vh 6vw;}
+  .slide.board{min-height:76vh;}
+  .nav,.count{display:none !important;}
+  /* unified top bar */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:1.6vw;
+    padding:1vh 3vw;background:rgba(255,247,240,.97);backdrop-filter:blur(5px);box-shadow:0 2px 10px rgba(0,0,0,.09);
+    flex-wrap:nowrap;overflow:hidden;}
+  #topbar .tb-side{display:flex;gap:1.2vw;align-items:center;flex:0 0 auto;}
+  #topbar .home,#topbar .rjbtn{position:static !important;transform:none !important;top:auto !important;left:auto !important;right:auto !important;margin:0 !important;box-shadow:none !important;opacity:1;font-size:1.9vh;padding:.7vh 1.8vw;}
+  #nowbadge{position:static !important;transform:none !important;flex:1 1 auto;min-width:0;max-width:none !important;
+    background:#2f4a3c;color:#fff;border-radius:99px;padding:.7vh 2vw;font-size:1.9vh;font-weight:700;top:auto !important;left:auto !important;
+    text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  #nowbadge .p{color:#ffd9a8;margin-right:.6vw;}
+  .bar{top:0;z-index:31;height:.5vh;}
+  /* self-rating on reveal */
+  .drill .rv{position:relative;}
+  .rv .rate{display:none;gap:2vw;justify-content:center;margin-top:1.3vh;}
+  .rv.shown .rate{display:flex;}
+  .rate button{font-size:1.9vh;font-weight:700;border:none;border-radius:99px;padding:.7vh 3vw;cursor:pointer;}
+  .rate .ok{background:#2f9e44;color:#fff;}
+  .rate .again{background:#fff;border:.3vh solid #e8590c;color:#c2410c;}
+  .rv.done{border-color:#2f9e44 !important;}
+  .rv.done::after{content:"✓";position:absolute;top:.6vh;right:1.4vw;color:#2f9e44;font-size:2.4vh;font-weight:700;}
+  /* can-do checklist */
+  .cando{display:flex;flex-direction:column;gap:1.3vh;max-width:82vw;margin:0 auto;}
+  .ci{background:#fff;border:.35vh solid #d9c9b8;border-radius:1.4vh;padding:1.7vh 2vw 1.7vh 6.5vw;font-size:3vh;cursor:pointer;text-align:left;position:relative;}
+  .ci::before{content:"○";position:absolute;left:2.2vw;top:1.7vh;color:#c9b8a8;font-weight:700;}
+  .ci.checked{border-color:#2f9e44;background:#eafaf0;}
+  .ci.checked::before{content:"✓";color:#2f9e44;}
+  .ci .en{display:block;font-size:.56em;color:#1565c0;margin-top:.3vh;}
+  .emoji{font-size:1.4em;}
+  /* bookmark FABs + toast */
+  .fab{position:fixed;right:4vw;z-index:25;border:none;border-radius:50%;width:13vw;max-width:58px;height:13vw;max-height:58px;
+    color:#fff;font-weight:700;box-shadow:0 3px 12px rgba(0,0,0,.28);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #bmset{bottom:4vh;background:#e8590c;font-size:3.4vh;}
+  #bmgo{bottom:calc(4vh + 66px);background:#2f9e44;font-size:2.5vh;display:none;}
+  #bmgo.show{display:flex;}
+  #toast{position:fixed;bottom:16vh;left:50%;transform:translateX(-50%);z-index:40;background:#2f4a3c;color:#fff;
+    padding:1.1vh 4vw;border-radius:99px;font-size:2.1vh;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;}
+  #toast.show{opacity:1;}
+  .tocitem.cur{background:#ffe0c7;border-left-color:#c2410c;}
+  @media(max-width:700px){#topbar{gap:1vw;padding:.8vh 2vw;}
+    #topbar .home,#topbar .rjbtn,#nowbadge{font-size:1.5vh;padding:.6vh 1.4vw;}.ci{font-size:2.4vh;}}
+</style>
+</head>
+<body>
+<a class="home" href="index.html" style="position:fixed;top:2vh;left:2vw;z-index:20;font-size:2vh;padding:.8vh 1.5vw;border-radius:1vh;background:#b08968;color:#fff;font-weight:700;text-decoration:none;">≡ Menu</a>
+<div class="bar" id="bar"></div>
+<button class="rjbtn" id="rjbtn">Romaji</button>
+<div class="deck">
+<section class="slide board active">
+  <div class="kicker">GENKI I — LESSON 9</div>
+  <h1>だい9か「かぶき」<span class="ensub">Lesson 9: Kabuki</span></h1>
+  <p class="big" style="color:#1971c2;font-size:2.4vh;margin-top:3vh;">ふつうけい・かこ ・ 〜と思います/言っていました ・ noun modification ・ もう/まだ ・ から</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">GOALS</div>
+  <h2>この かで できること<span class="ensub">What you can do after this lesson</span></h2>
+  <div class="grid g2">
+    <div class="card" style="font-size:2.5vh;">① かこの ことを カジュアルに いう<br><span style="color:#1565c0;font-size:.8em;">Talk about the past casually</span></div>
+    <div class="card" style="font-size:2.5vh;">② 〜と思います/言っていました（かこ）<br><span style="color:#1565c0;font-size:.8em;">Report past thoughts / speech</span></div>
+    <div class="card" style="font-size:2.5vh;">③ 人を くわしく いう<br><span style="color:#1565c0;font-size:.8em;">Describe a noun with a verb/adjective</span></div>
+    <div class="card" style="font-size:2.5vh;">④ もう/まだ ・ りゆう（から）<br><span style="color:#1565c0;font-size:.8em;">already / not yet ・ give reasons</span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">SESSION 36</div>
+  <h1>ふつうけい（かこ）</h1>
+  <p class="sub" style="color:#ffe9dc;">Plain form — past tense</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>きのうの ことを はなそう<span class="ensub">Talking about the past casually</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">📖</span> きのう… <span class="emoji">🎬</span> みた… <span class="emoji">🍜</span> たべた</div></div>
+  <p class="enx">In casual talk about the <b>past</b> (“I ate,” “I saw”), Japanese uses the <b>plain past</b>. You already know the て-form and the plain present — the past builds on them.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❶ — plain past</div>
+  <h2>ふつうけい（かこ）<span class="ensub">How to make the plain past</span></h2>
+  <div class="twocol">
+    <div class="exbox"><div class="lbl">verb（て→た, で→だ）</div><div class="exline two"><ruby class="">たべ<rt>tabe</rt></ruby><ruby class="">て<rt>te</rt></ruby> → <ruby class="">たべ<rt>tabe</rt></ruby><ruby class="chg">た<rt>ta</rt></ruby></div><div class="exline two" style="font-size:3vh;"><ruby class="">のん<rt>non</rt></ruby><ruby class="">で<rt>de</rt></ruby> → <ruby class="">のん<rt>non</rt></ruby><ruby class="chg">だ<rt>da</rt></ruby></div></div>
+    <div class="exbox"><div class="lbl i">い-adj（い→かった）</div><div class="exline two"><ruby class="">たか<rt>taka</rt></ruby><ruby class="">い<rt>i</rt></ruby> → <ruby class="">たか<rt>taka</rt></ruby><ruby class="chg">かった<rt>katta</rt></ruby></div><div class="lbl n" style="margin-top:1vh;">な-adj / noun</div><div class="exline two" style="font-size:3vh;"><ruby class="">しずか<rt>shizuka</rt></ruby> → <ruby class="">しずか<rt>shizuka</rt></ruby><ruby class="chg">だった<rt>datta</rt></ruby></div></div>
+  </div>
+  <p class="enx"><b>Verb</b>: the た-form (て→<b>た</b>, で→<b>だ</b>). <b>い-adj</b>: い→<b>かった</b>. <b>な-adj/noun</b>: add <b>だった</b>. Negative past = <b>なかった</b>: たべ<b>なかった</b>, たか<b>くなかった</b>, しずか<b>じゃなかった</b>.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❶ — more examples</div>
+  <h2>れい：ふつうけい（かこ）<span class="ensub">past + / −</span></h2>
+  <div class="lbl">じしょけい → かこ＋ ／ かこ−</div>
+  <div class="listrow">いく → い<span class="chg">った</span> ／ い<span class="chg">かなかった</span><span class="rom">iku → i<span class="chg">tta</span> / i<span class="chg">kanakatta</span></span></div>
+  <div class="listrow">のむ → の<span class="chg">んだ</span> ／ の<span class="chg">まなかった</span><span class="rom">nomu → no<span class="chg">nda</span> / no<span class="chg">manakatta</span></span></div>
+  <div class="listrow">たかい → たか<span class="chg">かった</span> ／ たか<span class="chg">くなかった</span><span class="rom">takai → taka<span class="chg">katta</span> / taka<span class="chg">kunakatta</span></span></div>
+  <div class="listrow">がくせい → がくせい<span class="chg">だった</span> ／ がくせい<span class="chg">じゃなかった</span><span class="rom">gakusei → gakusei<span class="chg">datta</span> / gakusei<span class="chg">janakatta</span></span></div>
+
+  <div class="prac">📖 きょうかしょ <b>練習 I</b>（p.219）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❶ — plain past</div>
+  <h2>かこの ふつうけいに しよう<span class="ensub">Change to plain past — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">たべる<rt>taberu</rt></ruby><span class="a"><ruby class="">たべた<rt>tabeta</rt></ruby> ／ <ruby class="">たべなかった<rt>tabenakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">いく<rt>iku</rt></ruby><span class="a"><ruby class="">いった<rt>itta</rt></ruby> ／ <ruby class="">いかなかった<rt>ikanakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">たかい<rt>takai</rt></ruby><span class="a"><ruby class="">たかかった<rt>takakatta</rt></ruby> ／ <ruby class="">たかくなかった<rt>takakunakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">げんき<rt>genki</rt></ruby><span class="a"><ruby class="">げんきだった<rt>genki datta</rt></ruby> ／ <ruby class="">げんきじゃなかった<rt>genki janakatta</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❷ — informal past</div>
+  <h2>カジュアルな かこ<span class="ensub">Past in informal speech</span></h2>
+  <div class="exbox"><div class="exline two"><ruby class="">けさ<rt>kesa</rt></ruby> <ruby class="">あさごはん<rt>asagohan</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">たべた<rt>tabeta</rt></ruby>？</div>
+  <div class="exline two" style="font-size:3vh;">── <ruby class="">うん<rt>un</rt></ruby>、<ruby class="">たべた<rt>tabeta</rt></ruby>。 ／ <ruby class="">ううん<rt>uun</rt></ruby>、<ruby class="">たべなかった<rt>tabenakatta</rt></ruby>。</div></div>
+  <p class="enx">In casual past questions, drop <b>か</b> and use the plain past + rising intonation. ⚠ <span class="k">だった</span> is <b>not</b> dropped: せんしゅうは ひま<b>だった</b>.</p>
+  <div class="prac">📖 きょうかしょ <b>練習 II</b>（p.220）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❷ — informal past</div>
+  <h2>カジュアルに こたえよう<span class="ensub">Answer casually — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">せんしゅう<rt>senshuu</rt></ruby> <ruby class="">いそがしかった<rt>isogashikatta</rt></ruby>？<span class="a"><ruby class="">うん<rt>un</rt></ruby>、<ruby class="">いそがしかった<rt>isogashikatta</rt></ruby> ／ <ruby class="">ううん<rt>uun</rt></ruby>、<ruby class="">いそがしくなかった<rt>isogashikunakatta</rt></ruby></span></div>
+    <div class="rv"><ruby class="">きのう<rt>kinou</rt></ruby> <ruby class="">べんきょうした<rt>benkyou shita</rt></ruby>？<span class="a"><ruby class="">うん<rt>un</rt></ruby>、<ruby class="">した<rt>shita</rt></ruby> ／ <ruby class="">ううん<rt>uun</rt></ruby>、<ruby class="">しなかった<rt>shinakatta</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">SESSION 37</div>
+  <h1>〜と思います/言っていました（かこ）</h1>
+  <p class="sub" style="color:#ffe9dc;">Reporting the past</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>かこの ことを つたえる<span class="ensub">Report a past thought or speech</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">💭</span> …と おもいます ・ <span class="emoji">🗣️</span> …と いっていました</div></div>
+  <p class="enx">Report a <b>past</b> thought or someone's past words by putting the <b>plain past</b> before <span class="k">と おもいます</span> or <span class="k">と いっていました</span>.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❸ — past ＋ とおもいます</div>
+  <h2>〜たと おもいます<span class="ensub">“I think (someone) did ~”</span></h2>
+  <div class="exbox"><div class="exline two"><ruby class="">トム<rt>Tomu</rt></ruby> <ruby class="">さん<rt>san</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="chg">たべた<rt>tabeta</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby>。</div></div>
+  <p class="enx"><span class="k">[plain past] ＋ とおもいます</span> = “I think (someone) did ~.” → “I think Tom ate it.” Negative-past works too: さむくなかった<b>と</b> おもいます.</p>
+  <div class="prac">📖 きょうかしょ <b>練習 III</b>（p.221）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❸ — past ＋ とおもいます</div>
+  <h2>いおう<span class="ensub">Say it — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">トム<rt>Tomu</rt></ruby>・<ruby class="">かぶき<rt>kabuki</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みた<rt>mita</rt></ruby><span class="a"><ruby class="">トム<rt>Tomu</rt></ruby><ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">かぶき<rt>kabuki</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みた<rt>mita</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">きょねん<rt>kyonen</rt></ruby> <ruby class="">さむくなかった<rt>samukunakatta</rt></ruby><span class="a"><ruby class="">きょねん<rt>kyonen</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">さむくなかった<rt>samukunakatta</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもいます<rt>omoimasu</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❹ — past ＋ といっていました</div>
+  <h2>〜たと いっていました<span class="ensub">“(Someone) said they did ~”</span></h2>
+  <div class="exbox"><div class="exline two"><ruby class="">ヤスミン<rt>Yasumin</rt></ruby> <ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">ひるごはん<rt>hirugohan</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="chg">たべなかった<rt>tabenakatta</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">いっていました<rt>itte imashita</rt></ruby>。</div></div>
+  <p class="enx"><span class="k">[plain past] ＋ といっていました</span> = “(someone) said that they did / didn't ~.” ⚠ Japanese keeps the <b>original</b> tense — if they said it in the present, report it in the present.</p>
+  <div class="prac">📖 きょうかしょ <b>練習 IV</b>（p.222）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❹ — past ＋ といっていました</div>
+  <h2>つたえよう<span class="ensub">Report it — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">けん<rt>Ken</rt></ruby>「<ruby class="">かぶき<rt>kabuki</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みた<rt>mita</rt></ruby>」<span class="a"><ruby class="">けん<rt>Ken</rt></ruby><ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">かぶき<rt>kabuki</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みた<rt>mita</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">いっていました<rt>itte imashita</rt></ruby></span></div>
+    <div class="rv"><ruby class="">ゆき<rt>Yuki</rt></ruby>「<ruby class="">びょうき<rt>byouki</rt></ruby> <ruby class="">だった<rt>datta</rt></ruby>」<span class="a"><ruby class="">ゆき<rt>Yuki</rt></ruby><ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">びょうき<rt>byouki</rt></ruby> <ruby class="">だった<rt>datta</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">いっていました<rt>itte imashita</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">SESSION 38</div>
+  <h1>人を くわしく いう</h1>
+  <p class="sub" style="color:#ffe9dc;">Describing a noun (relative clauses)</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>「どの 人？」<span class="ensub">Which person? Point them out</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">👥</span> ほんを よんでいる 人 … めがねを かけている 人</div></div>
+  <p class="enx">To point out <b>which</b> person/thing, put a describing phrase <b>before the noun</b> — like English “the person <i>who is reading</i>.” In Japanese the phrase comes <b>before</b> the noun.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❺ — noun modification</div>
+  <h2>〔みじかい文〕＋ めいし<span class="ensub">Put a verb/adjective before the noun</span></h2>
+  <div class="exbox"><div class="exline two"><span class="chg"><ruby class="">ほん<rt>hon</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">よんでいる<rt>yonde iru</rt></ruby></span> <ruby class="">人<rt>hito</rt></ruby></div>
+  <div class="exline two" style="font-size:2.4vh;color:#666;">the person who is reading a book</div></div>
+  <p class="enx">A <b>plain-form</b> verb or adjective can sit <b>right before a noun</b> to describe it: <span class="k">[ほんを よんでいる] 人</span> = “the person who is reading a book.” No の, no “who” word — just put it in front.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❺ — more examples</div>
+  <h2>れい<span class="ensub">more noun modification</span></h2>
+  <div class="listrow" style="font-size:2.9vh;"><span class="chg"><ruby class="">めがね<rt>megane</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">かけている<rt>kakete iru</rt></ruby></span> <ruby class="">人<rt>hito</rt></ruby> <span style="font-size:.5em;color:#666;">a person with glasses</span></div>
+  <div class="listrow" style="font-size:2.9vh;"><span class="chg"><ruby class="">きのう<rt>kinou</rt></ruby> <ruby class="">みた<rt>mita</rt></ruby></span> <ruby class="">えいが<rt>eiga</rt></ruby> <span style="font-size:.5em;color:#666;">the movie I saw yesterday</span></div>
+  <div class="listrow" style="font-size:2.9vh;"><span class="chg"><ruby class="">あそこ<rt>asoko</rt></ruby> <ruby class="">で<rt>de</rt></ruby> <ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">とっている<rt>totte iru</rt></ruby></span> <ruby class="">学生<rt>gakusei</rt></ruby> <span style="font-size:.5em;color:#666;">the student taking pictures</span></div>
+  <p class="enx">The describing phrase uses the <b>plain form</b> and always comes <b>before</b> the noun.</p>
+  <div class="prac">📖 きょうかしょ <b>練習 V</b>（p.223）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❺ — noun modification</div>
+  <h2>つくってみよう<span class="ensub">Make “the ~ that …” — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">テレビ<rt>terebi</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みている<rt>mite iru</rt></ruby> ＋ <ruby class="">人<rt>hito</rt></ruby><span class="a"><ruby class="">テレビ<rt>terebi</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みている<rt>mite iru</rt></ruby> <ruby class="">人<rt>hito</rt></ruby></span></div>
+    <div class="rv"><ruby class="">きのう<rt>kinou</rt></ruby> <ruby class="">かった<rt>katta</rt></ruby> ＋ <ruby class="">ほん<rt>hon</rt></ruby><span class="a"><ruby class="">きのう<rt>kinou</rt></ruby> <ruby class="">かった<rt>katta</rt></ruby> <ruby class="">ほん<rt>hon</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">SESSION 39</div>
+  <h1>もう / まだ</h1>
+  <p class="sub" style="color:#ffe9dc;">already / not yet</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>もう した？ まだ？<span class="ensub">Have you done it yet?</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">✅</span> もう した ・ <span class="emoji">⬜</span> まだ</div></div>
+  <p class="enx">To say something is <b>already</b> done or <b>not yet</b> done, Japanese uses <span class="k">もう〜ました</span> and <span class="k">まだ〜ていません</span>.</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❻ — もう / まだ</div>
+  <h2>もう〜ました ／ まだ〜ていません<span class="ensub">already done / not yet</span></h2>
+  <div class="exbox"><div class="exline two"><ruby class="">もう<rt>mou</rt></ruby> <ruby class="">しゅくだい<rt>shukudai</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="chg">しました<rt>shimashita</rt></ruby>。</div>
+  <div class="exline two"><ruby class="">まだ<rt>mada</rt></ruby> <ruby class="">しゅくだい<rt>shukudai</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="chg">していません<rt>shite imasen</rt></ruby>。</div></div>
+  <p class="enx"><span class="k">もう ＋ 〜ました</span> = “already did.” <span class="k">まだ ＋ 〜ていません</span> = “haven't done yet.” ⚠ Not ×まだ〜ませんでした — use <b>ていません</b> for “not yet.”</p>
+  <div class="prac">📖 きょうかしょ <b>練習 VI</b>（p.224）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❻ — もう / まだ</div>
+  <h2>こたえよう<span class="ensub">Answer — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">もう<rt>mou</rt></ruby> <ruby class="">ひるごはん<rt>hirugohan</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">たべました<rt>tabemashita</rt></ruby>か。（✅）<span class="a"><ruby class="">はい<rt>hai</rt></ruby>、<ruby class="">もう<rt>mou</rt></ruby> <ruby class="">たべました<rt>tabemashita</rt></ruby></span></div>
+    <div class="rv"><ruby class="">もう<rt>mou</rt></ruby> <ruby class="">しゅくだい<rt>shukudai</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">しました<rt>shimashita</rt></ruby>か。（⬜）<span class="a"><ruby class="">いいえ<rt>iie</rt></ruby>、<ruby class="">まだ<rt>mada</rt></ruby> <ruby class="">していません<rt>shite imasen</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">SESSION 40</div>
+  <h1>りゆう（から）</h1>
+  <p class="sub" style="color:#ffe9dc;">Giving reasons</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>りゆうを さきに いう<span class="ensub">State the reason first</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">📝</span> しけんが ある → だから べんきょうする</div></div>
+  <p class="enx">You learned <span class="k">から</span> = “because” in Lesson 6. Here you put the <b>reason first</b>: [explanation]から、[situation] — like “Because ~, therefore ~.”</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">GRAMMAR ❼ — explanation から situation</div>
+  <h2>〔りゆう〕から、〔こと〕<span class="ensub">reason first, then result</span></h2>
+  <div class="exbox"><div class="exline two"><ruby class="">あした<rt>ashita</rt></ruby> <ruby class="">しけん<rt>shiken</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">ある<rt>aru</rt></ruby><ruby class="chg">から<rt>kara</rt></ruby>、<ruby class="">こんばん<rt>konban</rt></ruby> <ruby class="">べんきょうします<rt>benkyou shimasu</rt></ruby>。</div></div>
+  <p class="enx"><span class="k">[explanation] から、[situation]</span> = “Because [explanation], [situation].” → “I have an exam tomorrow, so I'll study tonight.” Both plain and ます forms can come before から.</p>
+  <div class="prac">📖 きょうかしょ <b>練習 VII</b>（p.225）・ ワークブック L9</div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">DRILL ❼ — から</div>
+  <h2>りゆうを いおう<span class="ensub">Give the reason — tap to check</span></h2>
+  <div class="grid g2">
+    <div class="rv"><ruby class="">さむい<rt>samui</rt></ruby> → <ruby class="">でかけなかった<rt>dekakenakatta</rt></ruby><span class="a"><ruby class="">さむかった<rt>samukatta</rt></ruby> <ruby class="">から<rt>kara</rt></ruby>、<ruby class="">でかけませんでした<rt>dekakemasen deshita</rt></ruby></span></div>
+    <div class="rv"><ruby class="">かぶき<rt>kabuki</rt></ruby> <ruby class="">の<rt>no</rt></ruby> <ruby class="">チケット<rt>chiketto</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">ある<rt>aru</rt></ruby><span class="a"><ruby class="">チケット<rt>chiketto</rt></ruby> <ruby class="">が<rt>ga</rt></ruby> <ruby class="">あります<rt>arimasu</rt></ruby> <ruby class="">から<rt>kara</rt></ruby>、<ruby class="">いっしょに<rt>issho ni</rt></ruby> <ruby class="">みに<rt>mi ni</rt></ruby> <ruby class="">いきましょう<rt>ikimashou</rt></ruby></span></div>
+  </div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">ごい・まとめ</div>
+  <h1>ごい・まとめ</h1>
+  <p class="sub" style="color:#ffe9dc;">Vocabulary & wrap-up</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">VOCAB — L9</div>
+  <h2>かぶき・かこ の ことば<span class="ensub">Key words for this lesson</span></h2>
+  <div class="grid g3">
+    <div class="card" style="font-size:2.3vh;">かぶき Kabuki<br>チケット ticket<br>しけん exam<br>びょうき illness</div>
+    <div class="card" style="font-size:2.3vh;">あおい/あかい<br>くろい/しろい colors<br>ひとつ〜とお 1〜10<br>もう / まだ</div>
+    <div class="card" style="font-size:2.3vh;">おどる dance<br>ひく play (instr.)<br>おぼえる memorize<br>もらう receive</div>
+  </div>
+</section>
+<section class="slide">
+  <div class="kicker">TASK — talk about the past</div>
+  <h2>しゅうまつの ことを はなそう<span class="ensub">Talk about your weekend (casual past)</span></h2>
+  <div class="memo" style="font-size:3vh;line-height:2.4;">
+    A：<ruby class="">しゅうまつ<rt>shuumatsu</rt></ruby> <ruby class="">なに<rt>nani</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>？<br>
+    B：<ruby class="">ともだち<rt>tomodachi</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">かぶき<rt>kabuki</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みに<rt>mi ni</rt></ruby> <ruby class="">いった<rt>itta</rt></ruby>。<br>
+    A：<ruby class="">どう<rt>dou</rt></ruby> <ruby class="">だった<rt>datta</rt></ruby>？<br>
+    B：<ruby class="">すごく<rt>sugoku</rt></ruby> <ruby class="">おもしろかった<rt>omoshirokatta</rt></ruby>！
+  </div>
+  <p class="hint" style="color:#1565c0;">ためぐち（plain past）で はなしてみよう！</p>
+</section>
+
+<section class="slide div">
+  <div class="kicker">作文</div>
+  <h1>さくぶん</h1>
+  <p class="sub" style="color:#ffe9dc;">Writing practice — translate (L1〜9)</p>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">作文 ・ Part A</div>
+  <h2>えいご → にほんご<span class="ensub">Write it in Japanese — tap to check</span></h2>
+  <div style="display:flex;flex-direction:column;gap:1.8vh;max-width:92vw;width:100%;margin:0 auto;">
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A1.</b> I ate breakfast this morning.<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">けさ<rt>kesa</rt></ruby><ruby class=""> あさごはん<rt>asagohan</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> たべました<rt>tabemashita</rt></ruby>。</span></div>
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A2.</b> I think Tom saw Kabuki.<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">トム<rt>Tomu</rt></ruby><ruby class=""> さん<rt>san</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> かぶき<rt>kabuki</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> みた<rt>mita</rt></ruby><ruby class=""> と<rt>to</rt></ruby><ruby class=""> おもいます<rt>omoimasu</rt></ruby>。</span></div>
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A3.</b> Do you know the person who is reading a book over there?<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">あそこ<rt>asoko</rt></ruby><ruby class=""> で<rt>de</rt></ruby><ruby class=""> ほん<rt>hon</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> よんでいる<rt>yonde iru</rt></ruby><ruby class=""> 人<rt>hito</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> しっています<rt>shitte imasu</rt></ruby><ruby class=""> か<rt>ka</rt></ruby>。</span></div>
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A4.</b> I have already done my homework.<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">もう<rt>mou</rt></ruby><ruby class=""> しゅくだい<rt>shukudai</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> しました<rt>shimashita</rt></ruby>。</span></div>
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A5.</b> I have an exam tomorrow, so I will study tonight.<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">あした<rt>ashita</rt></ruby><ruby class=""> しけん<rt>shiken</rt></ruby><ruby class=""> が<rt>ga</rt></ruby><ruby class=""> あります<rt>arimasu</rt></ruby><ruby class=""> から<rt>kara</rt></ruby>、<ruby class="">こんばん<rt>konban</rt></ruby><ruby class=""> べんきょうします<rt>benkyou shimasu</rt></ruby>。</span></div>
+    <div style="text-align:left;color:#2f9e44;font-weight:700;font-size:2.2vh;margin-top:1.4vh;border-top:.3vh dashed #9ccc9c;padding-top:1.5vh;">★ チャレンジ（ながい ぶん）</div>
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A6.</b> Yasmin said that she didn't have lunch because she was sick.<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">ヤスミン<rt>Yasumin</rt></ruby><ruby class=""> さん<rt>san</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> びょうき<rt>byouki</rt></ruby><ruby class=""> だった<rt>datta</rt></ruby><ruby class=""> から<rt>kara</rt></ruby>、<ruby class="">ひるごはん<rt>hirugohan</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> たべなかった<rt>tabenakatta</rt></ruby><ruby class=""> と<rt>to</rt></ruby><ruby class=""> いっていました<rt>itte imashita</rt></ruby>。</span></div>
+    <div class="rv" style="text-align:left;font-size:2.5vh;"><b style="color:#1565c0;">A7.</b> Last month I went to see a Kabuki that was very interesting.<span class="a" style="display:block;font-size:3vh;margin-top:1vh;"><ruby class="">せんげつ<rt>sengetsu</rt></ruby><ruby class=""> とても<rt>totemo</rt></ruby><ruby class=""> おもしろい<rt>omoshiroi</rt></ruby><ruby class=""> かぶき<rt>kabuki</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> みに<rt>mi ni</rt></ruby><ruby class=""> いきました<rt>ikimashita</rt></ruby>。</span></div>
+  </div>
+</section>
+
+<section class="slide drill">
+  <div class="kicker">作文 ・ Part B</div>
+  <h2>にほんご → えいご<span class="ensub">Write it in English — tap to check</span></h2>
+  <div style="display:flex;flex-direction:column;gap:1.8vh;max-width:92vw;width:100%;margin:0 auto;">
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B1.</b> <ruby class="">きのう<rt>kinou</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> とても<rt>totemo</rt></ruby><ruby class=""> さむかった<rt>samukatta</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ It was very cold yesterday.</span></div>
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B2.</b> <ruby class="">せんしゅう<rt>senshuu</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> ひま<rt>hima</rt></ruby><ruby class=""> だった<rt>datta</rt></ruby><ruby class=""> と<rt>to</rt></ruby><ruby class=""> おもいます<rt>omoimasu</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ I think (I) was free last week.</span></div>
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B3.</b> <ruby class="">めがね<rt>megane</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> かけている<rt>kakete iru</rt></ruby><ruby class=""> 人<rt>hito</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> だれ<rt>dare</rt></ruby><ruby class=""> ですか<rt>desu ka</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ Who is the person wearing glasses?</span></div>
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B4.</b> <ruby class="">もう<rt>mou</rt></ruby><ruby class=""> ばんごはん<rt>bangohan</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> たべました<rt>tabemashita</rt></ruby><ruby class=""> か<rt>ka</rt></ruby>。 ── <ruby class="">いいえ<rt>iie</rt></ruby>、<ruby class="">まだ<rt>mada</rt></ruby><ruby class=""> たべていません<rt>tabete imasen</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ Have you eaten dinner yet? — No, not yet.</span></div>
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B5.</b> <ruby class="">かぶき<rt>kabuki</rt></ruby><ruby class=""> の<rt>no</rt></ruby><ruby class=""> チケット<rt>chiketto</rt></ruby><ruby class=""> が<rt>ga</rt></ruby><ruby class=""> あります<rt>arimasu</rt></ruby><ruby class=""> から<rt>kara</rt></ruby>、<ruby class="">いっしょに<rt>issho ni</rt></ruby><ruby class=""> みに<rt>mi ni</rt></ruby><ruby class=""> いきましょう<rt>ikimashou</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ I have Kabuki tickets, so let's go see it together.</span></div>
+    <div style="text-align:left;color:#2f9e44;font-weight:700;font-size:2.2vh;margin-top:1.4vh;border-top:.3vh dashed #9ccc9c;padding-top:1.5vh;">★ チャレンジ（ながい ぶん）</div>
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B6.</b> <ruby class="">きょねん<rt>kyonen</rt></ruby><ruby class=""> の<rt>no</rt></ruby><ruby class=""> ふゆ<rt>fuyu</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> あまり<rt>amari</rt></ruby><ruby class=""> さむくなかった<rt>samukunakatta</rt></ruby><ruby class=""> と<rt>to</rt></ruby><ruby class=""> おもいます<rt>omoimasu</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ I don't think last winter was very cold.</span></div>
+    <div class="rv" style="text-align:left;font-size:3vh;"><b style="color:#e8590c;">B7.</b> <ruby class="">あそこ<rt>asoko</rt></ruby><ruby class=""> で<rt>de</rt></ruby><ruby class=""> しゃしん<rt>shashin</rt></ruby><ruby class=""> を<rt>wo</rt></ruby><ruby class=""> とっている<rt>totte iru</rt></ruby><ruby class=""> 学生<rt>gakusei</rt></ruby><ruby class=""> は<rt>wa</rt></ruby><ruby class=""> ロバート<rt>Robaato</rt></ruby><ruby class=""> さん<rt>san</rt></ruby><ruby class=""> です<rt>desu</rt></ruby>。<span class="a" style="display:block;font-size:2.5vh;margin-top:1vh;">→ The student taking pictures over there is Robert.</span></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">CAN-DO CHECK — じこチェック</div>
+  <h2>できるように なった？<span class="ensub">Can you do these now? Tap each ✓</span></h2>
+  <div class="cando">
+    <div class="ci">かこの ことを カジュアルに いえる<span class="en">talk about the past casually（ふつうけい・かこ）</span></div>
+    <div class="ci">かこの 思う／言っていた を つたえられる<span class="en">report past thoughts / speech</span></div>
+    <div class="ci">人を くわしく いえる<span class="en">describe a noun with a phrase</span></div>
+    <div class="ci">もう／まだ ・ りゆう（から）が いえる<span class="en">already/not yet ・ give reasons</span></div>
+  </div>
+  <p class="hint" style="color:#2b8a3e;">できたら タップ ✓ ・ ぜんぶ できたら すごい！</p>
+</section>
+
+<section class="slide div">
+  <div class="kicker">HOMEWORK</div>
+  <h1>おつかれさま！ 🎉</h1>
+  <p class="sub" style="color:#ffe9dc;">① Workbook L9　② Vocab Cards L9　③ Write 5 lines about last weekend (casual past)</p>
+</section>
+
+</div>
+
+<div class="count" id="count"></div>
+<div class="nav">
+  <button id="prev">←</button>
+  <button id="next">→</button>
+</div>
+
+<script>
+const slides=[...document.querySelectorAll(".slide")];
+let cur=0;
+function show(n){
+  cur=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,i)=>s.classList.toggle("active",i===cur));
+  document.getElementById("count").textContent=(cur+1)+" / "+slides.length;
+  document.getElementById("bar").style.width=((cur+1)/slides.length*100)+"vw";
+}
+document.getElementById("next").onclick=()=>show(cur+1);
+document.getElementById("prev").onclick=()=>show(cur-1);
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();show(cur+1);}
+  if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();show(cur-1);}
+});
+document.querySelectorAll(".rv").forEach(el=>{
+  el.addEventListener("click",e=>{e.stopPropagation();el.classList.toggle("shown");});
+});
+
+// ===== ローマ字ふりがな自動付与 =====
+const DI={"きゃ":"kya","きゅ":"kyu","きょ":"kyo","ぎゃ":"gya","ぎゅ":"gyu","ぎょ":"gyo","しゃ":"sha","しゅ":"shu","しょ":"sho","じゃ":"ja","じゅ":"ju","じょ":"jo","ちゃ":"cha","ちゅ":"chu","ちょ":"cho","にゃ":"nya","にゅ":"nyu","にょ":"nyo","ひゃ":"hya","ひゅ":"hyu","ひょ":"hyo","びゃ":"bya","びゅ":"byu","びょ":"byo","ぴゃ":"pya","ぴゅ":"pyu","ぴょ":"pyo","みゃ":"mya","みゅ":"myu","みょ":"myo","りゃ":"rya","りゅ":"ryu","りょ":"ryo","てぃ":"ti","ふぃ":"fi","ふぁ":"fa"};
+const MONO={"あ":"a","い":"i","う":"u","え":"e","お":"o","か":"ka","き":"ki","く":"ku","け":"ke","こ":"ko","が":"ga","ぎ":"gi","ぐ":"gu","げ":"ge","ご":"go","さ":"sa","し":"shi","す":"su","せ":"se","そ":"so","ざ":"za","じ":"ji","ず":"zu","ぜ":"ze","ぞ":"zo","た":"ta","ち":"chi","つ":"tsu","て":"te","と":"to","だ":"da","ぢ":"ji","づ":"zu","で":"de","ど":"do","な":"na","に":"ni","ぬ":"nu","ね":"ne","の":"no","は":"ha","ひ":"hi","ふ":"fu","へ":"he","ほ":"ho","ば":"ba","び":"bi","ぶ":"bu","べ":"be","ぼ":"bo","ぱ":"pa","ぴ":"pi","ぷ":"pu","ぺ":"pe","ぽ":"po","ま":"ma","み":"mi","む":"mu","め":"me","も":"mo","や":"ya","ゆ":"yu","よ":"yo","ら":"ra","り":"ri","る":"ru","れ":"re","ろ":"ro","わ":"wa","を":"o","ぁ":"a","ぃ":"i","ぅ":"u","ぇ":"e","ぉ":"o"};
+function kanaToRomaji(src){
+  src=src.replace(/は(?=[\s、。！？（）「」]|$)/g,"わ").replace(/へ(?=[\s、。！？（）「」]|$)/g,"え");
+  let s="";
+  for(const ch of src){const c=ch.codePointAt(0);
+    s+=(c>=0x30A1&&c<=0x30F6)?String.fromCodePoint(c-0x60):ch;}
+  const a=[...s];let out="",i=0;
+  while(i<a.length){
+    const two=a[i]+(a[i+1]||"");
+    if(DI[two]){out+=DI[two];i+=2;continue;}
+    const ch=a[i];
+    if(ch==="っ"){const nt=a[i+1]?a[i+1]+(a[i+2]||""):"";const nx=DI[nt]||MONO[a[i+1]]||"";
+      out+=nx.startsWith("ch")?"t":(nx?nx[0]:"");i++;continue;}
+    if(ch==="ー"){const m=out.match(/([aiueo])[^aiueo]*$/);out+=m?m[1]:"-";i++;continue;}
+    if(ch==="ん"){const nt=a[i+1]?a[i+1]+(a[i+2]||""):"";const nx=DI[nt]||MONO[a[i+1]]||"";
+      out+=(nx&&/^[aiueoy]/.test(nx))?"n'":"n";i++;continue;}
+    out+=(MONO[ch]!==undefined)?MONO[ch]:ch;i++;
+  }
+  return out.replace(/。/g,". ").replace(/、/g,", ").replace(/！/g,"!").replace(/？/g,"?").trim();
+}
+const KANA_RE=/[ぁ-んァ-ヶー]/;
+function addRj(el){
+  [...el.childNodes].forEach(node=>{
+    if(node.nodeType===3&&KANA_RE.test(node.textContent.trim())){
+      const sp=document.createElement("span");
+      sp.className="rj";
+      sp.textContent="("+kanaToRomaji(node.textContent.trim())+")";
+      node.after(sp);
+    }else if(node.nodeType===1&&node.tagName==="B"&&KANA_RE.test(node.textContent)){
+      // <b>強調</b> もまとめて処理しない（前後の文と一緒に読めるよう、b の後ろに付与）
+    }
+  });
+}
+// b タグ入りの行は行全体をまとめて変換
+function addRjWhole(el){
+  if(el.querySelector(".rj"))return;
+  const t=el.textContent.trim();
+  if(!KANA_RE.test(t))return;
+  const sp=document.createElement("span");
+  sp.className="rj";sp.style.display="block";sp.style.paddingLeft="0";
+  sp.textContent="("+kanaToRomaji(t)+")";
+  el.appendChild(sp);
+}
+document.querySelectorAll(".slide:not(.nork)").forEach(slide=>{
+  slide.querySelectorAll(".__noauto__").forEach(el=>{
+    if(el.querySelector("b")||el.querySelector(".roleA"))addRjWhole(el);else addRj(el);
+  });
+  slide.querySelectorAll(".__noauto__").forEach(addRj);
+  slide.querySelectorAll(".__noauto_rv__").forEach(rv=>{
+    addRj(rv);
+    rv.querySelectorAll(".a").forEach(addRj);
+  });
+});
+document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("noromaji");
+
+// ===== 目次（ジャンプメニュー）=====
+(function(){
+  const btn=document.createElement("button");
+  btn.className="rjbtn";btn.style.top="7vh";btn.textContent="≡ Contents";
+  document.body.appendChild(btn);
+  const ov=document.createElement("div");ov.className="tocov";
+  let html="<div class='tocpanel'><h3 style='color:#e8590c;margin-bottom:10px;font-size:2.4vh;'>Contents — tap to jump (Esc to close)</h3>";
+  slides.forEach((s,i)=>{
+    const t=s.querySelector("h1,h2");
+    let title="スライド "+(i+1);
+    if(t){const c=t.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub").forEach(x=>x.remove());title=c.textContent.trim();}
+    const k=s.querySelector(".kicker");const kt=k?k.textContent.trim():"";
+    html+='<button class="tocitem" data-i="'+i+'"><span class="k">'+(i+1)+(kt?"　"+kt:"")+'</span><br>'+title+'</button>';
+  });
+  ov.innerHTML=html+"</div>";document.body.appendChild(ov);
+  btn.onclick=()=>ov.classList.toggle("open");
+  ov.addEventListener("click",e=>{
+    const b=e.target.closest(".tocitem");
+    if(b){slides[Number(b.dataset.i)].scrollIntoView({behavior:'smooth',block:'start'});ov.classList.remove('open');}
+    else if(e.target===ov)ov.classList.remove("open");
+  });
+  document.addEventListener("keydown",e=>{if(e.key==="Escape")ov.classList.remove("open");});
+})();
+
+
+// ===== スマホ: スワイプでスライド送り =====
+(function(){
+  let sx=null,sy=null;
+  document.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY;},{passive:true});
+  document.addEventListener("touchend",e=>{
+    if(sx===null)return;
+    const dx=e.changedTouches[0].clientX-sx, dy=e.changedTouches[0].clientY-sy;sx=null;
+    if(e.target.closest(".rv,.tocov,button,a"))return;
+    if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?show(cur+1):show(cur-1);}
+  },{passive:true});
+})();
+
+
+(function(){
+  var topbar=document.createElement("div");topbar.id="topbar";
+  var left=document.createElement("div");left.className="tb-side";
+  var right=document.createElement("div");right.className="tb-side";
+  var badge=document.createElement("div");badge.id="nowbadge";
+  var home=document.querySelector(".home"); if(home)left.appendChild(home);
+  var rjs=document.querySelectorAll(".rjbtn");
+  topbar.appendChild(left);topbar.appendChild(badge);topbar.appendChild(right);
+  for(var r=0;r<rjs.length;r++)right.appendChild(rjs[r]);
+  document.body.appendChild(topbar);
+  /* chapter labels (bilingual) */
+  var lab={jp:"はじめに",en:"Start"};
+  var labels=slides.map(function(s){
+    if(s.classList.contains("div")){var h=s.querySelector("h1"),sub=s.querySelector(".sub");var jp=lab.jp;
+      if(h){var c=h.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub,rt").forEach(function(x){x.remove();});jp=c.textContent.trim();}
+      lab={jp:jp,en:sub?sub.textContent.trim():jp};}
+    return lab;});
+  var seen=[],grpOf=[];
+  labels.forEach(function(l){var gi=seen.indexOf(l);if(gi<0){seen.push(l);gi=seen.length-1;}grpOf.push(gi);});
+  var total=seen.length,bar=document.getElementById("bar");
+  var firstIdx=[];for(var g=0;g<total;g++){for(var i2=0;i2<slides.length;i2++){if(grpOf[i2]===g){firstIdx[g]=i2;break;}}}
+  /* rebuild Contents as chapter list (matches the top badge) */
+  var ov=document.querySelector(".tocov"),panel=ov?ov.querySelector(".tocpanel"):null,items=[];
+  if(panel){var html='<h3 style="color:#e8590c;margin-bottom:10px;font-size:2.4vh;">Contents ・ もくじ（タップで ジャンプ）</h3>';
+    for(var g2=0;g2<total;g2++){html+='<button class="tocitem" data-i="'+firstIdx[g2]+'"><span class="k">'+seen[g2].jp+'</span><br>'+seen[g2].en+'</button>';}
+    panel.innerHTML=html;items=panel.querySelectorAll(".tocitem");}
+  function curIdx(){var off=window.innerHeight*0.34,idx=0;for(var i=0;i<slides.length;i++){if(slides[i].getBoundingClientRect().top<=off)idx=i;else break;}return idx;}
+  function upd(){var n=curIdx();badge.innerHTML='<span class="p">▸</span> '+labels[n].jp+' <span class="p">'+labels[n].en+'</span>';
+    for(var x=0;x<items.length;x++)items[x].classList.toggle("cur",x===grpOf[n]);
+    if(bar){var sc=document.scrollingElement||document.documentElement;bar.style.width=(sc.scrollTop/((sc.scrollHeight-sc.clientHeight)||1)*100)+"vw";
+      try{localStorage.setItem("genkiL9_y",""+sc.scrollTop);}catch(e){}}}
+  window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);
+  /* bookmark (しおり) FABs */
+  var bmset=document.createElement("button");bmset.id="bmset";bmset.className="fab";bmset.textContent="☆";bmset.title="しおりを つける";
+  var bmgo=document.createElement("button");bmgo.id="bmgo";bmgo.className="fab";bmgo.textContent="★↑";bmgo.title="しおりへ もどる";
+  var toast=document.createElement("div");toast.id="toast";
+  document.body.appendChild(bmgo);document.body.appendChild(bmset);document.body.appendChild(toast);
+  function scE(){return document.scrollingElement||document.documentElement;}
+  function refBm(){if(localStorage.getItem("genkiL9_bm")!=null){bmset.textContent="★";bmgo.classList.add("show");}else{bmset.textContent="☆";bmgo.classList.remove("show");}}
+  function toastMsg(m){toast.textContent=m;toast.classList.add("show");setTimeout(function(){toast.classList.remove("show");},1500);}
+  bmset.addEventListener("click",function(){try{localStorage.setItem("genkiL9_bm",""+scE().scrollTop);}catch(e){}refBm();toastMsg("📑 しおりを つけました");});
+  bmgo.addEventListener("click",function(){try{var y=parseInt(localStorage.getItem("genkiL9_bm")||"0",10);window.scrollTo({top:y,behavior:"smooth"});}catch(e){}});
+  try{refBm();}catch(e){}
+  /* self-rating on reveal cards */
+  var DONE={};try{DONE=JSON.parse(localStorage.getItem("genkiL9_done")||"{}");}catch(e){}
+  document.querySelectorAll(".drill .rv").forEach(function(rv,idx){
+    if(DONE[idx])rv.classList.add("done");
+    var rate=document.createElement("div");rate.className="rate";
+    var ok=document.createElement("button");ok.className="ok";ok.textContent="✓ できた";
+    var ag=document.createElement("button");ag.className="again";ag.textContent="↻ もう一回";
+    ok.addEventListener("click",function(e){e.stopPropagation();rv.classList.add("done");DONE[idx]=1;try{localStorage.setItem("genkiL9_done",JSON.stringify(DONE));}catch(e2){}});
+    ag.addEventListener("click",function(e){e.stopPropagation();rv.classList.remove("shown");rv.classList.remove("done");delete DONE[idx];try{localStorage.setItem("genkiL9_done",JSON.stringify(DONE));}catch(e2){}});
+    rate.appendChild(ok);rate.appendChild(ag);rv.appendChild(rate);
+  });
+  /* can-do checklist */
+  var CD={};try{CD=JSON.parse(localStorage.getItem("genkiL9_cando")||"{}");}catch(e){}
+  document.querySelectorAll(".ci").forEach(function(ci,idx){
+    if(CD[idx])ci.classList.add("checked");
+    ci.addEventListener("click",function(){ci.classList.toggle("checked");CD[idx]=ci.classList.contains("checked")?1:0;try{localStorage.setItem("genkiL9_cando",JSON.stringify(CD));}catch(e){}});
+  });
+  /* romaji toggle persistence */
+  try{if(localStorage.getItem("genkiL9_romaji")==="off")document.body.classList.add("noromaji");}catch(e){}
+  var rjbtn=document.getElementById("rjbtn");
+  if(rjbtn)rjbtn.addEventListener("click",function(){try{localStorage.setItem("genkiL9_romaji",document.body.classList.contains("noromaji")?"off":"on");}catch(e){}});
+  /* restore scroll */
+  try{var y=parseInt(localStorage.getItem("genkiL9_y")||"0",10);if(y>300)setTimeout(function(){window.scrollTo(0,y);},80);}catch(e){}
+  upd();
+})();
+
+show(0);
+</script>
+</body>
+</html>
