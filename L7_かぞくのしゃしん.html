@@ -735,7 +735,7 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
     var ok=document.createElement("button");ok.className="ok";ok.textContent="✓ できた";
     var ag=document.createElement("button");ag.className="again";ag.textContent="↻ もう一回";
     ok.addEventListener("click",function(e){e.stopPropagation();rv.classList.add("done");DONE[idx]=1;try{localStorage.setItem("genkiL7_done",JSON.stringify(DONE));}catch(e2){}});
-    ag.addEventListener("click",function(e){e.stopPropagation();rv.classList.remove("shown");});
+    ag.addEventListener("click",function(e){e.stopPropagation();rv.classList.remove("shown");rv.classList.remove("done");delete DONE[idx];try{localStorage.setItem("genkiL7_done",JSON.stringify(DONE));}catch(e2){}});
     rate.appendChild(ok);rate.appendChild(ag);rv.appendChild(rate);
   });
   /* can-do checklist */

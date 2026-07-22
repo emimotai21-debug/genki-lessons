@@ -103,39 +103,95 @@
     .nav button{padding:1.4vh 5vw;}
   }
 
-  /* ===== L8: ruby romaji, English titles, colored change, practice refs ===== */
+  /* ===== L7 redesign (same as L8) ===== */
   h1 .ensub,h2 .ensub{display:block;font-size:2.3vh;color:#1565c0;font-weight:400;margin-top:.5vh;letter-spacing:.02em;}
   .slide.gram{justify-content:flex-start;overflow-y:auto;padding:7.5vh 5vw 12vh;}
-  .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;padding:2.6vh 3.4vw;margin:1.4vh auto;display:inline-block;}
-  .exline{font-size:6.4vh;line-height:1.9;text-align:center;}
-  .exline.two{font-size:4.6vh;}
-  ruby rt{font-size:.32em;color:#1565c0;font-weight:700;line-height:1.1;}
+  .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;padding:2.4vh 3vw;margin:1.2vh auto;display:inline-block;}
+  .exline{font-size:6vh;line-height:1.9;text-align:center;}
+  .exline.two{font-size:4.4vh;}
+  ruby{margin:0 .12em;}
+  ruby rt{font-size:.5em;color:#1565c0;font-weight:700;line-height:1.15;}
   .chg,.chg rt{color:#c92a2a !important;}
-  .arrow{font-size:3.6vh;color:var(--orange);margin:.4vh 0;font-weight:700;}
+  .arrow{font-size:3.4vh;color:var(--orange);margin:.3vh 0;font-weight:700;}
   .lbl{font-size:2.3vh;color:#666;margin-bottom:.6vh;font-weight:700;letter-spacing:.04em;}
   .lbl.i{color:#1971c2;} .lbl.n{color:#c2255c;}
-  .listrow{font-size:4.2vh;line-height:1.5;text-align:center;margin:.5vh 0;}
-  .listrow .rom{display:block;font-size:.42em;color:#1565c0;font-weight:700;margin-top:.1vh;}
+  .listrow{font-size:4vh;line-height:1.5;text-align:center;margin:.5vh 0;}
+  .listrow .rom{display:block;font-size:.52em;color:#1565c0;font-weight:700;margin-top:.2vh;}
   .listrow .chg{color:#c92a2a;}
   body.noromaji rt,body.noromaji .listrow .rom{visibility:hidden;}
-  .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;padding:1.5vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.62;margin-top:1.8vh;}
+  .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;padding:1.4vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.6;margin-top:1.6vh;}
   .enx b{color:#c92a2a;} .enx .k{color:#e8590c;font-weight:700;}
   .twocol{display:grid;grid-template-columns:1fr 1fr;gap:2vh 3vw;max-width:90vw;margin:0 auto;}
   .prac{display:inline-block;background:#eafaf0;border:.3vh solid #2f9e44;color:#2b8a3e;border-radius:1.4vh;padding:1vh 2.2vw;font-size:2.1vh;font-weight:700;margin-top:2vh;}
   .prac b{color:#c2410c;}
-  /* roomy ruby drill cards */
   .slide.drill{justify-content:flex-start;overflow-y:auto;padding:8vh 5vw 12vh;}
-  .drill .rv{display:block !important;text-align:center;font-size:4vh;padding:2.4vh 2vw;line-height:1.5;}
-  .drill .rv ruby rt{font-size:.3em;}
-  .drill .rv .a{display:block;margin-top:1.4vh;font-size:.82em;line-height:1.9;}
+  .drill .rv{display:block !important;text-align:center;font-size:3.8vh;padding:2.2vh 2vw;line-height:1.5;}
+  .drill .rv ruby rt{font-size:.46em;}
+  .drill .rv .a{display:block;margin-top:1.2vh;font-size:.82em;line-height:1.9;}
   .drill .rv:not(.shown) .a{color:#ecdccb;background:#ecdccb;border-radius:1vh;}
   .drill .rv:not(.shown) .a rt{visibility:hidden !important;}
   .drill .rv:not(.shown) .a ruby{color:#ecdccb !important;}
   .drill .rv.shown .a{color:#c2410c;background:var(--soft);padding:1.2vh 1.5vw;border-radius:1vh;}
   .drill .grid{gap:2vh 3vw;}
-  .memo ruby rt{font-size:.34em;color:#1565c0;font-weight:700;}
-  @media(max-width:700px){.exline{font-size:4.6vh;}.exline.two{font-size:3.4vh;}
-     .listrow{font-size:3.3vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.2vh;}}
+  .memo ruby rt{font-size:.48em;color:#1565c0;font-weight:700;}
+  /* 「今ここ」バッジ */
+  #nowbadge{position:fixed;top:1.3vh;left:50%;transform:translateX(-50%);z-index:15;
+    background:#2f4a3c;color:#fff;border-radius:99px;padding:.55vh 2.2vw;font-size:1.9vh;font-weight:700;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:62vw;text-align:center;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em;}
+  #nowbadge .p{color:#ffd9a8;margin-left:.5vw;}
+  @media(max-width:700px){#nowbadge{font-size:1.6vh;max-width:56vw;top:1vh;}
+     .exline{font-size:4.4vh;}.exline.two{font-size:3.3vh;}
+     .listrow{font-size:3.2vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.1vh;}}
+
+  html,body{height:auto !important;overflow:visible !important;background:var(--bg);}
+  body{overflow-y:auto !important;padding-top:7.6vh;}
+  .deck{position:static !important;height:auto !important;overflow:visible !important;}
+  .slide{position:static !important;display:flex !important;height:auto !important;min-height:74vh;
+    inset:auto !important;border-bottom:.35vh dashed #e6c9a3;scroll-margin-top:9vh;}
+  .slide.div{min-height:auto;border-bottom:none;padding:5.5vh 6vw;}
+  .slide.board{min-height:76vh;}
+  .nav,.count{display:none !important;}
+  /* unified top bar */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:1.6vw;
+    padding:1vh 3vw;background:rgba(255,247,240,.97);backdrop-filter:blur(5px);box-shadow:0 2px 10px rgba(0,0,0,.09);
+    flex-wrap:nowrap;overflow:hidden;}
+  #topbar .tb-side{display:flex;gap:1.2vw;align-items:center;flex:0 0 auto;}
+  #topbar .home,#topbar .rjbtn{position:static !important;transform:none !important;top:auto !important;left:auto !important;right:auto !important;margin:0 !important;box-shadow:none !important;opacity:1;font-size:1.9vh;padding:.7vh 1.8vw;}
+  #nowbadge{position:static !important;transform:none !important;flex:1 1 auto;min-width:0;max-width:none !important;
+    background:#2f4a3c;color:#fff;border-radius:99px;padding:.7vh 2vw;font-size:1.9vh;font-weight:700;top:auto !important;left:auto !important;
+    text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  #nowbadge .p{color:#ffd9a8;margin-right:.6vw;}
+  .bar{top:0;z-index:31;height:.5vh;}
+  /* self-rating on reveal */
+  .drill .rv{position:relative;}
+  .rv .rate{display:none;gap:2vw;justify-content:center;margin-top:1.3vh;}
+  .rv.shown .rate{display:flex;}
+  .rate button{font-size:1.9vh;font-weight:700;border:none;border-radius:99px;padding:.7vh 3vw;cursor:pointer;}
+  .rate .ok{background:#2f9e44;color:#fff;}
+  .rate .again{background:#fff;border:.3vh solid #e8590c;color:#c2410c;}
+  .rv.done{border-color:#2f9e44 !important;}
+  .rv.done::after{content:"✓";position:absolute;top:.6vh;right:1.4vw;color:#2f9e44;font-size:2.4vh;font-weight:700;}
+  /* can-do checklist */
+  .cando{display:flex;flex-direction:column;gap:1.3vh;max-width:82vw;margin:0 auto;}
+  .ci{background:#fff;border:.35vh solid #d9c9b8;border-radius:1.4vh;padding:1.7vh 2vw 1.7vh 6.5vw;font-size:3vh;cursor:pointer;text-align:left;position:relative;}
+  .ci::before{content:"○";position:absolute;left:2.2vw;top:1.7vh;color:#c9b8a8;font-weight:700;}
+  .ci.checked{border-color:#2f9e44;background:#eafaf0;}
+  .ci.checked::before{content:"✓";color:#2f9e44;}
+  .ci .en{display:block;font-size:.56em;color:#1565c0;margin-top:.3vh;}
+  .emoji{font-size:1.4em;}
+  /* bookmark FABs + toast */
+  .fab{position:fixed;right:4vw;z-index:25;border:none;border-radius:50%;width:13vw;max-width:58px;height:13vw;max-height:58px;
+    color:#fff;font-weight:700;box-shadow:0 3px 12px rgba(0,0,0,.28);cursor:pointer;display:flex;align-items:center;justify-content:center;}
+  #bmset{bottom:4vh;background:#e8590c;font-size:3.4vh;}
+  #bmgo{bottom:calc(4vh + 66px);background:#2f9e44;font-size:2.5vh;display:none;}
+  #bmgo.show{display:flex;}
+  #toast{position:fixed;bottom:16vh;left:50%;transform:translateX(-50%);z-index:40;background:#2f4a3c;color:#fff;
+    padding:1.1vh 4vw;border-radius:99px;font-size:2.1vh;font-weight:700;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;}
+  #toast.show{opacity:1;}
+  .tocitem.cur{background:#ffe0c7;border-left-color:#c2410c;}
+  @media(max-width:700px){#topbar{gap:1vw;padding:.8vh 2vw;}
+    #topbar .home,#topbar .rjbtn,#nowbadge{font-size:1.5vh;padding:.6vh 1.4vw;}.ci{font-size:2.4vh;}}
 </style>
 </head>
 <body>
@@ -164,6 +220,13 @@
   <div class="kicker">SESSION 32</div>
   <h1>ふつうけい</h1>
   <p class="sub" style="color:#ffe9dc;">Plain (short) form</p>
+</section>
+
+<section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>ともだちと はなす とき<span class="ensub">Talking with friends</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">🗣️</span> ともだち … ですます は つかわない</div></div>
+  <p class="enx">With friends and family, Japanese people usually <b>don't</b> use です／ます. They use the <b>plain (short) form</b> instead. First, let's learn how to make it, step by step.</p>
 </section>
 
 <section class="slide gram">
@@ -272,6 +335,13 @@
 </section>
 
 <section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>じぶんの いけんを いいたい<span class="ensub">Give your own opinion</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">💭</span> あした あめ？ … と おもいます</div></div>
+  <p class="enx">When you want to say what <b>you think</b> — “I think it will rain,” “I think it's interesting” — Japanese uses <span class="k">〜とおもいます</span>. The part before と goes in the <b>plain form</b>.</p>
+</section>
+
+<section class="slide gram">
   <div class="kicker">GRAMMAR ❹ — 〜とおもいます</div>
   <h2>〜と おもいます<span class="ensub">“I think that ~”</span></h2>
   <div class="lbl">EXAMPLE</div>
@@ -311,11 +381,18 @@
 </section>
 
 <section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>すきな こと・とくいな こと<span class="ensub">What you like &amp; are good at</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">❤️</span> りょうり … <span class="emoji">🎤</span> うた … <span class="emoji">🎨</span> え</div></div>
+  <p class="enx">To say what you <b>like doing</b> or are <b>good/bad at</b> — cooking, singing, drawing — turn the verb into a noun with <span class="k">の</span>: する<b>のが</b> すきです.</p>
+</section>
+
+<section class="slide gram">
   <div class="kicker">GRAMMAR ❻ — 〜のが すき</div>
   <h2>どうし ＋ のが すき<span class="ensub">Verb + のが すき / じょうず / へた</span></h2>
   <div class="lbl">EXAMPLE</div>
   <div class="exbox">
-    <div class="exline two"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">する<rt>suru</rt></ruby> <ruby class="chg">の<rt>no</rt></ruby><ruby class="chg">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby>。</div>
+    <div class="exline two"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">する<rt>suru</rt></ruby> <ruby class="chg">の<rt>no</rt></ruby><ruby class="chg">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby>。</div>
   </div>
   <p class="enx">Add <span class="k">の</span> to a <b>dictionary-form verb</b> to make it a noun, then use が すき／じょうず／へた: する<b>のが</b> すきです = “I like cooking.”</p>
   <div class="prac">📖 きょうかしょ <b>練習 VI</b>（p.203）・ ワークブック L8</div>
@@ -325,10 +402,10 @@
   <div class="kicker">DRILL ❻ — 〜のが</div>
   <h2>いおう<span class="ensub">Say it — tap to check</span></h2>
   <div class="grid g2">
-    <div class="rv"><ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">みる<rt>miru</rt></ruby>・<ruby class="">すき<rt>suki</rt></ruby><span class="a"><ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">みる<rt>miru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
-    <div class="rv"><ruby class="">うた<rt>uta</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">うたう<rt>utau</rt></ruby>・<ruby class="">じょうず<rt>jouzu</rt></ruby><span class="a"><ruby class="">うた<rt>uta</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">うたう<rt>utau</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">じょうず<rt>jouzu</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みる<rt>miru</rt></ruby>・<ruby class="">すき<rt>suki</rt></ruby><span class="a"><ruby class="">えいが<rt>eiga</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">みる<rt>miru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">うた<rt>uta</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">うたう<rt>utau</rt></ruby>・<ruby class="">じょうず<rt>jouzu</rt></ruby><span class="a"><ruby class="">うた<rt>uta</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">うたう<rt>utau</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">じょうず<rt>jouzu</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
     <div class="rv"><ruby class="">はやく<rt>hayaku</rt></ruby> <ruby class="">おきる<rt>okiru</rt></ruby>・<ruby class="">へた<rt>heta</rt></ruby><span class="a"><ruby class="">はやく<rt>hayaku</rt></ruby> <ruby class="">おきる<rt>okiru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">へた<rt>heta</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
-    <div class="rv"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">する<rt>suru</rt></ruby>・<ruby class="">すき<rt>suki</rt></ruby><span class="a"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">する<rt>suru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
+    <div class="rv"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">する<rt>suru</rt></ruby>・<ruby class="">すき<rt>suki</rt></ruby><span class="a"><ruby class="">りょうり<rt>ryouri</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">する<rt>suru</rt></ruby> <ruby class="">の<rt>no</rt></ruby><ruby class="">が<rt>ga</rt></ruby> <ruby class="">すき<rt>suki</rt></ruby><ruby class="">です<rt>desu</rt></ruby></span></div>
   </div>
 </section>
 
@@ -351,11 +428,18 @@
 </section>
 
 <section class="slide gram">
+  <div class="kicker">CONTEXT — じょうきょう</div>
+  <h2>ためぐちで はなそう<span class="ensub">Casual conversation</span></h2>
+  <div class="exbox"><div class="exline two"><span class="emoji">😄</span> げんき？ … うん、げんき！</div></div>
+  <p class="enx">Now use the plain form in <b>casual conversation</b> with friends — and learn how to politely ask someone <b>not</b> to do something with <span class="k">〜ないでください</span>.</p>
+</section>
+
+<section class="slide gram">
   <div class="kicker">GRAMMAR ❽ — 〜ないでください</div>
   <h2>〜ないで ください<span class="ensub">“Please don’t ~”</span></h2>
   <div class="lbl">EXAMPLE</div>
   <div class="exbox">
-    <div class="exline two"><ruby class="">ここ<rt>koko</rt></ruby> <ruby class="">で<rt>de</rt></ruby> <ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">とら<rt>tora</rt></ruby><ruby class="chg">ない<rt>nai</rt></ruby><ruby class="chg">で<rt>de</rt></ruby> <ruby class="">ください<rt>kudasai</rt></ruby>。</div>
+    <div class="exline two"><ruby class="">ここ<rt>koko</rt></ruby> <ruby class="">で<rt>de</rt></ruby> <ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">とら<rt>tora</rt></ruby><ruby class="chg">ない<rt>nai</rt></ruby><ruby class="chg">で<rt>de</rt></ruby> <ruby class="">ください<rt>kudasai</rt></ruby>。</div>
   </div>
   <p class="enx"><span class="k">ない-form ＋ で ください</span> = “please don’t ~.” とる → とら<b>ない</b> → とら<b>ないでください</b>. → “Please don’t take photos here.”</p>
   <div class="prac">📖 きょうかしょ <b>練習 V</b>（p.202）・ ワークブック L8</div>
@@ -373,6 +457,12 @@
   <div class="prac">📖 きょうかしょ <b>練習 II</b>（p.198〜199）・ ワークブック L8</div>
 </section>
 
+<section class="slide div">
+  <div class="kicker">ごい・まとめ</div>
+  <h1>ごい・まとめ</h1>
+  <p class="sub" style="color:#ffe9dc;">Vocabulary & wrap-up</p>
+</section>
+
 <section class="slide">
   <div class="kicker">VOCAB — L8</div>
   <h2>バーベキューの ことば<span class="ensub">Key words for this lesson</span></h2>
@@ -386,17 +476,29 @@
   <div class="kicker">TASK — talk casually</div>
   <h2>ともだちと カジュアルに<span class="ensub">Chat with a friend in plain form</span></h2>
   <div class="memo" style="font-size:3vh;line-height:2.4;">
-    A：<ruby class="">しゅうまつ<rt>shuumatsu</rt></ruby> <ruby class="">なに<rt>nani</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>？<br>
-    B：<ruby class="">ともだち<rt>tomodachi</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">バーベキュー<rt>baabekyuu</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>。<br>
+    A：<ruby class="">しゅうまつ<rt>shuumatsu</rt></ruby> <ruby class="">なに<rt>nani</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>？<br>
+    B：<ruby class="">ともだち<rt>tomodachi</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">バーベキュー<rt>baabekyuu</rt></ruby> <ruby class="">を<rt>wo</rt></ruby> <ruby class="">した<rt>shita</rt></ruby>。<br>
     A：<ruby class="">たのしかった<rt>tanoshikatta</rt></ruby>？<br>
     B：<ruby class="">うん<rt>un</rt></ruby>、<ruby class="">すごく<rt>sugoku</rt></ruby> <ruby class="">たのしかった<rt>tanoshikatta</rt></ruby> <ruby class="">と<rt>to</rt></ruby> <ruby class="">おもう<rt>omou</rt></ruby>！
   </div>
   <p class="hint" style="color:#1565c0;">Try it without です／ます — use the plain form!</p>
 </section>
 
+<section class="slide">
+  <div class="kicker">CAN-DO CHECK — じこチェック</div>
+  <h2>できるように なった？<span class="ensub">Can you do these now? Tap each ✓</span></h2>
+  <div class="cando">
+    <div class="ci">カジュアルに はなせる<span class="en">speak casually（ふつうけい）</span></div>
+    <div class="ci">いけんが いえる<span class="en">give an opinion（〜とおもいます）</span></div>
+    <div class="ci">ひとの ことばを つたえられる<span class="en">report what someone said（〜といっていました）</span></div>
+    <div class="ci">すきなこと・とくいなことが いえる<span class="en">say what you like / are good at（〜のがすき）</span></div>
+  </div>
+  <p class="hint" style="color:#2b8a3e;">できたら タップ ✓ ・ ぜんぶ できたら すごい！</p>
+</section>
+
 <section class="slide div">
   <div class="kicker">HOMEWORK</div>
-  <h1>おつかれさま！</h1>
+  <h1>おつかれさま！ 🎉</h1>
   <p class="sub" style="color:#ffe9dc;">① Workbook L8　② Vocab Cards L8　③ Write 5 lines with 〜とおもいます</p>
 </section>
 
@@ -477,7 +579,7 @@ document.querySelectorAll(".slide:not(.nork)").forEach(slide=>{
     if(el.querySelector("b")||el.querySelector(".roleA"))addRjWhole(el);else addRj(el);
   });
   slide.querySelectorAll(".__noauto__").forEach(addRj);
-  slide.querySelectorAll(".rv").forEach(rv=>{
+  slide.querySelectorAll(".__noauto_rv__").forEach(rv=>{
     addRj(rv);
     rv.querySelectorAll(".a").forEach(addRj);
   });
@@ -502,7 +604,7 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
   btn.onclick=()=>ov.classList.toggle("open");
   ov.addEventListener("click",e=>{
     const b=e.target.closest(".tocitem");
-    if(b){show(Number(b.dataset.i));ov.classList.remove("open");}
+    if(b){slides[Number(b.dataset.i)].scrollIntoView({behavior:'smooth',block:'start'});ov.classList.remove('open');}
     else if(e.target===ov)ov.classList.remove("open");
   });
   document.addEventListener("keydown",e=>{if(e.key==="Escape")ov.classList.remove("open");});
@@ -519,6 +621,76 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
     if(e.target.closest(".rv,.tocov,button,a"))return;
     if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?show(cur+1):show(cur-1);}
   },{passive:true});
+})();
+
+
+(function(){
+  var topbar=document.createElement("div");topbar.id="topbar";
+  var left=document.createElement("div");left.className="tb-side";
+  var right=document.createElement("div");right.className="tb-side";
+  var badge=document.createElement("div");badge.id="nowbadge";
+  var home=document.querySelector(".home"); if(home)left.appendChild(home);
+  var rjs=document.querySelectorAll(".rjbtn");
+  topbar.appendChild(left);topbar.appendChild(badge);topbar.appendChild(right);
+  for(var r=0;r<rjs.length;r++)right.appendChild(rjs[r]);
+  document.body.appendChild(topbar);
+  /* chapter labels (bilingual) */
+  var lab={jp:"はじめに",en:"Start"};
+  var labels=slides.map(function(s){
+    if(s.classList.contains("div")){var h=s.querySelector("h1"),sub=s.querySelector(".sub");var jp=lab.jp;
+      if(h){var c=h.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub,rt").forEach(function(x){x.remove();});jp=c.textContent.trim();}
+      lab={jp:jp,en:sub?sub.textContent.trim():jp};}
+    return lab;});
+  var seen=[],grpOf=[];
+  labels.forEach(function(l){var gi=seen.indexOf(l);if(gi<0){seen.push(l);gi=seen.length-1;}grpOf.push(gi);});
+  var total=seen.length,bar=document.getElementById("bar");
+  var firstIdx=[];for(var g=0;g<total;g++){for(var i2=0;i2<slides.length;i2++){if(grpOf[i2]===g){firstIdx[g]=i2;break;}}}
+  /* rebuild Contents as chapter list (matches the top badge) */
+  var ov=document.querySelector(".tocov"),panel=ov?ov.querySelector(".tocpanel"):null,items=[];
+  if(panel){var html='<h3 style="color:#e8590c;margin-bottom:10px;font-size:2.4vh;">Contents ・ もくじ（タップで ジャンプ）</h3>';
+    for(var g2=0;g2<total;g2++){html+='<button class="tocitem" data-i="'+firstIdx[g2]+'"><span class="k">'+seen[g2].jp+'</span><br>'+seen[g2].en+'</button>';}
+    panel.innerHTML=html;items=panel.querySelectorAll(".tocitem");}
+  function curIdx(){var off=window.innerHeight*0.34,idx=0;for(var i=0;i<slides.length;i++){if(slides[i].getBoundingClientRect().top<=off)idx=i;else break;}return idx;}
+  function upd(){var n=curIdx();badge.innerHTML='<span class="p">▸</span> '+labels[n].jp+' <span class="p">'+labels[n].en+'</span>';
+    for(var x=0;x<items.length;x++)items[x].classList.toggle("cur",x===grpOf[n]);
+    if(bar){var sc=document.scrollingElement||document.documentElement;bar.style.width=(sc.scrollTop/((sc.scrollHeight-sc.clientHeight)||1)*100)+"vw";
+      try{localStorage.setItem("genkiL8_y",""+sc.scrollTop);}catch(e){}}}
+  window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);
+  /* bookmark (しおり) FABs */
+  var bmset=document.createElement("button");bmset.id="bmset";bmset.className="fab";bmset.textContent="☆";bmset.title="しおりを つける";
+  var bmgo=document.createElement("button");bmgo.id="bmgo";bmgo.className="fab";bmgo.textContent="★↑";bmgo.title="しおりへ もどる";
+  var toast=document.createElement("div");toast.id="toast";
+  document.body.appendChild(bmgo);document.body.appendChild(bmset);document.body.appendChild(toast);
+  function scE(){return document.scrollingElement||document.documentElement;}
+  function refBm(){if(localStorage.getItem("genkiL8_bm")!=null){bmset.textContent="★";bmgo.classList.add("show");}else{bmset.textContent="☆";bmgo.classList.remove("show");}}
+  function toastMsg(m){toast.textContent=m;toast.classList.add("show");setTimeout(function(){toast.classList.remove("show");},1500);}
+  bmset.addEventListener("click",function(){try{localStorage.setItem("genkiL8_bm",""+scE().scrollTop);}catch(e){}refBm();toastMsg("📑 しおりを つけました");});
+  bmgo.addEventListener("click",function(){try{var y=parseInt(localStorage.getItem("genkiL8_bm")||"0",10);window.scrollTo({top:y,behavior:"smooth"});}catch(e){}});
+  try{refBm();}catch(e){}
+  /* self-rating on reveal cards */
+  var DONE={};try{DONE=JSON.parse(localStorage.getItem("genkiL8_done")||"{}");}catch(e){}
+  document.querySelectorAll(".drill .rv").forEach(function(rv,idx){
+    if(DONE[idx])rv.classList.add("done");
+    var rate=document.createElement("div");rate.className="rate";
+    var ok=document.createElement("button");ok.className="ok";ok.textContent="✓ できた";
+    var ag=document.createElement("button");ag.className="again";ag.textContent="↻ もう一回";
+    ok.addEventListener("click",function(e){e.stopPropagation();rv.classList.add("done");DONE[idx]=1;try{localStorage.setItem("genkiL8_done",JSON.stringify(DONE));}catch(e2){}});
+    ag.addEventListener("click",function(e){e.stopPropagation();rv.classList.remove("shown");rv.classList.remove("done");delete DONE[idx];try{localStorage.setItem("genkiL8_done",JSON.stringify(DONE));}catch(e2){}});
+    rate.appendChild(ok);rate.appendChild(ag);rv.appendChild(rate);
+  });
+  /* can-do checklist */
+  var CD={};try{CD=JSON.parse(localStorage.getItem("genkiL8_cando")||"{}");}catch(e){}
+  document.querySelectorAll(".ci").forEach(function(ci,idx){
+    if(CD[idx])ci.classList.add("checked");
+    ci.addEventListener("click",function(){ci.classList.toggle("checked");CD[idx]=ci.classList.contains("checked")?1:0;try{localStorage.setItem("genkiL8_cando",JSON.stringify(CD));}catch(e){}});
+  });
+  /* romaji toggle persistence */
+  try{if(localStorage.getItem("genkiL8_romaji")==="off")document.body.classList.add("noromaji");}catch(e){}
+  var rjbtn=document.getElementById("rjbtn");
+  if(rjbtn)rjbtn.addEventListener("click",function(){try{localStorage.setItem("genkiL8_romaji",document.body.classList.contains("noromaji")?"off":"on");}catch(e){}});
+  /* restore scroll */
+  try{var y=parseInt(localStorage.getItem("genkiL8_y")||"0",10);if(y>300)setTimeout(function(){window.scrollTo(0,y);},80);}catch(e){}
+  upd();
 })();
 
 show(0);
