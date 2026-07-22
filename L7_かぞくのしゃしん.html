@@ -133,8 +133,25 @@
   .drill .rv.shown .a{color:#c2410c;background:var(--soft);padding:1.2vh 1.5vw;border-radius:1vh;}
   .drill .grid{gap:2vh 3vw;}
   .memo ruby rt{font-size:.34em;color:#1565c0;font-weight:700;}
-  @media(max-width:700px){.exline{font-size:4.4vh;}.exline.two{font-size:3.3vh;}
+  /* 「今ここ」バッジ */
+  #nowbadge{position:fixed;top:1.3vh;left:50%;transform:translateX(-50%);z-index:15;
+    background:#2f4a3c;color:#fff;border-radius:99px;padding:.55vh 2.2vw;font-size:1.9vh;font-weight:700;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);max-width:62vw;text-align:center;white-space:nowrap;
+    overflow:hidden;text-overflow:ellipsis;letter-spacing:.02em;}
+  #nowbadge .p{color:#ffd9a8;margin-left:.5vw;}
+  @media(max-width:700px){#nowbadge{font-size:1.6vh;max-width:56vw;top:1vh;}
+     .exline{font-size:4.4vh;}.exline.two{font-size:3.3vh;}
      .listrow{font-size:3.2vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.1vh;}}
+
+  html,body{height:auto !important;overflow:visible !important;background:var(--bg);}
+  body{overflow-y:auto !important;}
+  .deck{position:static !important;height:auto !important;overflow:visible !important;}
+  .slide{position:static !important;display:flex !important;height:auto !important;min-height:74vh;
+    inset:auto !important;border-bottom:.35vh dashed #e6c9a3;scroll-margin-top:5vh;}
+  .slide.div{min-height:auto;border-bottom:none;padding:5.5vh 6vw;}
+  .slide.board{min-height:80vh;}
+  .nav,.count{display:none !important;}
+  .home{box-shadow:0 2px 8px rgba(0,0,0,.15);}
 </style>
 </head>
 <body>
@@ -299,8 +316,8 @@
 
 <section class="slide div">
   <div class="kicker">SESSION 31</div>
-  <h1>けいようしの て-form ・ 〜に行く</h1>
-  <p class="sub" style="color:#ffe9dc;">Joining adjectives &amp; going to do</p>
+  <h1>けいようしの て-form</h1>
+  <p class="sub" style="color:#ffe9dc;">Joining adjectives with て</p>
 </section>
 
 <section class="slide gram">
@@ -335,8 +352,14 @@
   </div>
 </section>
 
+<section class="slide div">
+  <div class="kicker">〜に行く</div>
+  <h1>〜に いく</h1>
+  <p class="sub" style="color:#ffe9dc;">Going somewhere to do something</p>
+</section>
+
 <section class="slide gram">
-  <div class="kicker">SESSION 31 — 〜に行く ・ CONTEXT</div>
+  <div class="kicker">CONTEXT — じょうきょう</div>
   <h2>どこへ？ なにを しに？<span class="ensub">Where are you going — and what for?</span></h2>
   <div class="lbl">じょうきょう（a scene）</div>
   <div class="exbox">
@@ -425,6 +448,12 @@
     <div class="rv"><ruby class="">こうえん<rt>kouen</rt></ruby>・<ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">とる<rt>toru</rt></ruby><span class="a"><ruby class="">こうえん<rt>kouen</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">しゃしん<rt>shashin</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">とり<rt>tori</rt></ruby> <ruby class="">に<rt>ni</rt></ruby> <ruby class="">いきます<rt>ikimasu</rt></ruby></span></div>
   </div>
   <div class="prac">📖 きょうかしょ <b>練習 V</b>（p.181）・ ワークブック L7</div>
+</section>
+
+<section class="slide div">
+  <div class="kicker">ごい・まとめ</div>
+  <h1>ごい・まとめ</h1>
+  <p class="sub" style="color:#ffe9dc;">Vocabulary & wrap-up</p>
 </section>
 
 <section class="slide">
@@ -555,7 +584,7 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
   btn.onclick=()=>ov.classList.toggle("open");
   ov.addEventListener("click",e=>{
     const b=e.target.closest(".tocitem");
-    if(b){show(Number(b.dataset.i));ov.classList.remove("open");}
+    if(b){slides[Number(b.dataset.i)].scrollIntoView({behavior:'smooth',block:'start'});ov.classList.remove('open');}
     else if(e.target===ov)ov.classList.remove("open");
   });
   document.addEventListener("keydown",e=>{if(e.key==="Escape")ov.classList.remove("open");});
@@ -572,6 +601,25 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
     if(e.target.closest(".rv,.tocov,button,a"))return;
     if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5){dx<0?show(cur+1):show(cur-1);}
   },{passive:true});
+})();
+
+
+(function(){
+  var badge=document.createElement("div");badge.id="nowbadge";document.body.appendChild(badge);
+  var secLabel=[],posOf=[],lenOf=[],lab="はじめに";
+  var labels=slides.map(function(s){
+    if(s.classList.contains("div")){var h=s.querySelector("h1");
+      if(h){var c=h.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub,rt").forEach(function(x){x.remove();});lab=c.textContent.trim();}}
+    return lab;});
+  var i=0;while(i<slides.length){var j=i;while(j<slides.length&&labels[j]===labels[i])j++;
+    for(var k=i;k<j;k++){secLabel[k]=labels[i];posOf[k]=k-i+1;lenOf[k]=j-i;}i=j;}
+  var bar=document.getElementById("bar");
+  function curIdx(){var off=window.innerHeight*0.32,idx=0;
+    for(var i=0;i<slides.length;i++){if(slides[i].getBoundingClientRect().top<=off)idx=i;else break;}return idx;}
+  function upd(){var n=curIdx();badge.innerHTML=secLabel[n]+' <span class="p">'+posOf[n]+' / '+lenOf[n]+'</span>';
+    if(bar){var sc=document.scrollingElement||document.documentElement;
+      bar.style.width=(sc.scrollTop/((sc.scrollHeight-sc.clientHeight)||1)*100)+"vw";}}
+  window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();
 })();
 
 show(0);
