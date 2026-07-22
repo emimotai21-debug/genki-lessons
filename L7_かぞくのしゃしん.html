@@ -109,13 +109,14 @@
   .exbox{background:#fff;border:.45vh solid var(--orange);border-radius:2.2vh;padding:2.4vh 3vw;margin:1.2vh auto;display:inline-block;}
   .exline{font-size:6vh;line-height:1.9;text-align:center;}
   .exline.two{font-size:4.4vh;}
-  ruby rt{font-size:.32em;color:#1565c0;font-weight:700;line-height:1.1;}
+  ruby{margin:0 .12em;}
+  ruby rt{font-size:.5em;color:#1565c0;font-weight:700;line-height:1.15;}
   .chg,.chg rt{color:#c92a2a !important;}
   .arrow{font-size:3.4vh;color:var(--orange);margin:.3vh 0;font-weight:700;}
   .lbl{font-size:2.3vh;color:#666;margin-bottom:.6vh;font-weight:700;letter-spacing:.04em;}
   .lbl.i{color:#1971c2;} .lbl.n{color:#c2255c;}
   .listrow{font-size:4vh;line-height:1.5;text-align:center;margin:.5vh 0;}
-  .listrow .rom{display:block;font-size:.42em;color:#1565c0;font-weight:700;margin-top:.1vh;}
+  .listrow .rom{display:block;font-size:.52em;color:#1565c0;font-weight:700;margin-top:.2vh;}
   .listrow .chg{color:#c92a2a;}
   body.noromaji rt,body.noromaji .listrow .rom{visibility:hidden;}
   .enx{font-size:2.5vh;color:#222;background:#eef4fb;border-left:.6vh solid #1565c0;padding:1.4vh 2vw;text-align:left;max-width:88vw;border-radius:1.2vh;line-height:1.6;margin-top:1.6vh;}
@@ -125,14 +126,14 @@
   .prac b{color:#c2410c;}
   .slide.drill{justify-content:flex-start;overflow-y:auto;padding:8vh 5vw 12vh;}
   .drill .rv{display:block !important;text-align:center;font-size:3.8vh;padding:2.2vh 2vw;line-height:1.5;}
-  .drill .rv ruby rt{font-size:.3em;}
+  .drill .rv ruby rt{font-size:.46em;}
   .drill .rv .a{display:block;margin-top:1.2vh;font-size:.82em;line-height:1.9;}
   .drill .rv:not(.shown) .a{color:#ecdccb;background:#ecdccb;border-radius:1vh;}
   .drill .rv:not(.shown) .a rt{visibility:hidden !important;}
   .drill .rv:not(.shown) .a ruby{color:#ecdccb !important;}
   .drill .rv.shown .a{color:#c2410c;background:var(--soft);padding:1.2vh 1.5vw;border-radius:1vh;}
   .drill .grid{gap:2vh 3vw;}
-  .memo ruby rt{font-size:.34em;color:#1565c0;font-weight:700;}
+  .memo ruby rt{font-size:.48em;color:#1565c0;font-weight:700;}
   /* 「今ここ」バッジ */
   #nowbadge{position:fixed;top:1.3vh;left:50%;transform:translateX(-50%);z-index:15;
     background:#2f4a3c;color:#fff;border-radius:99px;padding:.55vh 2.2vw;font-size:1.9vh;font-weight:700;
@@ -144,14 +145,43 @@
      .listrow{font-size:3.2vh;}.twocol{grid-template-columns:1fr;}.drill .rv{font-size:3.1vh;}}
 
   html,body{height:auto !important;overflow:visible !important;background:var(--bg);}
-  body{overflow-y:auto !important;}
+  body{overflow-y:auto !important;padding-top:7.6vh;}
   .deck{position:static !important;height:auto !important;overflow:visible !important;}
   .slide{position:static !important;display:flex !important;height:auto !important;min-height:74vh;
-    inset:auto !important;border-bottom:.35vh dashed #e6c9a3;scroll-margin-top:5vh;}
+    inset:auto !important;border-bottom:.35vh dashed #e6c9a3;scroll-margin-top:9vh;}
   .slide.div{min-height:auto;border-bottom:none;padding:5.5vh 6vw;}
-  .slide.board{min-height:80vh;}
+  .slide.board{min-height:76vh;}
   .nav,.count{display:none !important;}
-  .home{box-shadow:0 2px 8px rgba(0,0,0,.15);}
+  /* unified top bar */
+  #topbar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;gap:1.6vw;
+    padding:1vh 3vw;background:rgba(255,247,240,.97);backdrop-filter:blur(5px);box-shadow:0 2px 10px rgba(0,0,0,.09);
+    flex-wrap:nowrap;overflow:hidden;}
+  #topbar .tb-side{display:flex;gap:1.2vw;align-items:center;flex:0 0 auto;}
+  #topbar .home,#topbar .rjbtn{position:static !important;transform:none !important;top:auto !important;left:auto !important;right:auto !important;margin:0 !important;box-shadow:none !important;opacity:1;font-size:1.9vh;padding:.7vh 1.8vw;}
+  #nowbadge{position:static !important;transform:none !important;flex:1 1 auto;min-width:0;max-width:none !important;
+    background:#2f4a3c;color:#fff;border-radius:99px;padding:.7vh 2vw;font-size:1.9vh;font-weight:700;top:auto !important;left:auto !important;
+    text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  #nowbadge .p{color:#ffd9a8;margin-right:.6vw;}
+  .bar{top:0;z-index:31;height:.5vh;}
+  /* self-rating on reveal */
+  .drill .rv{position:relative;}
+  .rv .rate{display:none;gap:2vw;justify-content:center;margin-top:1.3vh;}
+  .rv.shown .rate{display:flex;}
+  .rate button{font-size:1.9vh;font-weight:700;border:none;border-radius:99px;padding:.7vh 3vw;cursor:pointer;}
+  .rate .ok{background:#2f9e44;color:#fff;}
+  .rate .again{background:#fff;border:.3vh solid #e8590c;color:#c2410c;}
+  .rv.done{border-color:#2f9e44 !important;}
+  .rv.done::after{content:"✓";position:absolute;top:.6vh;right:1.4vw;color:#2f9e44;font-size:2.4vh;font-weight:700;}
+  /* can-do checklist */
+  .cando{display:flex;flex-direction:column;gap:1.3vh;max-width:82vw;margin:0 auto;}
+  .ci{background:#fff;border:.35vh solid #d9c9b8;border-radius:1.4vh;padding:1.7vh 2vw 1.7vh 6.5vw;font-size:3vh;cursor:pointer;text-align:left;position:relative;}
+  .ci::before{content:"○";position:absolute;left:2.2vw;top:1.7vh;color:#c9b8a8;font-weight:700;}
+  .ci.checked{border-color:#2f9e44;background:#eafaf0;}
+  .ci.checked::before{content:"✓";color:#2f9e44;}
+  .ci .en{display:block;font-size:.56em;color:#1565c0;margin-top:.3vh;}
+  .emoji{font-size:1.4em;}
+  @media(max-width:700px){#topbar{gap:1vw;padding:.8vh 2vw;}
+    #topbar .home,#topbar .rjbtn,#nowbadge{font-size:1.5vh;padding:.6vh 1.4vw;}.ci{font-size:2.4vh;}}
 </style>
 </head>
 <body>
@@ -278,9 +308,9 @@
   <h2>きるもの の いいかた<span class="ensub">Verbs for wearing things</span></h2>
   <div class="lbl">EXAMPLE</div>
   <div class="exbox">
-    <div class="exline two"><ruby class="">めがね<rt>megane</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かけて<rt>kakete</rt></ruby><ruby class="">います<rt>imasu</rt></ruby></div>
+    <div class="exline two"><span class="emoji">👓</span> <ruby class="">めがね<rt>megane</rt></ruby> <ruby class="">を<rt>o</rt></ruby> <ruby class="">かけて<rt>kakete</rt></ruby><ruby class="">います<rt>imasu</rt></ruby></div>
   </div>
-  <div class="listrow" style="font-size:3.2vh;"><ruby class="">ぼうし<rt>boushi</rt></ruby>→<ruby class="">かぶる<rt>kaburu</rt></ruby>　／　<ruby class="">シャツ<rt>shatsu</rt></ruby>→<ruby class="">きる<rt>kiru</rt></ruby>　／　<ruby class="">ズボン<rt>zubon</rt></ruby>→<ruby class="">はく<rt>haku</rt></ruby></div>
+  <div class="listrow" style="font-size:3.2vh;"><span class="emoji">🧢</span><ruby class="">ぼうし<rt>boushi</rt></ruby>→<ruby class="">かぶる<rt>kaburu</rt></ruby>　／　<span class="emoji">👕</span><ruby class="">シャツ<rt>shatsu</rt></ruby>→<ruby class="">きる<rt>kiru</rt></ruby>　／　<span class="emoji">👖</span><ruby class="">ズボン<rt>zubon</rt></ruby>→<ruby class="">はく<rt>haku</rt></ruby></div>
   <p class="enx">Use <span class="k">〜ています</span> to describe what someone is <b>wearing</b>. Different verbs: めがね→<b>かける</b>, ぼうし→<b>かぶる</b>, シャツ→<b>きる</b>, ズボン・くつ→<b>はく</b>.</p>
 </section>
 
@@ -363,7 +393,7 @@
   <h2>どこへ？ なにを しに？<span class="ensub">Where are you going — and what for?</span></h2>
   <div class="lbl">じょうきょう（a scene）</div>
   <div class="exbox">
-    <div class="exline two"><ruby class="">メアリー<rt>Mearii</rt></ruby><ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">でかけます<rt>dekakemasu</rt></ruby>。</div>
+    <div class="exline two"><span class="emoji">🚶‍♀️</span> <ruby class="">メアリー<rt>Mearii</rt></ruby><ruby class="">さん<rt>san</rt></ruby> <ruby class="">は<rt>wa</rt></ruby> <ruby class="">でかけます<rt>dekakemasu</rt></ruby>。</div>
     <div class="exline two" style="font-size:2.7vh;color:#666;">Mary is going out.　→　どこへ？ なにを しに？</div>
   </div>
   <p class="enx">When we go out, we usually want to say <b>two</b> things: <b>WHERE</b> we go, and <b>WHY</b> (the purpose). Japanese puts both into one sentence with <span class="k">〜に行く</span>. Let's build it slowly — first, two things you already know.</p>
@@ -476,9 +506,21 @@
   <p class="hint" style="color:#1565c0;">Describe 2–3 people in your own family photo.</p>
 </section>
 
+<section class="slide">
+  <div class="kicker">CAN-DO CHECK — じこチェック</div>
+  <h2>できるように なった？<span class="ensub">Can you do these now? Tap each ✓</span></h2>
+  <div class="cando">
+    <div class="ci">いま していることが いえる<span class="en">say what someone is doing now（〜ています）</span></div>
+    <div class="ci">ひとの がいけんが いえる<span class="en">describe how people look / dress（Xは Yが・きています）</span></div>
+    <div class="ci">ふたつ つなげて いえる<span class="en">join two descriptions（〜くて／〜で）</span></div>
+    <div class="ci">〜しに いく が いえる<span class="en">go somewhere to do something（〜に行く）</span></div>
+  </div>
+  <p class="hint" style="color:#2b8a3e;">できたら タップ ✓ ・ ぜんぶ できたら すごい！</p>
+</section>
+
 <section class="slide div">
   <div class="kicker">HOMEWORK</div>
-  <h1>おつかれさま！</h1>
+  <h1>おつかれさま！ 🎉</h1>
   <p class="sub" style="color:#ffe9dc;">① Workbook L7　② Vocab Cards L7　③ Write a 5-line family introduction</p>
 </section>
 
@@ -605,21 +647,54 @@ document.getElementById("rjbtn").onclick=()=>document.body.classList.toggle("nor
 
 
 (function(){
-  var badge=document.createElement("div");badge.id="nowbadge";document.body.appendChild(badge);
-  var secLabel=[],posOf=[],lenOf=[],lab="はじめに";
+  var topbar=document.createElement("div");topbar.id="topbar";
+  var left=document.createElement("div");left.className="tb-side";
+  var right=document.createElement("div");right.className="tb-side";
+  var badge=document.createElement("div");badge.id="nowbadge";
+  var home=document.querySelector(".home"); if(home)left.appendChild(home);
+  var rjs=document.querySelectorAll(".rjbtn");
+  topbar.appendChild(left);topbar.appendChild(badge);topbar.appendChild(right);
+  for(var r=0;r<rjs.length;r++)right.appendChild(rjs[r]);
+  document.body.appendChild(topbar);
+  /* chapter labels (bilingual) */
+  var lab={jp:"はじめに",en:"Start"};
   var labels=slides.map(function(s){
-    if(s.classList.contains("div")){var h=s.querySelector("h1");
-      if(h){var c=h.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub,rt").forEach(function(x){x.remove();});lab=c.textContent.trim();}}
+    if(s.classList.contains("div")){var h=s.querySelector("h1"),sub=s.querySelector(".sub");var jp=lab.jp;
+      if(h){var c=h.cloneNode(true);c.querySelectorAll(".sm,.rj,.ensub,rt").forEach(function(x){x.remove();});jp=c.textContent.trim();}
+      lab={jp:jp,en:sub?sub.textContent.trim():jp};}
     return lab;});
-  var i=0;while(i<slides.length){var j=i;while(j<slides.length&&labels[j]===labels[i])j++;
-    for(var k=i;k<j;k++){secLabel[k]=labels[i];posOf[k]=k-i+1;lenOf[k]=j-i;}i=j;}
-  var bar=document.getElementById("bar");
-  function curIdx(){var off=window.innerHeight*0.32,idx=0;
-    for(var i=0;i<slides.length;i++){if(slides[i].getBoundingClientRect().top<=off)idx=i;else break;}return idx;}
-  function upd(){var n=curIdx();badge.innerHTML=secLabel[n]+' <span class="p">'+posOf[n]+' / '+lenOf[n]+'</span>';
-    if(bar){var sc=document.scrollingElement||document.documentElement;
-      bar.style.width=(sc.scrollTop/((sc.scrollHeight-sc.clientHeight)||1)*100)+"vw";}}
-  window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);upd();
+  var seen=[],grpOf=[];
+  labels.forEach(function(l){var gi=seen.indexOf(l);if(gi<0){seen.push(l);gi=seen.length-1;}grpOf.push(gi);});
+  var total=seen.length,bar=document.getElementById("bar");
+  function curIdx(){var off=window.innerHeight*0.34,idx=0;for(var i=0;i<slides.length;i++){if(slides[i].getBoundingClientRect().top<=off)idx=i;else break;}return idx;}
+  function upd(){var n=curIdx();badge.innerHTML='<span class="p">章 '+(grpOf[n]+1)+' / '+total+'</span> '+labels[n].en;
+    if(bar){var sc=document.scrollingElement||document.documentElement;bar.style.width=(sc.scrollTop/((sc.scrollHeight-sc.clientHeight)||1)*100)+"vw";
+      try{localStorage.setItem("genkiL7_y",""+sc.scrollTop);}catch(e){}}}
+  window.addEventListener("scroll",upd,{passive:true});window.addEventListener("resize",upd);
+  /* self-rating on reveal cards */
+  var DONE={};try{DONE=JSON.parse(localStorage.getItem("genkiL7_done")||"{}");}catch(e){}
+  document.querySelectorAll(".drill .rv").forEach(function(rv,idx){
+    if(DONE[idx])rv.classList.add("done");
+    var rate=document.createElement("div");rate.className="rate";
+    var ok=document.createElement("button");ok.className="ok";ok.textContent="✓ できた";
+    var ag=document.createElement("button");ag.className="again";ag.textContent="↻ もう一回";
+    ok.addEventListener("click",function(e){e.stopPropagation();rv.classList.add("done");DONE[idx]=1;try{localStorage.setItem("genkiL7_done",JSON.stringify(DONE));}catch(e2){}});
+    ag.addEventListener("click",function(e){e.stopPropagation();rv.classList.remove("shown");});
+    rate.appendChild(ok);rate.appendChild(ag);rv.appendChild(rate);
+  });
+  /* can-do checklist */
+  var CD={};try{CD=JSON.parse(localStorage.getItem("genkiL7_cando")||"{}");}catch(e){}
+  document.querySelectorAll(".ci").forEach(function(ci,idx){
+    if(CD[idx])ci.classList.add("checked");
+    ci.addEventListener("click",function(){ci.classList.toggle("checked");CD[idx]=ci.classList.contains("checked")?1:0;try{localStorage.setItem("genkiL7_cando",JSON.stringify(CD));}catch(e){}});
+  });
+  /* romaji toggle persistence */
+  try{if(localStorage.getItem("genkiL7_romaji")==="off")document.body.classList.add("noromaji");}catch(e){}
+  var rjbtn=document.getElementById("rjbtn");
+  if(rjbtn)rjbtn.addEventListener("click",function(){try{localStorage.setItem("genkiL7_romaji",document.body.classList.contains("noromaji")?"off":"on");}catch(e){}});
+  /* restore scroll */
+  try{var y=parseInt(localStorage.getItem("genkiL7_y")||"0",10);if(y>300)setTimeout(function(){window.scrollTo(0,y);},80);}catch(e){}
+  upd();
 })();
 
 show(0);
