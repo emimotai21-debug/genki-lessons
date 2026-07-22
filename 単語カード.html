@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Genki I 単語カード（第1〜8課）</title>
+<title>Genki I 単語カード（第1〜9課）</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap" rel="stylesheet">
@@ -101,7 +101,7 @@
 <div class="panel">
   <div class="selects">
     <select id="lesson">
-      <option value="all">All lessons (L1–8)</option>
+      <option value="all">All lessons (L1–9)</option>
       <optgroup label="Single lesson">
         <option value="1">Lesson 1</option>
         <option value="2">Lesson 2</option>
@@ -111,6 +111,7 @@
         <option value="6">Lesson 6</option>
         <option value="7">Lesson 7</option>
         <option value="8">Lesson 8</option>
+        <option value="9">Lesson 9</option>
       </optgroup>
       <optgroup label="Cumulative">
         <option value="u2">Up to Lesson 2 (L1–2)</option>
@@ -120,6 +121,7 @@
         <option value="u6">Up to Lesson 6 (L1–6)</option>
         <option value="u7">Up to Lesson 7 (L1–7)</option>
         <option value="u8">Up to Lesson 8 (L1–8)</option>
+        <option value="u9">Up to Lesson 9 (L1–9)</option>
       </optgroup>
     </select>
     <select id="cat"></select>
@@ -625,6 +627,62 @@ const VOCAB=[
 ["〜について","","about…; concerning…",8,"副詞など"],
 ["〜ど","〜度","…degrees (temperature)",8,"副詞など"],
 ["どう","","how",8,"副詞など"],
+// ===== 第9課 =====
+["たんご","単語","word; vocabulary",9,"名詞"],
+["さくぶん","作文","essay; composition",9,"名詞"],
+["しけん","試験","exam",9,"名詞"],
+["てがみ","手紙","letter",9,"名詞"],
+["メール","","e-mail",9,"名詞"],
+["ギター","","guitar",9,"名詞"],
+["ピアノ","","piano",9,"名詞"],
+["コンサート","","concert",9,"名詞"],
+["チケット","","ticket",9,"名詞"],
+["かぶき","歌舞伎","Kabuki; traditional Japanese theatrical art",9,"名詞"],
+["スキー","","ski",9,"名詞"],
+["おべんとう","お弁当","boxed lunch",9,"名詞"],
+["ピザ","","pizza",9,"名詞"],
+["びょうき","病気","illness; sickness",9,"名詞"],
+["くすり","薬","medicine",9,"名詞"],
+["いいこ","いい子","good child",9,"名詞"],
+["いろ","色","color",9,"名詞"],
+["こんど","今度","near future",9,"名詞"],
+["せんげつ","先月","last month",9,"名詞"],
+["きょねん","去年","last year",9,"名詞"],
+["あおい","青い","blue",9,"い形容詞"],
+["あかい","赤い","red",9,"い形容詞"],
+["くろい","黒い","black",9,"い形容詞"],
+["しろい","白い","white",9,"い形容詞"],
+["さびしい","寂しい","lonely",9,"い形容詞"],
+["わかい","若い","young",9,"い形容詞"],
+["いじわる","意地悪","mean-spirited",9,"な形容詞"],
+["おどる","踊る","to dance",9,"う動詞"],
+["おわる","終わる","(something) ends (〜が)",9,"う動詞"],
+["にんきがある","人気がある","to be popular",9,"う動詞"],
+["はじまる","始まる","(something) begins (〜が)",9,"う動詞"],
+["ひく","弾く","to play (a string instrument / piano) (〜を)",9,"う動詞"],
+["もらう","","to get (from somebody) (person に thing を)",9,"う動詞"],
+["おぼえる","覚える","to memorize (〜を)",9,"る動詞"],
+["でる","出る","to appear; to attend (〜に)／to exit (〜を)",9,"る動詞"],
+["うんどうする","運動する","to exercise",9,"不規則動詞"],
+["さんぽする","散歩する","to take a walk",9,"不規則動詞"],
+["そう","","(I think) so",9,"副詞など"],
+["〜から","","from…",9,"副詞など"],
+["〜まで","","to (a place / a time)",9,"副詞など"],
+["ぜひ","是非","by all means",9,"副詞など"],
+["ところで","","by the way",9,"副詞など"],
+["みんな","","all; everyone",9,"副詞など"],
+["もう","","already",9,"副詞など"],
+["ひとつ","一つ","one",9,"数"],
+["ふたつ","二つ","two",9,"数"],
+["みっつ","三つ","three",9,"数"],
+["よっつ","四つ","four",9,"数"],
+["いつつ","五つ","five",9,"数"],
+["むっつ","六つ","six",9,"数"],
+["ななつ","七つ","seven",9,"数"],
+["やっつ","八つ","eight",9,"数"],
+["ここのつ","九つ","nine",9,"数"],
+["とお","十","ten",9,"数"],
+
 ];
 
 let deck=[],idx=0,mode="card",quizScore=0,quizIdx=0,quizOrder=[],missed=[];
@@ -676,7 +734,7 @@ const CAT_EN={"学校":"School","人":"People","時間":"Time","その他":"Othe
 "う動詞":"U-verbs","る動詞":"Ru-verbs","不規則動詞":"Irregular verbs","形容詞":"Adjectives",
 "副詞":"Adverbs","活動":"Activities","人・物":"People & Things","位置":"Location words",
 "副詞など":"Adverbs etc.","名詞":"Nouns","い形容詞":"i-adjectives","な形容詞":"na-adjectives",
-"曜日":"Days of the week"};
+"曜日":"Days of the week","数":"Counting (1-10)"};
 function inLesson(v,l){
   if(l==="all")return true;
   if(l[0]==="u")return v[3]<=Number(l.slice(1));
